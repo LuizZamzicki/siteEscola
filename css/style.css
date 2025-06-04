@@ -50,22 +50,27 @@ html {
   }
 
   .dadosEscola {
-    display: flex;
-    place-items: center;
-    place-content: center;
+   
     padding: 10px 10px 0 10px;
     width: 100%;
+    align-content: center;
+    
 
     .imgFooter {
+      position: fixed;
+      align-self: center;
       margin-right: 30px;
     }
 
-    p {
-      text-align: center;
-    }
+    .dadosFooter {
+     
+      p {
+        text-align: center;
+      }
 
-    .endereco {
-      font-size: small;
+      .endereco {
+        font-size: small;
+      }
     }
   }
 

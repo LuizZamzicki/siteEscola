@@ -53,7 +53,7 @@
         </div>
     </nav>
     <main class="centro">
-
+<h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1>
     </main>
     <footer class="footer navbar-fixed-bottom">
         <div class="dadosEscola">
@@ -63,7 +63,7 @@
             <div class="dadosFooter">
                 <p class="contato">
                     <span>(44) 3569-1318</span><br>
-                    <span>escola@escola.com.br</span>
+                    <span>jrnjoaorosa@escola.pr.gov.br</span>
                 </p>
                 <p class="endereco">R. Tamôios, 2454 - Centro, Juranda - PR, 87355-000</p>
             </div>
