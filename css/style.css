@@ -1,31 +1,79 @@
+:root {
+  --corPrimariaRoxo: rgba(68, 38, 119, 1);
+  --corPrimariaVerde: rgba(18, 104, 55, 1);
+  --corPrimariaAmarelo: rgba(255, 241, 12, 1);
+
+  --corPrimariaRoxoClaro: rgba(163, 131, 216, 1);
+  --corPrimariaVerdeClaro: rgba(82, 224, 143, 1);
+  --corPrimariaAmareloClaro: rgba(255, 248, 112, 1);
+
+  --corPrimariaRoxoEscuro: rgba(53, 29, 93, 1);
+  --corPrimariaVerdeEscuro: rgba(12, 69, 37, 1);
+  --corPrimariaAmareloEscuro: rgb(162, 130, 24);
+}
 * {
   margin: 0;
-  margin-bottom: 0 !important;
   padding: 0;
+
+  p {
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
 }
 
-body {
-  padding: 0 !important;
-  margin: 0 !important;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.85),
-      rgba(255, 255, 255, 0.85)
-    ),
-    url("../imagens/fundoEscola.jpg");
-  background-repeat: repeat;
-  background-size: 50%;
-}
+html {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 
-footer {
-  margin-top: auto !important;
-  .logo {
-    margin: auto;
-    max-height: 100px;
-    max-width: 100px;
+  body {
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.85),
+        rgba(255, 255, 255, 0.85)
+      ),
+      url("../imagens/fundoEscola.jpg");
+    background-repeat: repeat;
+    background-size: 50%;
   }
 }
 
 .footer {
-  margin-bottom: 0% !important;
-  background-color: yellow;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  background-color: var(--corPrimariaAmarelo);
+  .logo {
+    margin: 10px 10px 0 10px;
+    max-width: 100px;
+  }
+
+  .dadosEscola {
+    display: flex;
+    place-items: center;
+    place-content: center;
+    padding: 10px 10px 0 10px;
+    width: 100%;
+
+    .imgFooter {
+      margin-right: 30px;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    .endereco {
+      font-size: small;
+    }
+  }
+
+  .credito {
+    margin: 0 !important;
+    font-size: small;
+    background-color: var(--corPrimariaAmareloEscuro);
+    color: white;
+    margin-bottom: 0 !important;
+  }
 }

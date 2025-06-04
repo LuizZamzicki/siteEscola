@@ -52,14 +52,26 @@
             </div>
         </div>
     </nav>
-    <main class="centro"></main>
-    <footer class="footer">
+    <main class="centro">
 
-        <img src="imagens/logo.png" alt="Maffei" class="logo">
+    </main>
+    <footer class="footer navbar-fixed-bottom">
+        <div class="dadosEscola">
+            <div class="imgFooter">
+                <img src="imagens/logo.png" alt="Maffei" class="logo">
+            </div>
+            <div class="dadosFooter">
+                <p class="contato">
+                    <span>(44) 3569-1318</span><br>
+                    <span>escola@escola.com.br</span>
+                </p>
+                <p class="endereco">R. Tamôios, 2454 - Centro, Juranda - PR, 87355-000</p>
+            </div>
+        </div>
         <p class="credito text-center">
-            <span>Desenvolvido por:</span><br>
-            <span>Luiz H. G. Zamzicki</span>
+            Desenvolvido por Luiz H. G. Zamzicki
         </p>
+
     </footer>
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
