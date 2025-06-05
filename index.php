@@ -6,72 +6,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Maffei</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabriela&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary custom-navbar-bg py-3">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand d-flex align-items-center" href="home">
+                <img src="imagens/logo.png" alt="Logo Maffei" class="navbar-logo me-2">
+                <span class="navbar-title">Maffei</span>
+            </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link active" aria-current="page" href="home">Início</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Dropdown
+                            A escola
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="sobre">Sobre nós</a></li>
+                            <li><a class="dropdown-item" href="historia">Nossa história</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="estrutura">Estrutura</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        <a class="nav-link" href="contato">Contato</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a class="btn btn-integral" href="integral">Sobre o Integral</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
             </div>
         </div>
     </nav>
     <main class="centro">
-<h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1><h1>a</h1>
+
     </main>
-    <footer class="footer navbar-fixed-bottom">
-        <div class="dadosEscola">
-            <div class="imgFooter">
-                <img src="imagens/logo.png" alt="Maffei" class="logo">
-            </div>
-            <div class="dadosFooter">
-                <p class="contato">
-                    <span>(44) 3569-1318</span><br>
-                    <span>jrnjoaorosa@escola.pr.gov.br</span>
-                </p>
-                <p class="endereco">R. Tamôios, 2454 - Centro, Juranda - PR, 87355-000</p>
+    <footer class="footer mt-auto py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div
+                    class="col-lg-2 col-md-3 text-center text-lg-start mb-3 mb-lg-0 d-flex justify-content-center align-items-center">
+                    <a href="home"><img src="imagens/logo.png" alt="Maffei" class="logo img-fluid"></a>
+                </div>
+                <div
+                    class="col-lg-4 col-md-4 text-center text-md-start mb-3 mb-md-0 d-flex flex-column align-items-center align-items-md-center">
+                    <address class="endereco mb-0 footer-text">
+                        <i class="bi bi-geo-alt-fill footer-icon me-2">
+                        </i>R. Tamôios, 2454 - Centro, Juranda -
+                        PR
+                    </address>
+
+                </div>
+
+                <div
+                    class="col-lg-3 col-md-3 text-center text-md-start mb-3 mb-md-0 d-flex flex-column align-items-center align-items-md-center">
+                    <p
+                        class="mb-0 footer-text d-flex align-items-center justify-content-center justify-content-md-start">
+                        <i class="bi bi-telephone-fill footer-icon me-2"></i>
+                        (44) 3569-1318
+                    </p>
+                    <p
+                        class="mb-0 footer-text d-flex align-items-center justify-content-center justify-content-md-start">
+                        <i class="bi bi-envelope-fill footer-icon me-2"></i>
+                        jrnjoaorosa@escola.pr.gov.br
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-2 d-flex justify-content-center justify-content-md-end">
+                    <div class="redes-card mb-0">
+                        <div class="card-body">
+                            <h5 class="card-title">Nossas Redes</h5>
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <a href="https://www.instagram.com/colegio_maffei/" target="_blank"
+                                        class="social-icon instagram-icon" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Instagram">
+                                        <i class="bi bi-instagram"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://www.facebook.com/profile.php?id=212544995436310" target="_blank"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook"
+                                        class="social-icon facebook-icon">
+                                        <i class="bi bi-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://x.com/maffeirosa" target="_blank" class="social-icon twitter-icon"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter">
+                                        <i class="bi bi-twitter-x"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <p class="credito text-center">
-            Desenvolvido por Luiz H. G. Zamzicki
-        </p>
 
+        <div class="credito-container py-2 mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center">
+                        <p class="credito mb-0">
+                            <a href="https://www.instagram.com/luiz_zamzicki/" target="_blank"
+                                class="credito-link-wrapper">
+                                <span>🛠 Desenvolvido por </span>
+                                <span>Luiz H. G. Zamzicki</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>

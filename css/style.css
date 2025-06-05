@@ -1,5 +1,14 @@
+/*
+  VARIÁVEIS DE CORES
+  Definição das cores primárias e secundárias usadas no site,
+  incluindo as cores específicas para os ícones de redes sociais.
+*/
 :root {
-  --corPrimariaRoxo: rgba(68, 38, 119, 1);
+  --corSecundariaAzulCamisa: rgba(26, 155, 205, 1);
+  --corSecundariaAzulCamisaClaro: rgba(183, 228, 246, 1);
+  --corSecundariaAzulCamisaEscuro: rgba(16, 95, 126, 1);
+
+  --corPrimariaRoxo: rgb(59, 34, 105);
   --corPrimariaVerde: rgba(18, 104, 55, 1);
   --corPrimariaAmarelo: rgba(255, 241, 12, 1);
 
@@ -7,78 +16,527 @@
   --corPrimariaVerdeClaro: rgba(82, 224, 143, 1);
   --corPrimariaAmareloClaro: rgba(255, 248, 112, 1);
 
-  --corPrimariaRoxoEscuro: rgba(53, 29, 93, 1);
+  --corPrimariaRoxoEscuro: rgb(37, 10, 80);
   --corPrimariaVerdeEscuro: rgba(12, 69, 37, 1);
   --corPrimariaAmareloEscuro: rgb(162, 130, 24);
+
+  --instagram-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  --facebook-blue: #1877f2;
+  --twitter: black;
 }
+
+/*
+  ESTILOS GLOBAIS E RESET
+  Define propriedades básicas para todos os elementos e a fonte padrão para parágrafos.
+*/
 * {
   margin: 0;
   padding: 0;
-
-  p {
-    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont,
-      "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-      sans-serif;
-  }
+  box-sizing: border-box;
 }
 
+p {
+  font-family: Gabriela, Roboto, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+/*
+  ESTRUTURA DO LAYOUT
+  Configurações para `html` e `body` para garantir que o footer fixe na parte inferior
+  e para o fundo do site.
+*/
 html {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
+  height: 100%;
+}
 
-  body {
-    background-image: linear-gradient(
-        rgba(255, 255, 255, 0.85),
-        rgba(255, 255, 255, 0.85)
-      ),
-      url("../imagens/fundoEscola.jpg");
-    background-repeat: repeat;
-    background-size: 50%;
+/* Aplicando a fonte Gabriela ao body para ser herdada */
+body {
+  font-family: Gabriela, Roboto, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.85),
+      rgba(255, 255, 255, 0.85)),
+    url("../imagens/fundoEscola.jpg");
+  background-repeat: repeat;
+  background-size: 50%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  /* Se você aplicou a Gabriela no body, pode remover aqui, ou manter se quiser sobrescrever */
+  font-family: inherit;
+  /* Herdará a fonte do body */
+}
+
+
+/*
+  ESTILOS DO HEADER/NAVBAR
+  Configurações para a barra de navegação, logo e itens de menu.
+*/
+.custom-navbar-bg {
+  background-color: var(--corSecundariaAzulCamisa) !important;
+  /* Cor de fundo da navbar */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  color: var(--corPrimariaRoxoEscuro) !important;
+  /* Cor do link da marca */
+  font-family: Gabriela, cursive;
+  /* Aplica a fonte Gabriela para o título */
+  font-size: 2.2rem;
+  /* Tamanho da fonte do título */
+  font-weight: bold;
+}
+
+.navbar-logo {
+  max-height: 60px;
+  /* Altura máxima da logo na navbar */
+  width: auto;
+  margin-right: 10px;
+}
+
+.navbar-title {
+  color: var(--corPrimariaRoxo);
+  /* Cor do texto "Maffei" */
+  font-family: Gabriela, cursive;
+  /* Fonte para o título */
+  font-size: 2.2rem;
+  /* Tamanho do título */
+  font-weight: bold;
+
+}
+
+.nav-link {
+  color: var(--corPrimariaRoxoEscuro) !important;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  margin: 0 10px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 6px;
+  width: 100%;
+  height: 3px !important;
+  background-color: var(--corPrimariaAmarelo);
+  transform: scaleX(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease-in-out !important;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--corPrimariaAmareloClaro) !important;
+  /* Cor dos links ao passar o mouse ou ativo */
+  transform: translateY(-2px);
+  /* Leve subida ao passar o mouse */
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--corPrimariaAmarelo) !important;
+  /* Cor dos links ao passar o mouse ou ativo */
+}
+
+.dropdown-toggle::after {
+  border: none;
+}
+
+/* Estilo para o dropdown menu */
+.dropdown-menu {
+  background-color: var(--corSecundariaAzulCamisaEscuro);
+  /* Cor de fundo do dropdown */
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-item {
+  color: var(--corSecundariaAzulCamisaClaro);
+  /* Cor do texto dos itens do dropdown */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--corSecundariaAzulCamisaClaro);
+  /* Cor de fundo do item do dropdown ao passar o mouse */
+  color: var(--corPrimariaRoxoEscuro);
+  /* Cor do texto do item do dropdown ao passar o mouse */
+}
+
+.dropdown-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  /* Cor da linha divisória do dropdown */
+}
+
+/* Estilo para o botão "Integral" */
+.btn-integral {
+  background-color: var(--corSecundariaAzulCamisaClaro);
+  /* Cor de fundo do botão */
+  color: var(--corPrimariaRoxoEscuro);
+  /* Cor do texto do botão */
+  font-weight: bold;
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
+  /* Bordas arredondadas para um visual de "pílula" */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  border: 2px solid var(--corPrimariaRoxoEscuro);
+}
+
+.btn-integral:hover {
+  background-color: var(--corSecundariaAzulCamisaEscuro);
+  /* Cor de fundo ao passar o mouse */
+  color: var(--corPrimariaAmarelo);
+  transform: translateY(-2px);
+  /* Efeito de "levitar" */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* MEDIA QUERIES para responsividade da Navbar */
+@media (max-width: 991.98px) {
+
+  /* Em telas menores, a barra de navegação se empilha */
+  .navbar-nav {
+    margin-top: 1rem;
+    align-items: flex-start !important;
+    /* Alinha os itens à esquerda no menu expandido */
+  }
+
+  .nav-item {
+    width: 100%;
+    /* Faz com que cada item ocupe a largura total */
+    text-align: left;
+    /* Alinha o texto à esquerda */
+  }
+
+  .nav-link,
+  .btn-integral {
+    width: 100%;
+    /* Ajusta o link/botão para preencher a largura total do item */
+    text-align: left;
+    /* Alinha o texto à esquerda */
+    padding-left: 1rem;
+    /* Adiciona um padding para melhor visualização */
+    padding-right: 1rem;
+  }
+
+  .btn-integral {
+    margin-left: 0 !important;
+    /* Remove a margem lateral em telas pequenas */
+    margin-top: 0.5rem !important;
+    /* Adiciona uma margem superior para separar do item anterior */
+  }
+
+  .dropdown-menu {
+    position: static;
+    /* O dropdown não flutua, ele se expande dentro do menu */
+    width: 100%;
+    border-radius: 0;
   }
 }
 
+.centro {
+  flex-grow: 1;
+  /* Garante que o conteúdo principal ocupe o espaço restante */
+}
+
+/*
+  ESTILOS DO FOOTER
+  Estilos gerais para o elemento `footer`.
+*/
 .footer {
-  position: relative;
-  bottom: 0;
-  left: 0;
   width: 100%;
+  background-color: var(--corSecundariaAzulCamisa);
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  /* Transforma o footer em um container flexbox */
+  flex-direction: column;
+  /* Organiza os elementos filhos em uma coluna */
+  position: relative;
+  /* Estabelece um contexto de posicionamento */
+}
 
-  background-color: var(--corPrimariaAmarelo);
-  .logo {
-    margin: 10px 10px 0 10px;
-    max-width: 100px;
+/* Este seletor garante que o container principal do footer (logo, contato, redes)
+   ocupe o espaço necessário e empurre o crédito para baixo. */
+.footer>.container {
+  flex-grow: 1;
+  /* Permite que este container "cresça" e empurre o crédito para o final */
+  padding-bottom: 50px;
+  /* Adiciona um padding na parte inferior do container principal */
+}
+
+.footer .logo {
+  max-width: 120px;
+  /* Largura da logo */
+  height: auto;
+  /* A altura será determinada automaticamente */
+  /* margin: 0 auto; display: block; REMOVIDOS - o flexbox da coluna cuidará do alinhamento */
+}
+
+.footer .endereco {
+  justify-content: center;
+}
+
+
+/* NOVO: Estilos para o texto genérico do footer (endereço, telefone, email) */
+.footer-text {
+  font-size: 0.9em;
+  /* Tamanho da fonte para as informações de contato */
+  color: var(--corPrimariaRoxoEscuro);
+  /* Cor do texto das informações */
+  line-height: 1.2;
+  /* Ajusta a altura da linha para espaços mais compactos */
+}
+
+
+/* NOVO: Estilos para os ícones pequenos (telefone, email) */
+.footer-icon {
+  font-size: 1.2em;
+  color: var(--corPrimariaRoxoEscuro);
+  /* Cor dos ícones */
+  margin-right: 8px;
+  /* Espaçamento entre o ícone e o texto */
+  min-width: 20px;
+  /* Garante que ícones tenham um espaço mínimo para alinhamento */
+}
+
+/* NOVO: Estilos para o ícone de casa grande no endereço */
+.footer-icon-lg {
+  font-size: 2.2em;
+  /* Tamanho maior para o ícone de casa */
+  color: var(--corPrimariaRoxoEscuro);
+  /* Cor do ícone */
+}
+
+/*
+  CARD DE REDES SOCIAIS
+  Estilos para o card que agrupa os ícones de redes sociais.
+*/
+.redes-card {
+  background-color: var(--corSecundariaAzulCamisaClaro);
+  border-width: 2px;
+  border-color: var(--corSecundariaAzulCamisaEscuro);
+  /* Pode ser útil para borda */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  /* margin: 10px auto; REMOVIDO - o flexbox da coluna cuidará do alinhamento */
+  max-width: 280px;
+  /* Limita a largura do card */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.redes-card .card-title {
+  font-weight: bold;
+  color: var(--corPrimariaRoxoEscuro);
+  margin-bottom: 8px;
+  font-size: 0.95em;
+  text-align: center;
+}
+
+.redes-card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+.redes-card ul {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.redes-card ul li {
+  list-style: none;
+}
+
+/*
+  ÍCONES DE REDES SOCIAIS
+  Estilos base para os ícones e variações de cores por rede social.
+*/
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: white;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.social-icon .bi {
+  font-size: 1.3rem;
+  color: inherit;
+}
+
+/* Cores específicas */
+.instagram-icon {
+  background: var(--instagram-gradient);
+}
+
+.instagram-icon .bi {
+  color: white;
+}
+
+.facebook-icon {
+  background-color: var(--facebook-blue);
+}
+
+.facebook-icon .bi {
+  color: white;
+}
+
+.twitter-icon {
+  background-color: var(--twitter);
+}
+
+.twitter-icon .bi {
+  color: white;
+}
+
+/*
+  SEÇÃO DE CRÉDITOS (na faixa inferior separada)
+  Estilos para a área dos créditos, incluindo o link do desenvolvedor.
+*/
+.credito-container {
+  width: 100%;
+  background-color: var(--corPrimariaRoxoEscuro);
+  /* Cor escura */
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 0.9em;
+  padding: 0.75rem 0;
+
+  margin-top: auto;
+  margin-bottom: 0 !important;
+  bottom: 0;
+  position: absolute;
+}
+
+.credito-container .credito {
+  margin: 0;
+}
+
+.credito-link-wrapper {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.credito-link-wrapper:hover {
+  color: var(--corSecundariaAzulCamisaClaro);
+  text-decoration: underline;
+}
+
+.credito-link-wrapper span {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.credito-link-wrapper span:first-child {
+  margin-right: 2px;
+}
+
+
+.credito-link-wrapper:hover {
+  transform: scale(1.05);
+  color: var(--corPrimariaAmarelo);
+  /* ou outra cor que destaque */
+}
+
+.credito-link-wrapper::after {
+  opacity: 0;
+  transform: translateY(-5px);
+  margin-left: 5px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.credito-link-wrapper:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*
+  MEDIA QUERIES PARA RESPONSIVIDADE
+  Ajustes de layout para telas menores.
+*/
+@media (max-width: 991.98px) {
+
+  /* Para tablets e telas menores (md e sm) */
+  .footer .logo {
+    margin-bottom: 1rem;
   }
 
-  .dadosEscola {
-   
-    padding: 10px 10px 0 10px;
-    width: 100%;
-    align-content: center;
-    
-
-    .imgFooter {
-      position: fixed;
-      align-self: center;
-      margin-right: 30px;
-    }
-
-    .dadosFooter {
-     
-      p {
-        text-align: center;
-      }
-
-      .endereco {
-        font-size: small;
-      }
-    }
+  /* Centraliza todas as colunas em telas pequenas */
+  .col-lg-2,
+  .col-lg-4,
+  .col-lg-3,
+  .col-lg-3,
+  .col-md-3,
+  .col-md-4,
+  .col-md-3,
+  .col-md-2 {
+    text-align: center !important;
+    justify-content: center !important;
+    /* Para flex containers */
+    align-items: center !important;
+    /* Para flex containers */
   }
 
-  .credito {
-    margin: 0 !important;
-    font-size: small;
-    background-color: var(--corPrimariaAmareloEscuro);
-    color: white;
-    margin-bottom: 0 !important;
+  /* Ajuste para o endereço e contato em telas pequenas */
+  .col-lg-4.d-flex,
+  .col-lg-3.d-flex {
+    flex-direction: column !important;
+    /* Garante que os itens fiquem em coluna */
+  }
+
+  .redes-card {
+    margin: 10px auto !important;
+    /* Centraliza o card em telas menores */
+  }
+}
+
+@media (max-width: 767.98px) {
+
+  /* Para celulares (sm) */
+  /* Adiciona espaçamento entre as colunas quando elas se empilham */
+  .footer .row>div:not(:last-child) {
+    margin-bottom: 1.5rem;
+    /* Espaçamento entre as seções quando empilhadas */
+  }
+
+  .footer .row>div:last-child {
+    margin-bottom: 0;
+    /* Remove margem do último item da linha */
   }
 }
