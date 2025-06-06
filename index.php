@@ -122,16 +122,18 @@
 
                 <div
                     class="col-lg-3 col-md-3 text-center text-md-start mb-3 mb-md-0 d-flex flex-column align-items-center align-items-md-center">
-                    <p
-                        class="mb-0 footer-text d-flex align-items-center justify-content-center justify-content-md-start">
-                        <i class="bi bi-telephone-fill footer-icon me-2"></i>
-                        (44) 3569-1318
-                    </p>
-                    <p
-                        class="mb-0 footer-text d-flex align-items-center justify-content-center justify-content-md-start">
-                        <i class="bi bi-envelope-fill footer-icon me-2"></i>
-                        jrnjoaorosa@escola.pr.gov.br
-                    </p>
+                    <div class="contatoInfos">
+                        <p
+                            class="mb-0 footer-text d-flex align-items-center justify-content-center justify-content-md-center">
+                            <i class="bi bi-telephone-fill footer-icon me-2"></i>
+                            (44) 3569-1318
+                        </p>
+                        <p
+                            class="mb-0 footer-text d-flex align-items-center justify-content-center justify-content-md-center">
+                            <i class="bi bi-envelope-fill footer-icon me-2"></i>
+                            jrnjoaorosa@escola.pr.gov.br
+                        </p>
+                    </div>
                 </div>
 
                 <div class="col-lg-3 col-md-2 d-flex justify-content-center justify-content-md-end">

@@ -9,7 +9,7 @@
 
   --corPrimariaRoxoClaro: rgb(184, 153, 234);
   --corPrimariaVerdeClaro: rgba(82, 224, 143, 1);
-  --corPrimariaAmareloClaro: rgba(255, 248, 112, 1);
+  --corPrimariaAmareloClaro: rgb(255, 250, 154);
 
   --corPrimariaRoxoEscuro: rgb(37, 10, 80);
   --corPrimariaVerdeEscuro: rgba(12, 69, 37, 1);
@@ -254,6 +254,93 @@ p {
   width: 100%; /* Garante que o wrapper ocupe a largura total */
 }
 
+/* CARD STILO DE CARD */
+.card-padrao {
+  width: 350px !important;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-amarelo {
+  width: 350px !important;
+  background-color: var(--corPrimariaAmareloClaro);
+  border-color: var(--corPrimariaAmareloEscuro);
+  border-width: 2px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-roxo {
+  width: 350px !important;
+  background-color: var(--corPrimariaRoxoClaro);
+  border-color: var(--corPrimariaRoxoEscuro);
+  border-width: 2px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-verde {
+  width: 350px !important;
+  background-color: var(--corPrimariaVerdeClaro);
+  border-color: var(--corPrimariaVerdeEscuro);
+  border-width: 2px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-azul {
+  width: 350px !important;
+  background-color: var(--corSecundariaAzulCamisaClaro);
+  border-color: var(--corSecundariaAzulCamisaEscuro);
+  border-width: 2px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-title {
+  font-size: 2.5em;
+  color: black;
+  margin-bottom: 15px;
+}
+
+.card-text {
+  font-size: 1.1em;
+  color: black;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
 /* Estilos do Footer */
 .footer {
   width: 100%;
@@ -287,6 +374,12 @@ p {
     margin: 0;
     padding: 0;
   }
+
+  /* Estilos para ícone de casa grande no endereço */
+  .footer-icon-lg {
+    font-size: 2.2em;
+    color: var(--corPrimariaRoxoEscuro);
+  }
 }
 
 /* Estilos para texto genérico do footer (endereço, telefone, email) */
@@ -296,18 +389,18 @@ p {
   line-height: 1.2;
 }
 
-/* Estilos para ícones pequenos (telefone, email) */
-.footer-icon {
-  font-size: 1.2em;
-  color: var(--corPrimariaRoxoEscuro);
-  margin-right: 8px;
-  min-width: 20px;
-}
+.footer .contatoInfo {
+  p {
+    text-overflow: clip !important;
+  }
 
-/* Estilos para ícone de casa grande no endereço */
-.footer-icon-lg {
-  font-size: 2.2em;
-  color: var(--corPrimariaRoxoEscuro);
+  /* Estilos para ícones pequenos (telefone, email) */
+  .footer-icon {
+    font-size: 1.2em;
+    color: var(--corPrimariaRoxoEscuro);
+    margin-right: 8px;
+    min-width: 20px;
+  }
 }
 
 /* Card de Redes Sociais */
@@ -483,6 +576,10 @@ p {
     margin-bottom: 1rem;
   }
 
+  .footer .contatoInfo {
+    text-overflow: ellipsis;
+  }
+
   .col-lg-2,
   .col-lg-4,
   .col-lg-3,
@@ -499,6 +596,30 @@ p {
   .col-lg-4.d-flex,
   .col-lg-3.d-flex {
     flex-direction: column !important;
+  }
+
+  .col-lg-3,
+  .col-md-3 {
+    flex-basis: 100%;
+    max-width: 100%;
+    text-align: center;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .col-lg-4,
+  .col-md-4 {
+    flex-basis: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .col-lg-2,
+  .col-md-2 {
+    flex-basis: 100%;
+    max-width: 100%;
+    text-align: center;
+    justify-content: center !important;
   }
 
   .redes-card {
@@ -525,6 +646,10 @@ p {
   flex-grow: 1;
   box-sizing: border-box;
 
+  .btn-secondary {
+    margin-top: 10px;
+  }
+
   .imgErro {
     align-self: flex-end;
     max-width: 50%;
@@ -532,34 +657,6 @@ p {
     height: auto;
     object-fit: contain;
     margin-right: 40px;
-  }
-
-  /* CARD STYLING */
-  .card {
-    /* Removed object-fit: contain; as it's not applicable to a div */
-    width: 350px !important; /* Explicitly set width, overriding inline style for consistency */
-    background-color: #fff; /* White background for the card */
-    border-radius: 12px; /* Slightly more rounded corners */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    padding: 30px; /* Internal padding for card content */
-    text-align: center; /* Center align text inside the card */
-    display: flex; /* Make card a flex container */
-    flex-direction: column; /* Stack card body elements vertically */
-    justify-content: center; /* Vertically center card content */
-    align-items: center; /* Horizontally center card content */
-  }
-
-  .card-title {
-    font-size: 2.5em; /* Larger title */
-    color: #333; /* Darker text color */
-    margin-bottom: 15px; /* Space below title */
-  }
-
-  .card-text {
-    font-size: 1.1em; /* Slightly larger paragraph text */
-    color: #666; /* Softer text color */
-    line-height: 1.5; /* Improve readability */
-    margin-bottom: 25px; /* Space below text */
   }
 
   /* Responsividade em telas menores */
@@ -573,10 +670,10 @@ p {
       max-width: 80%;
     }
 
-    .card {
+    .card-amarelo {
       margin-top: 20px;
-      width: 90% !important; /* Make card responsive, take more width on small screens */
-      padding: 20px; /* Slightly less padding on smaller screens */
+      width: 90% !important;
+      padding: 20px;
     }
   }
 }
