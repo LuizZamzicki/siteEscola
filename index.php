@@ -1,3 +1,28 @@
+<?php
+    $base = $_SERVER['SERVER_NAME']. $_SERVER['SCRIPT_NAME'];
+
+    $pagina_atual = $_GET['param'] ?? "home";
+
+    
+
+    // Função auxiliar para verificar se um link está ativo    
+    function is_active($page_name, $current_page) {
+        return ($page_name === $current_page) ? 'active' : '';
+    }
+
+    // Função auxiliar para verificar se um link dropdown tem um item ativo
+    function is_dropdown_active($dropdown_pages, $current_page) {
+        foreach ($dropdown_pages as $page) {
+            if ($page === $current_page) {
+                return 'active'; 
+            }
+        }
+        return '';
+    }
+
+
+?>
+
 <!doctype html>
 <html lang="pt-br">
 
@@ -5,7 +30,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Maffei</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <base href="http://<?=$base?>">
+    <link rel="icon" href="imagens/logo.png" type="image/png">
+    <link rel="shortcut icon" href="imagens/logo.png" type="image/png">
+    <link rel=" stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +42,6 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg bg-body-tertiary custom-navbar-bg py-3">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="home">
@@ -31,15 +58,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="home">Início</a>
+                        <a class="nav-link <?=is_active("home", $pagina_atual)?>" aria-current="page"
+                            href="home">Início</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle <?= is_dropdown_active(['sobre', 'historia', 'estrutura'], $pagina_atual) ?>"
+                            href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             A escola
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="sobre">Sobre nós</a></li>
+                            <li><a class="dropdown-item" href="sobre">Nossa Equipe</a></li>
                             <li><a class="dropdown-item" href="historia">Nossa história</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -47,35 +75,50 @@
                             <li><a class="dropdown-item" href="estrutura">Estrutura</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contato">Contato</a>
+                    <li class="nav-item ">
+                        <a class="nav-link <?=is_active("contato", $pagina_atual)?>" href="contato">Contato</a>
                     </li>
                     <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        <a class="btn btn-integral" href="integral">Sobre o Integral</a>
+                        <a class="btn btn-primary" href="integral">Nossos Projetos</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <main class="centro">
-
+    <main class="container">
+        <?php
+            $pagina = $_GET['param'] ?? "home";
+            $pagina = "paginas/$pagina.php";
+            if (file_exists($pagina)) {
+             
+                 include "$pagina";
+                
+            }
+            else {
+                include "paginas/erro.php";
+            }
+        ?>
     </main>
     <footer class="footer mt-auto py-3">
         <div class="container">
             <div class="row align-items-center">
                 <div
-                    class="col-lg-2 col-md-3 text-center text-lg-start mb-3 mb-lg-0 d-flex justify-content-center align-items-center">
+                    class="col-lg-3 col-md-3 text-center text-lg-start mb-3 mb-lg-0 d-flex justify-content-center align-items-center">
                     <a href="home"><img src="imagens/logo.png" alt="Maffei" class="logo img-fluid"></a>
                 </div>
                 <div
-                    class="col-lg-4 col-md-4 text-center text-md-start mb-3 mb-md-0 d-flex flex-column align-items-center align-items-md-center">
-                    <address class="endereco mb-0 footer-text">
-                        <i class="bi bi-geo-alt-fill footer-icon me-2">
-                        </i>R. Tamôios, 2454 - Centro, Juranda -
-                        PR
-                    </address>
+                    class="col-lg-3 col-md-3 text-center text-md-start mb-3 mb-md-0 d-flex flex-column align-items-center align-items-md-center">
 
+                    <div class="enderecoInfos">
+                        <i class="bi bi-geo-alt-fill footer-icon me-2">
+                        </i>
+                        <address class="endereco mb-0 footer-text">
+                            <p>R. Tamôios, 2454 - Centro</p>
+                            <p>Juranda - PR, 87355-000</p>
+                        </address>
+                    </div>
                 </div>
+
 
                 <div
                     class="col-lg-3 col-md-3 text-center text-md-start mb-3 mb-md-0 d-flex flex-column align-items-center align-items-md-center">
