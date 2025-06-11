@@ -11,6 +11,7 @@
     }
 
     // Função auxiliar para verificar se um link dropdown tem um item ativo
+    
     function is_dropdown_active($dropdown_pages, $current_page) {
         foreach ($dropdown_pages as $page) {
             if ($page === $current_page) {
@@ -37,7 +38,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gabriela&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gabriela&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -62,24 +65,26 @@
                             href="home">Início</a>
                     </li>
                     <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle <?= is_dropdown_active(['sobre', 'historia', 'estrutura'], $pagina_atual) ?>"
+                        <a class="nav-link dropdown-toggle <?= is_dropdown_active(['integral', 'sobre', 'historia', 'estrutura'], $pagina_atual) ?>"
                             href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             A escola
                         </a>
                         <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="estrutura">Estrutura</a></li>
                             <li><a class="dropdown-item" href="sobre">Nossa Equipe</a></li>
                             <li><a class="dropdown-item" href="historia">Nossa história</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="estrutura">Estrutura</a></li>
+
+                            <li><a class="dropdown-item" href="integral">Sobre o Integral</a></li>
                         </ul>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link <?=is_active("contato", $pagina_atual)?>" href="contato">Contato</a>
                     </li>
                     <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        <a class="btn btn-primary" href="integral">Nossos Projetos</a>
+                        <a class="btn btn-azul" href="integral">Nossos Projetos</a>
                     </li>
                 </ul>
             </div>
@@ -88,16 +93,25 @@
     <main class="container">
         <?php
             $pagina = $_GET['param'] ?? "home";
-            $pagina = "paginas/$pagina.php";
-            if (file_exists($pagina)) {
+            $pagina_path = "paginas/$pagina.php";
+            if (file_exists($pagina_path)) {
              
-                 include "$pagina";
+                 include $pagina_path;
                 
             }
             else {
                 include "paginas/erro.php";
             }
+
+            $caminho_script = "js/{$pagina}.js";
+  
+            if (file_exists($caminho_script)) {
+                echo "<script src='$caminho_script'></script>";
+                
+            }
         ?>
+
+
     </main>
     <footer class="footer mt-auto py-3">
         <div class="container">
@@ -113,8 +127,12 @@
                         <i class="bi bi-geo-alt-fill footer-icon me-2">
                         </i>
                         <address class="endereco mb-0 footer-text">
-                            <p>R. Tamôios, 2454 - Centro</p>
-                            <p>Juranda - PR, 87355-000</p>
+                            <p
+                                class="mb-0 footer-text d-flex align-items-center justify-content-center justify-content-md-center">
+                                R. Tamôios, 2454 - Centro</p>
+                            <p
+                                class="mb-0 footer-text d-flex align-items-center justify-content-center justify-content-md-center">
+                                Juranda - PR, 87355-000</p>
                         </address>
                     </div>
                 </div>
@@ -185,6 +203,9 @@
         </div>
     </footer>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
 </body>
 
 </html>

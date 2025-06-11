@@ -13,7 +13,10 @@
 
   --corPrimariaRoxoEscuro: rgb(37, 10, 80);
   --corPrimariaVerdeEscuro: rgba(12, 69, 37, 1);
-  --corPrimariaAmareloEscuro: rgb(162, 130, 24);
+  --corPrimariaAmareloEscuro: rgb(126, 100, 17);
+
+  --tamanhoArredondamentoCard: 12px;
+  --tamanhoArredondamentoBotao: 50px;
 
   --instagram-gradient: linear-gradient(
     45deg,
@@ -39,6 +42,7 @@ p {
     "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif !important;
   margin-bottom: 0 !important;
+  font-size: 1.3rem;
 }
 
 /* Estrutura do layout */
@@ -51,8 +55,8 @@ body {
     "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
   background-image: linear-gradient(
-      rgba(255, 255, 255, 0.85),
-      rgba(255, 255, 255, 0.85)
+      rgba(255, 255, 255, 0.95),
+      rgba(255, 255, 255, 0.95)
     ),
     url("../imagens/fundoEscola.jpg");
   background-repeat: repeat;
@@ -62,43 +66,39 @@ body {
   flex-direction: column;
 }
 
-p {
-  font-family: inherit;
-}
-
 /*Botoes*/
 
-.btn-primary {
+.btn-roxo {
   background-color: var(--corPrimariaRoxoClaro);
   color: var(--corPrimariaRoxoEscuro);
   border: 2px solid var(--corPrimariaRoxoEscuro);
-  border-radius: 50px;
+  border-radius: var(--tamanhoArredondamentoBotao);
   font-weight: bold;
   transition: background-color 0.3s ease, transform 0.2s ease,
     box-shadow 0.2s ease;
   padding: 0.7rem 1.5rem;
 }
 
-.btn-primary:hover {
+.btn-roxo:hover {
   background-color: var(--corPrimariaRoxoEscuro);
   color: var(--corPrimariaRoxoClaro);
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.btn-secondary {
+.btn-verde {
   background-color: var(--corPrimariaVerdeClaro);
   color: var(--corPrimariaVerdeEscuro);
   border: 2px solid var(--corPrimariaVerdeEscuro);
 
-  border-radius: 50px;
+  border-radius: var(--tamanhoArredondamentoBotao);
   font-weight: bold;
   transition: background-color 0.3s ease, transform 0.2s ease,
     box-shadow 0.2s ease;
   padding: 0.7rem 1.5rem;
 }
 
-.btn-secondary:hover {
+.btn-verde:hover {
   background-color: var(--corPrimariaVerdeEscuro);
   color: var(--corPrimariaVerdeClaro);
 
@@ -106,15 +106,79 @@ p {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.btn-amarelo {
+  background-color: var(--corPrimariaAmareloClaro);
+  color: var(--corPrimariaAmareloEscuro);
+  border: 2px solid var(--corPrimariaAmareloEscuro);
+
+  border-radius: var(--tamanhoArredondamentoBotao);
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  padding: 0.7rem 1.5rem;
+}
+
+.btn-amarelo:hover {
+  background-color: var(--corPrimariaAmareloEscuro);
+  color: var(--corPrimariaAmareloClaro);
+
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-azul {
+  background-color: var(--corSecundariaAzulCamisaClaro) !important;
+  color: var(--corSecundariaAzulCamisaEscuro) !important;
+  border: 2px solid var(--corSecundariaAzulCamisaEscuro) !important;
+
+  border-radius: var(--tamanhoArredondamentoBotao) !important;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  padding: 0.7rem 1.5rem;
+}
+
+.btn-azul:hover {
+  background-color: var(--corSecundariaAzulCamisaEscuro) !important;
+  color: var(--corSecundariaAzulCamisaClaro) !important;
+
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 @media (max-width: 991.98px) {
-  .btn-primary {
+  .btn-roxo {
     width: 100%;
     text-align: left;
     padding-left: 1rem;
     padding-right: 1rem;
+    margin-left: 0 !important;
+    margin-top: 0.5rem !important;
   }
 
-  .btn-primary {
+  .btn-amarelo {
+    width: 100%;
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 0 !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .btn-verde {
+    width: 100%;
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 0 !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .btn-azul {
+    width: 100%;
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
     margin-left: 0 !important;
     margin-top: 0.5rem !important;
   }
@@ -124,6 +188,7 @@ p {
 
 .navbar {
   margin: 0 !important;
+  padding: 0 !important;
 }
 
 .custom-navbar-bg {
@@ -256,9 +321,8 @@ p {
 
 /* CARD STILO DE CARD */
 .card-padrao {
-  width: 350px !important;
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: var(--tamanhoArredondamentoCard);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   padding: 30px;
   text-align: center;
@@ -269,11 +333,10 @@ p {
 }
 
 .card-amarelo {
-  width: 350px !important;
   background-color: var(--corPrimariaAmareloClaro);
   border-color: var(--corPrimariaAmareloEscuro);
   border-width: 2px;
-  border-radius: 12px;
+  border-radius: var(--tamanhoArredondamentoCard);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   padding: 30px;
   text-align: center;
@@ -284,11 +347,10 @@ p {
 }
 
 .card-roxo {
-  width: 350px !important;
   background-color: var(--corPrimariaRoxoClaro);
   border-color: var(--corPrimariaRoxoEscuro);
   border-width: 2px;
-  border-radius: 12px;
+  border-radius: var(--tamanhoArredondamentoCard);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   padding: 30px;
   text-align: center;
@@ -299,11 +361,10 @@ p {
 }
 
 .card-verde {
-  width: 350px !important;
   background-color: var(--corPrimariaVerdeClaro);
   border-color: var(--corPrimariaVerdeEscuro);
   border-width: 2px;
-  border-radius: 12px;
+  border-radius: var(--tamanhoArredondamentoCard);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   padding: 30px;
   text-align: center;
@@ -314,11 +375,10 @@ p {
 }
 
 .card-azul {
-  width: 350px !important;
   background-color: var(--corSecundariaAzulCamisaClaro);
   border-color: var(--corSecundariaAzulCamisaEscuro);
   border-width: 2px;
-  border-radius: 12px;
+  border-radius: var(--tamanhoArredondamentoCard);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   padding: 30px;
   text-align: center;
@@ -384,7 +444,7 @@ p {
 
 /* Estilos para texto genérico do footer (endereço, telefone, email) */
 .footer-text {
-  font-size: 1em;
+  font-size: 1em !important;
   color: var(--corPrimariaRoxoEscuro);
   line-height: 1.2;
 }
@@ -408,7 +468,7 @@ p {
   background-color: var(--corSecundariaAzulCamisaClaro);
   border-width: 2px;
   border-color: var(--corSecundariaAzulCamisaEscuro);
-  border-radius: 10px;
+  border-radius: var(--tamanhoArredondamentoCard);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
   max-width: 280px;
@@ -500,12 +560,16 @@ p {
   background-color: var(--corPrimariaRoxoEscuro);
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   color: white;
-  font-size: 0.9em;
+
   padding: 0.75rem 0;
   margin-top: auto;
   margin-bottom: 0 !important;
   bottom: 0;
   position: absolute;
+
+  p {
+    font-size: 0.9em !important;
+  }
 }
 
 .credito-container .credito {
@@ -675,5 +739,1131 @@ p {
       width: 90% !important;
       padding: 20px;
     }
+  }
+}
+
+/* TELAS */
+
+/* --- */
+/* Estilos Específicos da Home */
+/* --- */
+
+.section-title {
+  color: var(--corPrimariaRoxoEscuro);
+  font-family: "Gabriela", cursive;
+  font-size: 2.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* --- */
+/* Card das Informações Principais */
+/* --- */
+
+.card-integral {
+  background-color: #f8fbfc;
+
+  border-radius: var(--tamanhoArredondamentoCard) !important;
+  border-left: 8px solid var(--corPrimariaAmareloEscuro) !important;
+}
+
+.card-integral ul {
+  padding-left: 1.2rem;
+  border-radius: var(--tamanhoArredondamentoCard);
+}
+
+.card-integral li {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-integral p {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-integral-image {
+  background-color: var(--corPrimariaAmareloEscuro);
+  padding: 4px;
+  border-radius: var(--tamanhoArredondamentoCard);
+}
+
+.card-integral .img-fluid {
+  max-height: 400px !important;
+  border-radius: 8px !important;
+}
+
+/* --- */
+/* Estilos para o Carrossel com Swiper.js (1 Item por Vez) */
+/* --- */
+
+.itinerariosSwiper {
+  width: 100%;
+
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.swiper-wrapper {
+  /* Por vezes, o wrapper do Swiper pode precisar de uma altura base */
+  /* Se seus slides tem 500px, o wrapper deve ter também */
+  height: auto; /* Deixe automático para o Swiper controlar */
+  align-items: stretch; /* Garante que os slides filhos esticam para a altura do wrapper */
+}
+
+.itinerario-slide {
+  background-position: center;
+  background-size: cover;
+  min-height: 530px; /* VITAL: Define a altura mínima do slide */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* CRUCIAL: Define o contexto de posicionamento para filhos absolutos */
+  border-radius: var(--tamanhoArredondamentoCard);
+  overflow: hidden;
+}
+
+/* O fundo da imagem já estará no `.swiper-slide` devido à lógica PHP */
+/* E o `.itinerario-slide-content` (que antes tinha o background) agora só contem o overlay/card */
+.itinerario-slide-content {
+  width: 100%;
+  height: 100%; /* Garante que ele ocupe 100% da altura do .swiper-slide */
+  display: flex; /* Permite centralizar o overlay/card */
+  align-items: center;
+  justify-content: center;
+  position: absolute; /* CRUCIAL: Define o contexto de posicionamento para o overlay */
+  color: white;
+  /* Remover qualquer background-image ou background-color opaco aqui se estiver presente */
+}
+
+.itinerario-overlay-swiper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  height: 100%; /* Fará ele preencher 100% do .itinerario-slide-content */
+  background: rgba(0, 0, 0, 0.5); /* Sua cor de overlay */
+  display: flex; /* Permite centralizar o card de conteúdo */
+  flex-grow: 1;
+  align-items: center;
+
+  z-index: 1; /* Garante que ele fique sobre a imagem de fundo */
+}
+
+.itinerario-content-box-swiper {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--corPrimariaRoxoEscuro);
+  padding: 2rem 3rem 3rem 3rem;
+  border-radius: var(--tamanhoArredondamentoCard);
+  text-align: center;
+  max-width: 700px;
+  max-height: 80%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 2; /* Garante que o card fique acima do overlay */
+  position: relative; /* Pode ajudar se precisar de z-index, mas talvez não seja estritamente necessário aqui */
+
+  p {
+    color: black !important;
+  }
+}
+
+.itinerario-content-box-swiper h5 {
+  font-family: "Gabriela", cursive;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--corPrimariaRoxo);
+}
+
+.itinerario-content-box-swiper p {
+  font-family: Roboto, sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  color: #444;
+}
+
+/* Estilos para as setas de navegação do Swiper */
+.btn-itinerarios-swiper {
+  color: var(--corPrimariaVerdeEscuro);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-itinerarios-swiper::after {
+  font-size: 1.5rem;
+}
+
+.btn-itinerarios-swiper:hover {
+  background-color: var(--corPrimariaVerdeClaro);
+}
+
+/* Estilos para a paginação (bullets) do Swiper */
+.swiper-pagination-bullet {
+  background-color: rgba(59, 34, 105, 0.5);
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--corPrimariaVerdeClaro);
+  transform: scale(1.2);
+}
+
+/* --- */
+/* Media Queries (Ajustes para telas menores) */
+/* --- */
+
+@media (max-width: 992px) {
+  .itinerario-slide {
+    min-height: 450px;
+  }
+  .itinerario-content-box-swiper {
+    padding: 2rem;
+    max-width: 90%;
+  }
+  .itinerario-content-box-swiper h5 {
+    font-size: 2.2rem;
+  }
+  .itinerario-content-box-swiper p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .itinerario-slide {
+    min-height: 350px;
+  }
+  /* Se quiser ocultar setas em telas pequenas */
+  .btn-itinerarios-swiper {
+    display: none;
+  }
+  .itinerario-content-box-swiper {
+    padding: 1.5rem;
+  }
+  .itinerario-content-box-swiper h5 {
+    font-size: 1.8rem;
+  }
+  .itinerario-content-box-swiper p {
+    font-size: 1rem;
+  }
+  .swiper-pagination {
+    bottom: 5px !important; /* Ajusta a posição da paginação */
+  }
+}
+
+@media (max-width: 576px) {
+  .itinerario-slide {
+    min-height: 300px;
+  }
+  .itinerario-content-box-swiper h5 {
+    font-size: 1.5rem;
+  }
+  .itinerario-content-box-swiper p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Comentários dos Alunos */
+
+/* --- */
+/* Seção: O que dizem sobre nós (Comentários) */
+/* --- */
+.comentarios-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.comentarios-section .section-title {
+  color: var(--corPrimariaRoxoEscuro);
+  margin-bottom: 40px;
+  font-family: "Gabriela", cursive;
+  font-size: 3rem;
+}
+
+/* --- */
+/* Swiper dos Comentários */
+/* --- */
+.comentariosSwiper {
+  width: 100%;
+  padding-top: 50px; /* Espaço para o card central crescer para cima */
+  padding-bottom: 50px; /* Espaço para a paginação e card central crescer para baixo */
+}
+
+.comentario-slide {
+  display: flex;
+  justify-content: center;
+  max-height: 500px;
+  align-items: stretch;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: var(--tamanhoArredondamentoCard);
+  overflow: hidden;
+}
+
+.comentario-card {
+  background-color: var(--corPrimariaRoxo); /* Fundo do card em roxo */
+  color: white; /* Cor do texto padrão para contraste */
+  padding: 30px;
+  border-radius: var(
+    --tamanhoArredondamentoCard
+  ); /* Bordas arredondadas (12px) */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  min-height: 400px; /* Altura mínima para os cards */
+  max-height: 500px;
+  display: flex;
+  flex-direction: column; /* Organiza conteúdo em coluna: texto em cima, info em baixo */
+  justify-content: space-between; /* Espaça o texto e as informações do autor */
+  align-items: flex-start; /* Alinha itens à esquerda por padrão no card */
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease; /* Transições suaves */
+
+  /* Estilo inicial dos cards não-ativos (diminuídos e com transparência) */
+  transform: scale(0.85);
+  opacity: 0.7;
+}
+
+/* Estilo para o CARD ATIVO (central) */
+.comentario-card.is-active-comment {
+  transform: scale(1); /* Volta ao tamanho normal */
+  opacity: 1; /* Totalmente opaco */
+  background-color: var(
+    --corPrimariaRoxoEscuro
+  ); /* Fundo roxo escuro no card ativo */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Sombra um pouco mais proeminente */
+}
+
+/* --- Conteúdo interno do Card de Comentário --- */
+
+.comentario-texto {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: white; /* Texto do comentário em branco */
+  margin-bottom: 20px; /* Espaço após o texto */
+  text-align: left; /* Alinha o texto à esquerda */
+  flex-grow: 1; /* Permite que o texto ocupe o espaço disponível antes da linha e info */
+}
+
+.comentario-divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.3); /* Linha divisória suave */
+  margin-bottom: 20px; /* Espaço após a linha */
+}
+
+.comentario-info {
+  display: flex; /* Para colocar a foto e o nome/série lado a lado */
+  align-items: center; /* Alinha avatar e texto verticalmente */
+  width: 100%; /* Ocupa toda a largura disponível no final do card */
+}
+
+.comentario-avatar {
+  width: 60px; /* Tamanho da foto */
+  height: 60px;
+  border-radius: 50%; /* Borda redonda */
+  object-fit: cover;
+  margin-right: 15px; /* Espaço à direita da foto */
+  border: 3px solid var(--corPrimariaRoxoEscuro); /* Borda amarela de destaque */
+  flex-shrink: 0; /* Impede que a imagem encolha */
+}
+
+.comentario-autor-info {
+  text-align: left; /* Alinha nome e série à esquerda */
+  flex-grow: 1; /* Permite que este bloco ocupe o restante do espaço */
+}
+
+.comentario-autor-info .nome-aluno {
+  font-weight: bold;
+  color: var(--corPrimariaRoxoClaro); /* Nome em amarelo para destaque */
+  font-size: 1rem;
+  margin-bottom: 2px; /* Pequeno espaço entre nome e série */
+}
+
+.comentario-autor-info .serie-aluno {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8); /* Série em tom de branco suave */
+}
+
+/* --- */
+/* Estilos para setas e paginação do Carrossel de Comentários */
+/* (Manter como no exemplo anterior, adaptados para as cores do site) */
+/* --- */
+.btn-comentarios-swiper {
+  color: var(--corPrimariaRoxoEscuro);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: var(
+    --tamanhoArredondamentoBotao
+  ); /* Bordas arredondadas (50px) */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-comentarios-swiper::after {
+  font-size: 1.2rem;
+}
+
+.btn-comentarios-swiper:hover {
+  background-color: var(--corPrimariaRoxoClaro);
+}
+
+.comentariosSwiper .swiper-pagination {
+  bottom: 0px !important;
+}
+
+.comentariosSwiper .swiper-pagination-bullet {
+  background-color: rgba(59, 34, 105, 0.5);
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.comentariosSwiper .swiper-pagination-bullet-active {
+  background-color: var(--corPrimariaRoxoEscuro);
+  transform: scale(1.2);
+}
+
+/* --- */
+/* Media Queries Específicas para o Carrossel de Comentários */
+/* --- */
+@media (max-width: 992px) {
+  .btn-comentarios-swiper {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .comentario-card {
+    padding: 20px;
+    min-height: 250px; /* Ajusta altura para telas menores */
+  }
+  .comentario-texto {
+    font-size: 1rem;
+  }
+  .comentariosSwiper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .comentario-autor-info .nome-aluno {
+    font-size: 0.9rem;
+  }
+  .comentario-autor-info .serie-aluno {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .comentario-card {
+    padding: 15px;
+    min-height: 220px;
+  }
+  .comentario-texto {
+    font-size: 0.95rem;
+  }
+  .comentario-avatar {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+}
+
+/* Instagram */
+.instagram-section {
+  padding: 3rem 0;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.instagram-grid .instagram-post:nth-child(n + 5) {
+  display: none;
+}
+
+.instagram-post {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--tamanhoArredondamentoCard);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.instagram-post:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.instagram-post img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.instagram-post:hover img {
+  transform: scale(1.05);
+}
+
+.instagram-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.instagram-post:hover .instagram-overlay {
+  opacity: 1;
+}
+
+.instagram-overlay .bi-instagram {
+  font-size: 3rem;
+  color: white;
+}
+
+.btn-instagram-more {
+  display: block;
+  margin: 2.5rem auto 0 auto;
+  width: fit-content;
+  background: var(--instagram-gradient) !important;
+  border: none;
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: var(--tamanhoArredondamentoBotao);
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-instagram-more:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white; /* Manter a cor branca no hover */
+}
+
+/* Media Queries Específicas */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .itinerario-carousel .carousel-caption h5 {
+    font-size: 1.8rem;
+  }
+
+  .itinerario-carousel .carousel-caption p {
+    font-size: 1rem;
+  }
+
+  .comentario-card {
+    padding: 1rem;
+  }
+}
+
+/* --- Estilos da Seção de Contato --- */
+.contact-section {
+  padding: 0 20px 20px 20px; /* Espaçamento interno da seção */
+}
+
+/* Título da Seção (se usar a classe section-title) */
+.contact-section .section-title {
+  color: var(--corPrimariaRoxoEscuro); /* Cor do título */
+  font-family: "Gabriela", cursive;
+  font-size: 2.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem; /* Espaçamento abaixo do título */
+}
+
+/* Parágrafo de descrição (o que está abaixo do título) */
+.contact-section p.text-center {
+  font-size: 1.1rem;
+  max-width: 800px; /* Limita a largura do texto para melhor leitura */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem; /* Espaçamento abaixo do parágrafo */
+}
+
+.my-5 {
+  margin-top: 0 !important;
+}
+
+/* Estilos para o Card do Formulário */
+.contact-section .card-padrao {
+  /* O card-padrao já deve ter background-color, border-radius e box-shadow */
+  /* Garante que o card ocupe 100% da altura disponível se estiver em um flex container,
+       mas aqui, ele é flex-item padrão, então o height: auto é o normal. */
+  height: auto;
+  padding: 30px; /* Adiciona padding interno, sobrescrevendo p-4/p-md-5 se necessário */
+
+  border: 1px solid rgba(0, 0, 0, 0.05); /* Borda sutil */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08); /* Sombra mais proeminente */
+  border-color: var(--corPrimariaRoxoEscuro);
+}
+
+/* Estilos dos Labels do Formulário */
+.contact-section .form-label {
+  font-weight: bold;
+  color: var(--corPrimariaRoxoEscuro); /* Cor dos labels */
+  margin-bottom: 0.5rem; /* Espaço entre label e input */
+  font-size: 1rem;
+}
+
+/* Estilos dos Campos de Input e Textarea */
+.contact-section .form-control,
+.contact-section .form-select {
+  border: 1px solid var(--corSecundariaAzulCamisaClaro); /* Borda colorida */
+  border-radius: var(
+    --tamanhoArredondamentoCard
+  ); /* Arredondamento dos campos */
+  font-size: 1rem;
+  color: #333; /* Cor do texto digitado */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#contactForm {
+  width: 100% !important;
+}
+
+.contact-section .form-control:focus,
+.contact-section .form-select:focus {
+  border-color: var(--corSecundariaAzulCamisa); /* Borda mais escura ao focar */
+  box-shadow: 0 0 0 0.25rem rgba(26, 155, 205, 0.25); /* Sombra suave ao focar */
+  outline: none; /* Remove o outline padrão */
+}
+
+/* Estilos para o botão de envio */
+.contact-section .btn-azul {
+  width: 100%; /* Faz o botão ocupar toda a largura disponível */
+  padding: 0.8rem 1.5rem; /* Ajusta o padding */
+  font-size: 1.2rem;
+  margin-top: 1rem; /* Espaçamento acima do botão */
+}
+
+/* Estilos para mensagens de Alerta (Sucesso/Erro) */
+.alert {
+  padding: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--tamanhoArredondamentoCard);
+  font-size: 1.1rem;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+.alert-success {
+  background-color: var(--corPrimariaVerdeClaro);
+  color: var(--corPrimariaVerdeEscuro);
+  border-color: var(--corPrimariaVerde);
+}
+
+.alert-danger {
+  background-color: #f8d7da; /* Bootstrap default red light */
+  color: #721c24; /* Bootstrap default red dark */
+  border-color: #f5c6cb;
+}
+
+/* --- Media Queries para Responsividade --- */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 40px 15px; /* Reduz o padding em telas menores */
+  }
+
+  .contact-section .section-title {
+    font-size: 2.2rem; /* Ajusta o tamanho do título */
+  }
+
+  .contact-section p.text-center {
+    font-size: 1rem; /* Ajusta o tamanho do parágrafo */
+    margin-bottom: 2rem;
+  }
+
+  .contact-section .card-padrao {
+    padding: 20px; /* Reduz o padding do card em telas menores */
+  }
+
+  .contact-section .btn-azul {
+    font-size: 1rem; /* Ajusta o tamanho da fonte do botão */
+    padding: 0.7rem 1.2rem;
+  }
+}
+
+.floating-label-group {
+  position: relative;
+}
+
+.floating-label-group input,
+.floating-label-group textarea,
+.floating-label-group select {
+  width: 100%;
+  padding: 1.25rem 0.75rem 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.floating-label-group label {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.75rem;
+  color: #777;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+  pointer-events: none;
+  background-color: white;
+  padding: 0 0.25rem;
+}
+
+/* Quando o campo está em foco ou preenchido */
+.floating-label-group input:focus + label,
+.floating-label-group input:not(:placeholder-shown) + label,
+.floating-label-group textarea:focus + label,
+.floating-label-group textarea:not(:placeholder-shown) + label,
+.floating-label-group select:focus + label,
+.floating-label-group select:valid + label {
+  top: 0.3rem;
+  font-size: 0.75rem;
+  color: #0056b3;
+}
+
+/* --- */
+/* Seção do FAQ */
+/* --- */
+
+/* Estilos para o cabeçalho do acordeão */
+.accordion-button {
+  /* Transição para suavizar as mudanças de estado */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--corSecundariaAzulCamisaClaro);
+  color: var(--corPrimariaRoxoEscuro);
+  font-weight: bold;
+  font-size: 1.15rem;
+}
+
+.accordion-button:not(.collapsed) {
+  /* Estilo quando expandido */
+  background-color: var(--corPrimariaRoxoEscuro) !important;
+  color: var(--corSecundariaAzulCamisaClaro) !important;
+  box-shadow: none;
+  /* Remover sombra padrão do Bootstrap se não desejar */
+}
+
+.accordion-button::after {
+  /* Estilo da seta do acordeão */
+  filter: invert(0.5);
+  /* Torna a seta mais escura ou clara conforme a cor de fundo */
+}
+
+.accordion-button:not(.collapsed)::after {
+  /* Estilo da seta quando expandido */
+  filter: invert(1);
+  /* Inverte a cor da seta para branco quando o botão estiver roxo escuro */
+}
+
+/* Estilos para o corpo do acordeão */
+.accordion-body {
+  background-color: white;
+  color: black;
+  font-size: 1.1rem;
+  padding: 1.25rem;
+  /* Ajusta o padding interno do corpo */
+}
+
+.accordion {
+  width: 100%;
+}
+
+.accordion-item {
+  border-radius: var(--tamanhoArredondamentoCard) !important;
+  /* Arredondamento dos itens */
+  overflow: hidden;
+  /* Garante que o conteúdo não vaze o arredondamento */
+}
+
+/* Remover bordas entre os itens do acordeão se o mb-3 já for suficiente */
+.accordion-item:first-of-type,
+.accordion-item:last-of-type {
+  border-radius: var(--tamanhoArredondamentoCard) !important;
+}
+
+.accordion-item:not(:first-of-type) {
+  border-top: none;
+  /* Remove a borda superior se não for o primeiro item */
+}
+
+/* Ajustes para o card que envolve o acordeão */
+.faq-section .card-padrao {
+  border: 2px solid var(--corSecundariaAzulCamisaClaro);
+  /* Adiciona borda azul para o card */
+}
+
+/* Estilo para o link dentro do parágrafo de introdução */
+.faq-section .mb-5 a {
+  color: var(--corPrimariaAmareloEscuro); /* Cor do link */
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.faq-section .mb-5 a:hover {
+  color: var(--corPrimariaRoxoEscuro); /* Cor do link ao passar o mouse */
+  text-decoration: underline;
+}
+
+/* --- */
+/* Integral */
+/* --- */
+
+.integral-detalhado-section {
+  margin-bottom: 0 !important;
+}
+
+.section-title {
+  color: var(
+    --corPrimariaAmareloEscuro
+  ); /* Título principal em amarelo escuro */
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.lead-text {
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+/* Estilo para o CARD PRINCIPAL que envolve os destaques */
+.main-card-integral {
+  background-color: white;
+  border: 2px solid var(--corPrimariaAmareloEscuro); /* Borda em amarelo escuro */
+  border-radius: calc(
+    var(--tamanhoArredondamentoCard) * 1.5
+  ); /* Bordas mais arredondadas */
+  padding: 3.5rem !important; /* Aumenta o padding interno */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08); /* Sombra mais suave e espalhada */
+}
+
+.custom-heading {
+  color: var(
+    --corPrimariaAmareloEscuro
+  ); /* Títulos dentro dos cards em amarelo escuro */
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 3rem; /* Espaço maior abaixo do título */
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.custom-heading::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 80px;
+  height: 4px;
+  background-color: var(
+    --corPrimariaAmareloEscuro
+  ); /* Linha de destaque em amarelo escuro */
+  border-radius: 2px;
+}
+
+/* Estilo para os CARDS DE DESTAQUE individuais */
+.integral-detalhado-section .feature-card {
+  background-color: var(
+    --corPrimariaAmareloClaro
+  ); /* Fundo dos cards de feature em branco */
+  border: 1px solid var(--corPrimariaAmareloEscuro); /* Borda em amarelo primário */
+  padding: 2rem !important;
+  border-radius: var(--tamanhoArredondamentoCard);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição para o hover */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Sombra leve */
+}
+
+.feature-card:hover {
+  transform: translateY(-8px); /* Efeito de "levantar" no hover */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* Sombra mais forte no hover */
+}
+
+.main-card-integral .icon-circle {
+  width: 70px;
+  height: 70px;
+  background-color: var(
+    --corPrimariaAmareloEscuro
+  ); /* Fundo do círculo do ícone em amarelo escuro */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.main-card-integral .icon-circle i {
+  font-size: 2rem;
+}
+
+.feature-title {
+  color: var(
+    --corPrimariaAmareloEscuro
+  ); /* Título do feature card em amarelo escuro */
+  font-weight: bold;
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.feature-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Estilo para links inline e links do FAQ */
+.integral-detalhado-section .text-link-inline,
+.integral-detalhado-section .mb-5 a {
+  color: var(--corPrimariaAmareloEscuro) !important;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.integral-detalhado-section .text-link-inline:hover,
+.integral-detalhado-section .mb-5 a:hover {
+  color: var(--corPrimariaRoxo) !important;
+  text-decoration: underline;
+}
+
+/* Estilos do Acordeão (FAQ) */
+.faq-section .section-title {
+  color: var(--corPrimariaAmareloEscuro); /* Título do FAQ em amarelo escuro */
+}
+
+.faq-section .card-padrao {
+  border: 1px solid var(--corPrimariaAmareloEscuro);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.faq-section .accordion-item {
+  border-color: var(
+    --corPrimariaAmareloEscuro
+  ) !important; /* Borda do item do acordeão em amarelo escuro */
+  border-radius: var(--tamanhoArredondamentoCard) !important;
+  overflow: hidden;
+}
+
+.faq-section .accordion-button {
+  background-color: var(
+    --corPrimariaAmareloClaro
+  ) !important; /* Fundo do botão em amarelo primário */
+  font-weight: bold;
+  font-size: 1.15rem;
+  border-radius: calc(var(--tamanhoArredondamentoCard) - 4px) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.faq-section .accordion-button:not(.collapsed) {
+  background-color: var(
+    --corPrimariaAmareloEscuro
+  ) !important; /* Fundo do botão quando aberto em amarelo escuro */
+  color: white !important; /* Texto do botão quando aberto em branco para contraste */
+  box-shadow: none;
+}
+
+.faq-section .accordion-button::after {
+  filter: invert(0.5); /* Ajuste para o chevron padrão (escuro) */
+}
+
+.faq-section .accordion-button:not(.collapsed)::after {
+  filter: invert(1); /* Chevron branco quando aberto */
+}
+
+.faq-section .accordion-body {
+  background-color: white; /* Fundo da resposta em branco */
+  color: var(--dark-blue); /* Texto da resposta em azul escuro */
+  font-size: 1rem;
+  padding: 1.25rem;
+}
+
+/* Responsividade */
+@media (max-width: 767.98px) {
+  .main-card-integral {
+    padding: 2rem !important;
+  }
+  .custom-heading {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  .main-card-integral .icon-circle {
+    width: 60px;
+    height: 60px;
+  }
+  .main-card-integral .icon-circle i {
+    font-size: 1.8rem !important;
+  }
+  .feature-title {
+    font-size: 1.2rem;
+  }
+  .lead-text {
+    font-size: 1rem;
+  }
+}
+/* --- */
+/* Estrutura */
+/* --- */
+
+.estrutura-escola-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.estrutura-escola-section .section-title {
+  color: var(--corPrimariaVerdeEscuro);
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.lead-text {
+  font-size: 1.15rem;
+  color: black;
+  line-height: 1.6;
+}
+
+/* Estilo para os CARDS DE DESTAQUE individuais (reaproveitado da página integral) */
+.feature-card {
+  background-color: white;
+  border: 1px solid var(--corPrimariaVerdeClaro);
+  border-radius: var(--tamanhoArredondamentoCard);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px); /* Efeito de "levantar" no hover */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18); /* Sombra mais forte no hover */
+}
+
+.feature-card .card-img-top {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  height: 250px; /* Altura fixa para as imagens */
+  object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+}
+
+.img-estrutura {
+  border-radius: var(--tamanhoArredondamentoCard) !important;
+}
+
+.card-body-custom {
+  flex-grow: 1; /* Garante que o corpo do card ocupe o espaço restante */
+  padding: 2.5rem !important; /* Padding interno para o texto */
+}
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  background-color: var(--corPrimariaVerde);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.icon-circle i {
+  color: white;
+  font-size: 3rem; /* Tamanho do ícone */
+}
+
+.feature-title {
+  color: var(--corPrimariaVerdeEscuro);
+  font-weight: bold;
+  font-size: 1.5rem; /* Um pouco maior para os títulos dos espaços */
+  margin-bottom: 0.75rem;
+}
+
+.feature-text {
+  color: black;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Estilo para links inline */
+.lead-text a,
+.feature-text a {
+  color: var(--corPrimariaVerdeEscuro);
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.lead-text a:hover,
+.feature-text a:hover {
+  color: var(--corPrimariaVerdeClaro);
+  text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 767.98px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  .lead-text {
+    font-size: 1rem;
+  }
+  .feature-card .card-body-custom {
+    padding: 2rem !important;
+  }
+  .feature-card .card-img-top {
+    height: 180px; /* Altura ligeiramente menor em mobile */
+  }
+  .icon-circle {
+    width: 70px;
+    height: 70px;
+  }
+  .icon-circle i {
+    font-size: 2.2rem !important;
+  }
+  .feature-title {
+    font-size: 1.3rem;
+  }
+  .feature-text {
+    font-size: 0.9rem;
   }
 }
