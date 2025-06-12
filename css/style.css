@@ -188,7 +188,7 @@ body {
 
 .navbar {
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 5px !important;
 }
 
 .custom-navbar-bg {
@@ -197,6 +197,7 @@ body {
 }
 
 .navbar-brand {
+  margin-left: 20px;
   color: var(--corPrimariaRoxoEscuro) !important;
   font-family: Gabriela, cursive;
   font-size: 2.2rem;
@@ -209,12 +210,12 @@ body {
   margin-right: 10px;
 }
 
-.navbar-title {
+/* .navbar-title {
   padding-left: 20px;
   color: var(--corPrimariaRoxo);
   font-size: 3.2rem;
   font-weight: bold;
-}
+} */
 
 .nav-link {
   color: var(--corPrimariaRoxoEscuro) !important;
@@ -1749,7 +1750,7 @@ body {
 }
 
 .estrutura-escola-section .section-title {
-  color: var(--corPrimariaVerdeEscuro);
+  color: var(--corPrimariaRoxoEscuro);
   font-weight: bold;
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
@@ -1764,8 +1765,8 @@ body {
 /* Estilo para os CARDS DE DESTAQUE individuais (reaproveitado da página integral) */
 .feature-card {
   background-color: white;
-  border: 1px solid var(--corPrimariaVerdeClaro);
-  border-radius: var(--tamanhoArredondamentoCard);
+  border: 1px solid var(--corPrimariaRoxoClaro);
+  border-radius: var(--tamanhoArredondamentoCard) !important;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
@@ -1797,7 +1798,7 @@ body {
 .icon-circle {
   width: 80px;
   height: 80px;
-  background-color: var(--corPrimariaVerde);
+  background-color: var(--corPrimariaRoxo);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -1812,7 +1813,7 @@ body {
 }
 
 .feature-title {
-  color: var(--corPrimariaVerdeEscuro);
+  color: var(--corPrimariaRoxoEscuro);
   font-weight: bold;
   font-size: 1.5rem; /* Um pouco maior para os títulos dos espaços */
   margin-bottom: 0.75rem;
@@ -1827,7 +1828,7 @@ body {
 /* Estilo para links inline */
 .lead-text a,
 .feature-text a {
-  color: var(--corPrimariaVerdeEscuro);
+  color: var(--corPrimariaRoxoEscuro);
   font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -1835,7 +1836,7 @@ body {
 
 .lead-text a:hover,
 .feature-text a:hover {
-  color: var(--corPrimariaVerdeClaro);
+  color: var(--corPrimariaRoxoClaro);
   text-decoration: underline;
 }
 
@@ -1865,5 +1866,463 @@ body {
   }
   .feature-text {
     font-size: 0.9rem;
+  }
+}
+
+/* --- */
+/* Detalhes Itinerários */
+/* --- */
+
+.itinerario-detalhe-section {
+  padding: 4rem 0; /* Espaçamento geral da seção */
+}
+
+.itinerario-detalhe-section .btn-verde {
+  font-size: larger;
+  text-align: center;
+}
+
+/* Título Principal da Página */
+.detalhe-titulo-principal {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: var(--corPrimariaVerdeEscuro); /* Título em verde escuro */
+  text-align: center;
+  margin-bottom: 2.5rem;
+  line-height: 1.2;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Principal de Conteúdo (para Descrição Curta e Completa) */
+.main-content-card {
+  background-color: #ffffff;
+  border-radius: var(--tamanhoArredondamentoCard);
+  border: 2px solid var(--corPrimariaVerdeClaro);
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Sombra proeminente */
+  padding: 3.5rem; /* Espaçamento interno generoso */
+  margin-bottom: 4rem; /* Espaço abaixo do card */
+}
+
+/* Título e Texto dentro do Card Principal */
+.main-content-card .card-title-itinerario {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: var(--corPrimariaVerdeEscuro); /* Título em verde escuro */
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.main-content-card .card-text-itinerario {
+  font-size: 1.1rem;
+  color: black !important;
+  line-height: 1.8;
+  text-align: justify;
+  margin-bottom: 0; /* Último elemento do card */
+}
+
+.imagem-destaque-card {
+  background-color: #ffffff;
+  border-radius: var(--tamanhoArredondamentoCard);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Para garantir que a imagem se ajuste ao border-radius */
+  margin-bottom: 4rem;
+  display: flex; /* Adicionado para que a imagem possa controlar a altura do card */
+  justify-content: center; /* Centraliza a imagem horizontalmente dentro do card */
+  align-items: center; /* Centraliza a imagem verticalmente se houver espaço extra */
+}
+
+.imagem-destaque-card img {
+  width: 100%;
+  height: auto; /* Permite que a altura da imagem seja natural e proporcional à largura */
+  max-height: 480px; /* Garante que a imagem não seja maior que 480px em telas grandes */
+  object-fit: cover; /* Garante que a imagem preencha a largura sem distorcer, cortando o excesso */
+  display: block; /* Remove espaçamento extra abaixo da imagem */
+  border-radius: var(--tamanhoArredondamentoCard);
+  border: 2px solid var(--corPrimariaVerdeClaro);
+}
+
+/* Subtítulos de Seção (como "Projetos e Atividades") */
+.section-subtitle-detalhe {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--corPrimariaVerdeEscuro);
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.section-subtitle-detalhe::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+  width: 100px;
+  height: 5px;
+  background-color: var(--corPrimariaVerde);
+  border-radius: 3px;
+}
+
+/* Galeria de Projetos (Cards) - FLEXBOX para 3 colunas e centralização */
+.projetos-grid-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+}
+
+.projetos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.project-card {
+  border: 1px solid var(--corPrimariaVerdeClaro);
+  border-radius: var(--tamanhoArredondamentoCard);
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  /* Remover height: 100%; aqui para permitir altura natural */
+  /* Altura será determinada pelo conteúdo e pelos flex-grow/shrink nos filhos */
+  box-sizing: border-box;
+
+  flex: 0 0 calc(33.33% - (2rem * 2 / 3)); /* 3 colunas */
+  min-width: 280px;
+  max-width: 400px;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.project-card img {
+  width: 100%;
+  height: 250px; /* Altura fixa para a imagem */
+  object-fit: cover;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.card-body-custom {
+  padding: 1.5rem;
+  text-align: center;
+  /* REMOVER flex-grow: 1 AQUI! */
+  display: flex;
+  flex-direction: column; /* Organiza o conteúdo interno em coluna */
+  justify-content: center; /* Centraliza verticalmente o conteúdo (legenda) */
+  align-items: center; /* Centraliza horizontalmente o conteúdo (legenda) */
+  /* flex-basis: content; ou min-content; para não esticar */
+  min-height: 80px; /* Adiciona uma altura mínima para o corpo do card, se necessário */
+}
+
+.project-caption {
+  font-size: 1rem;
+  color: var(--dark-blue);
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0; /* Garante que não haja margem extra abaixo da legenda */
+}
+
+/* --- Responsividade para a página de detalhes --- */
+@media (max-width: 991.98px) {
+  .detalhe-titulo-principal {
+    font-size: 2.8rem;
+  }
+  .main-content-card {
+    padding: 2.5rem;
+  }
+  .main-content-card .card-title-itinerario {
+    font-size: 1.8rem;
+  }
+  .main-content-card .card-text-itinerario {
+    font-size: 1rem;
+  }
+  .imagem-destaque-card img {
+    max-height: 400px; /* Reduz a altura máxima em telas menores */
+  }
+  .section-subtitle-detalhe {
+    font-size: 2.2rem;
+    margin-top: 3.5rem;
+  }
+  .project-card {
+    flex-basis: calc(50% - 1rem); /* 2 colunas em tablets */
+  }
+  .project-card img {
+    height: 200px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .detalhe-titulo-principal {
+    font-size: 2.2rem;
+  }
+  .main-content-card {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+  .main-content-card .card-title-itinerario {
+    font-size: 1.6rem;
+  }
+  .imagem-destaque-card img {
+    max-height: 300px;
+  }
+  .section-subtitle-detalhe {
+    font-size: 1.8rem;
+    margin-top: 3rem;
+  }
+  .projetos-grid {
+    gap: 1.5rem;
+  }
+  .project-card {
+    flex-basis: 100%; /* 1 coluna em mobiles */
+    max-width: unset;
+  }
+  .project-card img {
+    height: 180px;
+  }
+  .card-body-custom {
+    padding: 1.25rem;
+  }
+  .project-caption {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .detalhe-titulo-principal {
+    font-size: 1.8rem;
+  }
+  .main-content-card {
+    padding: 1.5rem;
+  }
+  .main-content-card .card-title-itinerario {
+    font-size: 1.4rem;
+  }
+  .imagem-destaque-card img {
+    height: 220px;
+    max-height: 220px;
+  }
+  .section-subtitle-detalhe {
+    font-size: 1.5rem;
+  }
+  .project-card img {
+    height: 150px;
+  }
+}
+
+/* --- */
+/* Lista Itinerarios */
+/* --- */
+
+/* --- Estilos para a página de listagem de itinerários --- */
+
+.itinerarios-listagem-section {
+  background-color: var(--corFundoPadrao);
+  padding: 4rem 0;
+}
+
+/* O .detalhe-titulo-principal já existe e será reutilizado aqui */
+
+.lead-text-listagem {
+  font-size: 1.25rem;
+  color: var(--dark-blue);
+  text-align: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.itinerarios-listagem-section .card-padrao {
+  margin-bottom: 3rem;
+  border: 2px solid var(--corPrimariaVerdeClaro);
+
+  .mb-5 {
+    margin: 0 !important;
+  }
+}
+
+/* Estilos para os Botões de Filtro */
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem; /* Espaçamento entre os botões */
+}
+
+.btn-categoria {
+  background-color: var(--light-gray); /* Cor de fundo padrão dos botões */
+  color: var(--dark-blue);
+  border: 1px solid var(--medium-gray);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--tamanhoArredondamentoBotao);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  white-space: nowrap; /* Evita que o texto do botão quebre */
+}
+
+.btn-categoria:hover {
+  background-color: var(--corPrimariaVerdeClaro); /* Verde claro no hover */
+  color: var(--corPrimariaVerdeEscuro);
+  border-color: var(--corPrimariaVerde);
+  transform: translateY(-2px);
+}
+
+.btn-categoria.active {
+  /* Estilo para o botão de categoria ativo */
+  background-color: var(--corPrimariaVerde);
+  color: white;
+  border-color: var(--corPrimariaVerdeEscuro);
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(var(--corPrimariaVerdeRgb), 0.3);
+}
+
+/* Adaptação dos cards de projeto para cards de listagem de itinerário */
+.itinerario-item-card {
+  height: auto; /* Garante que a altura do card se ajuste ao conteúdo */
+  /* Remove height: 100%; se tiver sido adicionado anteriormente, para não esticar */
+}
+
+.itinerario-item-card .card-link {
+  text-decoration: none; /* Remove sublinhado do link */
+  color: inherit; /* Herda a cor do texto padrão */
+  display: flex; /* Faz o link ocupar todo o card */
+  flex-direction: column; /* Organiza conteúdo interno em coluna */
+  height: 100%; /* Permite que o link ocupe toda a altura do card */
+}
+
+.itinerario-item-card .card-img-top {
+  height: 200px; /* Altura um pouco menor para a imagem na listagem */
+  object-fit: cover;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.itinerario-item-card .card-body-custom {
+  padding: 1.25rem; /* Menor padding para listagem */
+  text-align: center;
+  flex-grow: 1; /* Permite que o body cresça para preencher espaço */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinha o conteúdo ao topo */
+  align-items: center;
+}
+
+.itinerario-item-card .icon-circle {
+  background-color: var(--corPrimariaVerde); /* Ícone em verde */
+  color: white;
+  font-size: 1.5rem !important; /*Tamanho maior para ícone */
+  line-height: 50px !important;
+  margin-bottom: 0.75rem !important; /* Ajusta a margem do ícone */
+}
+
+.itinerario-item-card .itinerario-card-title {
+  font-size: 1.3rem; /* Título um pouco menor que na detalhe */
+  font-weight: bold;
+  color: var(--corPrimariaVerdeEscuro);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.itinerario-item-card .itinerario-card-description {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+  text-align: center; /* Centraliza a descrição */
+  flex-grow: 1; /* Permite que a descrição cresça se for mais longa */
+  margin-bottom: 0; /* Remove margem inferior para o último elemento */
+}
+
+.itinerario-item-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.no-results-message {
+  font-size: 1.2rem;
+  color: #666;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* --- Responsividade para a página de listagem --- */
+@media (max-width: 991.98px) {
+  .lead-text-listagem {
+    font-size: 1.15rem;
+  }
+  .btn-categoria {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  .itinerario-item-card .card-img-top {
+    height: 180px;
+  }
+  .itinerario-item-card .card-body-custom {
+    padding: 1rem;
+  }
+  .itinerario-item-card .itinerario-card-title {
+    font-size: 1.2rem;
+  }
+  .itinerario-item-card .itinerario-card-description {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .lead-text-listagem {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+  }
+  .filter-controls {
+    gap: 0.75rem;
+  }
+  .btn-categoria {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  .itinerario-item-card .card-img-top {
+    height: 150px;
+  }
+  .itinerario-item-card .icon-circle {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .lead-text-listagem {
+    font-size: 1rem;
+  }
+  .filter-controls {
+    flex-direction: column; /* Botões um abaixo do outro em telas muito pequenas */
+    align-items: center;
+  }
+  .btn-categoria {
+    width: 100%; /* Botões ocupam a largura total */
+    max-width: 250px;
+  }
+  .itinerario-item-card .card-img-top {
+    height: 120px;
+  }
+  .itinerario-item-card .card-body-custom {
+    padding: 0.75rem;
+  }
+  .itinerario-item-card .itinerario-card-title {
+    font-size: 1.1rem;
+  }
+  .itinerario-item-card .itinerario-card-description {
+    font-size: 0.8rem;
   }
 }

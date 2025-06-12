@@ -1,12 +1,6 @@
 <?php
-// Ativar erros para depuração (e ver o log). REMOVER EM PRODUÇÃO.
-error_reporting(E_ALL);
-ini_set('display_errors', 0); // Mantém oculto na tela, mas loga
-ini_set('log_errors', 1);
-ini_set('error_log', 'C:/xampp/apache/logs/php_errors.log'); // <-- VERIFIQUE/AJUSTE O CAMINHO!
 
 // Incluir os arquivos do PHPMailer
-// ATENÇÃO: Ajuste os caminhos conforme onde você descompactou o PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require '../PHPMailer/src/Exception.php';

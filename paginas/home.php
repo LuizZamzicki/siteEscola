@@ -57,7 +57,8 @@ $instagram_posts = [
                     <div class="itinerario-content-box-swiper">
                         <h5><?= $itinerario['titulo'] ?></h5>
                         <p><?= $itinerario['descricao'] ?></p>
-                        <a href="#" class="btn btn-verde mt-3">Saiba Mais</a>
+                        <a href="detalhe_itinerario?id=<?= $itinerario['id'] ?>" class="btn btn-verde mt-3">Saiba
+                            Mais</a>
                     </div>
 
                 </div>

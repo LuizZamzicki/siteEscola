@@ -2,78 +2,198 @@
 
 $itinerarios = [
     [
-        'titulo' => 'Mundo Digital e Criação de Conteúdo',
-        'descricao' => 'Domine ferramentas digitais, aprenda a criar vídeos, podcasts e posts envolventes. Torne-se um produtor de conteúdo para a era digital.',
-        'imagem_fundo' => 'https://placehold.co/800'
+        'id' => 'itinerario-ciencias-exatas',
+        'titulo' => 'Ciências Exatas: Aprofundamento em Física e Matemática',
+        'descricao' => 'Explore os fundamentos da física e matemática para os desafios universitários.',
+        'descricao_completa' => 'Este itinerário é ideal para alunos que desejam aprofundar seus conhecimentos em Física e Matemática, com foco em cálculo, álgebra avançada e conceitos de mecânica, termodinâmica e eletromagnetismo. Prepara para cursos universitários de Engenharia, Ciências da Computação e outras áreas exatas, através de resolução de problemas complexos e simulações.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Fisica+e+Matematica',
+        'icone' => 'bi bi-calculator',
+        'categorias' => ['Exatas', 'Preparatório ENEM', 'Ciências Naturais'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Problemas+Olimpiada', 'legenda' => 'Resolução de Problemas de Olimpíadas'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Laboratorio+Fisica', 'legenda' => 'Experimentos Avançados de Física'],
+        ],
     ],
     [
-        'titulo' => 'Arte e Expressão Cênica',
-        'descricao' => 'Descubra seu potencial criativo através do teatro, dança e música. Desenvolva autoconfiança, trabalho em equipe e habilidades de comunicação.',
-        'imagem_fundo' => 'imagensItinerarios/Dança.png'
+        'id' => 'itinerario-ciencias-humanas',
+        'titulo' => 'Ciências Humanas: Sociedade, Cultura e Política',
+        'descricao' => 'Analise as estruturas sociais e políticas do mundo contemporâneo.',
+        'descricao_completa' => 'Aprofunde-se em Sociologia, Filosofia, História e Geografia, desenvolvendo um olhar crítico sobre os fenômenos sociais, culturais e políticos. Este itinerário estimula o debate, a pesquisa e a análise de textos, preparando para áreas como Direito, Relações Internacionais, Jornalismo e Ciências Sociais.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Humanidades+e+Sociedade',
+        'icone' => 'bi bi-people',
+        'categorias' => ['Humanas', 'Preparatório ENEM', 'Cultura'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Simulacao+Politica', 'legenda' => 'Simulação de Modelos Políticos'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Estudo+Cultural', 'legenda' => 'Estudo de Manifestações Culturais Locais'],
+        ],
     ],
     [
-        'titulo' => 'Culinária Saudável e Nutrição',
-        'descricao' => 'Aprenda a preparar refeições nutritivas e deliciosas, explorando o mundo da alimentação saudável e seus benefícios para o corpo e a mente.',
-        'imagem_fundo' => 'https://placehold.co/800'
+        'id' => 'itinerario-ciencias-biologicas',
+        'titulo' => 'Ciências Biológicas e da Saúde',
+        'descricao' => 'Investigue a vida, o corpo humano e a saúde.',
+        'descricao_completa' => 'Este itinerário oferece uma imersão em Biologia, Química e suas aplicações na saúde e no meio ambiente. Com aulas práticas em laboratório, estudo de casos clínicos e projetos de pesquisa, os alunos se preparam para carreiras em Medicina, Enfermagem, Biotecnologia e Ciências Ambientais.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Biologicas+e+Saude',
+        'icone' => 'bi bi-dna',
+        'categorias' => ['Biológicas', 'Saúde', 'Ciências Naturais'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Dissecacao+Virtual', 'legenda' => 'Dissecações Virtuais e Modelos 3D'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Pesquisa+Epidemia', 'legenda' => 'Pesquisa sobre Prevenção de Epidemias'],
+        ],
     ],
     [
-        'titulo' => 'Design Thinking e Solução de Problemas',
-        'descricao' => 'Utilize uma metodologia inovadora para identificar problemas e criar soluções criativas e eficazes, aplicando o pensamento de design no dia a dia.',
-        'imagem_fundo' => 'https://placehold.co/800'
+        'id' => 'itinerario-linguagens-literatura',
+        'titulo' => 'Linguagens, Literatura e Redação Avançada',
+        'descricao' => 'Aprimore sua escrita e análise textual para os desafios acadêmicos.',
+        'descricao_completa' => 'Foco na leitura crítica, interpretação de textos complexos e produção textual de alta qualidade, essencial para a redação do ENEM e vestibulares. Inclui estudo aprofundado de gêneros literários, gramática normativa e estratégias de argumentação, com foco na fluência e coerência.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Linguagens+e+Redacao',
+        'icone' => 'bi bi-pencil-square',
+        'categorias' => ['Humanas', 'Linguagens', 'Preparatório ENEM'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Oficina+Redacao', 'legenda' => 'Oficinas de Redação para o ENEM'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Clube+Literatura', 'legenda' => 'Clube de Leitura e Debate Literário'],
+        ],
     ],
     [
-        'titulo' => 'Escrita Criativa e Narrativa',
-        'descricao' => 'Desvende os segredos da escrita, criando histórias, poemas e roteiros. Aperfeiçoe sua expressão e dê vida às suas ideias.',
-        'imagem_fundo' => 'https://placehold.co/800'
+        'id' => 'itinerario-tecnologia-digital',
+        'titulo' => 'Tecnologia e Inovação Digital',
+        'descricao' => 'Conheça os fundamentos da programação, IA e robótica.',
+        'descricao_completa' => 'Este itinerário introduz os alunos aos conceitos básicos de lógica de programação, pensamento computacional, inteligência artificial e robótica. Através de projetos práticos, como criação de pequenos jogos e automação simples, estimula o interesse em carreiras tecnológicas e digitais.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Tecnologia+e+IA',
+        'icone' => 'bi bi-robot',
+        'categorias' => ['Exatas', 'Tecnologia', 'Inovação'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Jogo+Educacional', 'legenda' => 'Criação de Jogo Educacional Simples'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Kit+Robotica', 'legenda' => 'Montagem e Programação de Kits de Robótica'],
+        ],
     ],
     [
-        'titulo' => 'Idiomas e Culturas do Mundo',
-        'descricao' => 'Expanda seus horizontes aprendendo novos idiomas e mergulhando em diferentes culturas. Prepare-se para um mundo globalizado.',
-        'imagem_fundo' => 'https://placehold.co/800'
+        'id' => 'itinerario-resolucao-problemas',
+        'titulo' => 'Raciocínio Lógico e Resolução de Problemas',
+        'descricao' => 'Desenvolva habilidades para solucionar desafios complexos.',
+        'descricao_completa' => 'Focado no aprimoramento do raciocínio lógico-matemático e na aplicação de estratégias para resolver problemas em diversas áreas do conhecimento. Este itinerário utiliza desafios, quebra-cabeças e cenários práticos para desenvolver o pensamento analítico e a criatividade na busca por soluções.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Logica+e+Problemas',
+        'icone' => 'bi bi-puzzle',
+        'categorias' => ['Exatas', 'Habilidades Essenciais', 'Pensamento Crítico'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Jogos+Estrategia', 'legenda' => 'Análise e Criação de Jogos de Estratégia'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Desafios+Matematicos', 'legenda' => 'Clube de Desafios Lógico-Matemáticos'],
+        ],
     ],
     [
-        'titulo' => 'Esportes e Bem-Estar Físico',
-        'descricao' => 'Pratique diversas modalidades esportivas, desenvolvendo coordenação, disciplina e um estilo de vida ativo e saudável.',
-        'imagem_fundo' => 'https://placehold.co/800'
+        'id' => 'itinerario-meio-ambiente',
+        'titulo' => 'Meio Ambiente e Sustentabilidade',
+        'descricao' => 'Compreenda os desafios ambientais e busque soluções sustentáveis.',
+        'descricao_completa' => 'Este itinerário explora temas como ecologia, conservação, energias renováveis e gestão de recursos naturais. Os alunos participam de projetos de conscientização ambiental, estudos de campo e desenvolvem propostas para um futuro mais sustentável em nível local e global.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Sustentabilidade+e+Ecologia',
+        'icone' => 'bi bi-tree',
+        'categorias' => ['Biológicas', 'Meio Ambiente', 'Cidadania'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Horta+Comunitaria', 'legenda' => 'Criação de Horta Escolar/Comunitária'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Campanha+Reciclagem', 'legenda' => 'Campanha de Reciclagem e Redução de Resíduos'],
+        ],
     ],
     [
-        'titulo' => 'Ciência e Experimentação',
-        'descricao' => 'Explore o universo da ciência através de experimentos práticos e descobertas. Estimule a curiosidade e o raciocínio científico.',
-        'imagem_fundo' => 'https://placehold.co/800'
+        'id' => 'itinerario-artes-expressao',
+        'titulo' => 'Artes, Expressão e Criatividade',
+        'descricao' => 'Desenvolva sua criatividade através de diversas formas de arte.',
+        'descricao_completa' => 'Um espaço para explorar pintura, escultura, música, teatro e dança. Este itinerário visa aprimorar a sensibilidade artística, a capacidade de expressão e o desenvolvimento de um portfólio criativo, fomentando a autoconfiança e a inovação.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Arte+e+Criatividade',
+        'icone' => 'bi bi-palette',
+        'categorias' => ['Artes', 'Cultura', 'Habilidades Essenciais'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Exposicao+Artes', 'legenda' => 'Exposição de Artes Visuais Anual'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Peca+Teatro', 'legenda' => 'Produção de Peça Teatral'],
+        ],
     ],
     [
-        'titulo' => 'Oratória e Debate',
-        'descricao' => 'Aprimore sua capacidade de falar em público, argumentar e defender ideias. Torne-se um comunicador confiante e persuasivo.',
-        'imagem_fundo' => 'https://placehold.co/800'
+        'id' => 'itinerario-empreendedorismo-inovacao',
+        'titulo' => 'Empreendedorismo e Inovação para o Futuro',
+        'descricao' => 'Cultive a mentalidade empreendedora e de resolução de problemas.',
+        'descricao_completa' => 'Não focado na criação de empresas, mas no desenvolvimento de habilidades como criatividade, proatividade, liderança e trabalho em equipe. Os alunos aprendem a identificar problemas e propor soluções inovadoras, aplicáveis em qualquer área do conhecimento e carreira.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Empreendedorismo+e+Solucoes',
+        'icone' => 'bi bi-lightbulb',
+        'categorias' => ['Habilidades Essenciais', 'Inovação', 'Negócios'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Desafio+Inovacao', 'legenda' => 'Desafio de Inovação Social'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Pitch+Ideias', 'legenda' => 'Apresentação de Ideias e Soluções'],
+        ],
     ],
     [
-        'titulo' => 'Música e Instrumentos',
-        'descricao' => 'Aprenda a tocar um instrumento, explore a teoria musical e participe de projetos em grupo. A música como forma de expressão e disciplina.',
-        'imagem_fundo' => 'https://placehold.co/800'
+        'id' => 'itinerario-cultura-digital',
+        'titulo' => 'Cultura Digital e Cidadania Online',
+        'descricao' => 'Navegue pelo ambiente digital com segurança e responsabilidade.',
+        'descricao_completa' => 'Este itinerário aborda a ética digital, segurança na internet, fake news, cyberbullying e o impacto da tecnologia na sociedade. Prepara os alunos para serem cidadãos digitais críticos, responsáveis e conscientes dos seus direitos e deveres no mundo online.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Cultura+Digital',
+        'icone' => 'bi bi-shield-check',
+        'categorias' => ['Tecnologia', 'Cidadania', 'Humanas'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Guia+Seguranca', 'legenda' => 'Criação de Guia de Segurança Online'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Campanha+Conscientizacao', 'legenda' => 'Campanha de Conscientização sobre Fake News'],
+        ],
     ],
     [
-        'titulo' => 'Fotografia e Edição de Imagens',
-        'descricao' => 'Capture momentos, explore técnicas de fotografia e edite suas fotos como um profissional. Liberte seu olhar artístico.',
-        'imagem_fundo' => 'https://placehold.co/800'
+        'id' => 'itinerario-debate-argumentacao',
+        'titulo' => 'Debate e Argumentação: Construindo o Discurso',
+        'descricao' => 'Domine a arte de argumentar e defender suas ideias com clareza.',
+        'descricao_completa' => 'Focado no desenvolvimento da oratória, lógica argumentativa e persuasão. Os alunos participam de clubes de debate, simulações de júri e apresentações, aprimorando sua capacidade de expressar ideias de forma clara, concisa e impactante.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Debate+e+Oratoria',
+        'icone' => 'bi bi-chat-dots',
+        'categorias' => ['Humanas', 'Linguagens', 'Habilidades Essenciais'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Clube+Debate', 'legenda' => 'Clube de Debates e Retórica'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Apresentacao+TCC', 'legenda' => 'Treinamento para Apresentação de TCC e Trabalhos'],
+        ],
     ],
     [
-        'titulo' => 'Desenvolvimento de Jogos',
-        'descricao' => 'Crie seus próprios jogos digitais, desde a concepção até a programação. Desperte a lógica e a criatividade no mundo dos games.',
-        'imagem_fundo' => 'https://placehold.co/800'
+        'id' => 'itinerario-biotecnologia-futuro',
+        'titulo' => 'Biotecnologia e o Futuro da Vida',
+        'descricao' => 'Explore as inovações na biotecnologia e suas aplicações.',
+        'descricao_completa' => 'Este itinerário mergulha nas aplicações da biotecnologia na medicina, agricultura e indústria. Os alunos estudam engenharia genética, biologia molecular e bioética, preparando-se para as novas fronteiras da ciência e pesquisa.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Biotecnologia',
+        'icone' => 'bi bi-microscope',
+        'categorias' => ['Biológicas', 'Tecnologia', 'Inovação'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=DNA+Lab', 'legenda' => 'Extração de DNA em Laboratório'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Pesquisa+CRISPR', 'legenda' => 'Introdução à Edição Gênica (CRISPR)'],
+        ],
     ],
     [
-        'titulo' => 'Cidadania e Voluntariado',
-        'descricao' => 'Engaje-se em ações sociais e projetos que fazem a diferença na comunidade. Desenvolva empatia e consciência cidadã.',
-        'imagem_fundo' => 'https://placehold.co/800'
+        'id' => 'itinerario-analise-dados',
+        'titulo' => 'Introdução à Análise de Dados e Estatística',
+        'descricao' => 'Transforme dados em informações valiosas para tomadas de decisão.',
+        'descricao_completa' => 'Aprenda os princípios da estatística, coleta, organização e visualização de dados. Este itinerário desenvolve o pensamento analítico e a capacidade de interpretar informações para embasar decisões em diversas áreas, da ciência aos negócios.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Analise+de+Dados',
+        'icone' => 'bi bi-graph-up',
+        'categorias' => ['Exatas', 'Tecnologia', 'Habilidades Essenciais'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Pesquisa+Escolar', 'legenda' => 'Análise de Dados de Pesquisa Escolar'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Infograficos', 'legenda' => 'Criação de Infográficos Estatísticos'],
+        ],
     ],
     [
-        'titulo' => 'Xadrez e Raciocínio Lógico',
-        'descricao' => 'Desenvolva o pensamento estratégico, a concentração e a capacidade de tomada de decisões através do jogo de xadrez.',
-        'imagem_fundo' => 'https://placehold.co/800'
+        'id' => 'itinerario-historia-geopolitica',
+        'titulo' => 'História e Geopolítica: Entendendo o Mundo',
+        'descricao' => 'Analise os grandes eventos históricos e suas relações globais atuais.',
+        'descricao_completa' => 'Este itinerário aprofunda o estudo de conflitos, movimentos sociais, formação de estados e a dinâmica das relações internacionais ao longo da história. Promove uma compreensão das complexidades do cenário geopolítico contemporâneo e prepara para áreas como Diplomacia e Relações Internacionais.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Historia+Geopolitica',
+        'icone' => 'bi bi-globe-americas',
+        'categorias' => ['Humanas', 'Cultura', 'Política'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Simulacao+ONU+Jr', 'legenda' => 'Simulação de Modelo da ONU Junior'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Analise+Conflitos', 'legenda' => 'Análise de Conflitos Geopolíticos Atuais'],
+        ],
     ],
     [
-        'titulo' => 'Jardinagem e Horta Escolar',
-        'descricao' => 'Conecte-se com a natureza, aprenda sobre plantio, cultivo e o ciclo da vida. Contribua para um ambiente mais verde e sustentável.',
-        'imagem_fundo' => 'imagensItinerarios/maos a horta.png'
-    ]
+        'id' => 'itinerario-saude-bem-estar',
+        'titulo' => 'Saúde e Bem-Estar: Corpo e Mente',
+        'descricao' => 'Promova hábitos saudáveis e compreenda a importância do autocuidado.',
+        'descricao_completa' => 'Este itinerário explora nutrição, atividade física, saúde mental e primeiros socorros. Os alunos aprendem sobre a importância do equilíbrio entre corpo e mente, desenvolvem práticas de autocuidado e se tornam multiplicadores de hábitos saudáveis na comunidade escolar.',
+        'imagem_fundo' => 'https://placehold.co/1200x675/B7E4F6/105F7E?text=Saude+e+Bem+Estar',
+        'icone' => 'bi bi-activity',
+        'categorias' => ['Biológicas', 'Saúde', 'Habilidades Essenciais'],
+        'projetos_imagens' => [
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Campanha+Saude+Mental', 'legenda' => 'Campanha de Conscientização sobre Saúde Mental'],
+            ['url' => 'https://placehold.co/800x450/B7E4F6/105F7E?text=Oficina+Primeiros+Socorros', 'legenda' => 'Oficina de Primeiros Socorros Básicos'],
+        ],
+    ],
 ];

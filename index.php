@@ -1,4 +1,5 @@
 <?php
+
     $base = $_SERVER['SERVER_NAME']. $_SERVER['SCRIPT_NAME'];
 
     $pagina_atual = $_GET['param'] ?? "home";
@@ -49,7 +50,7 @@
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="home">
                 <img src="imagens/logo.png" alt="Logo Maffei" class="navbar-logo me-2">
-                <span class="navbar-title">Maffei</span>
+                <!-- <span class="navbar-title">Maffei</span> -->
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -84,7 +85,9 @@
                         <a class="nav-link <?=is_active("contato", $pagina_atual)?>" href="contato">Contato</a>
                     </li>
                     <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        <a class="btn btn-azul" href="integral">Nossos Projetos</a>
+                        <a href="listar_itinerarios" class="btn btn-verde">
+                            Nossas Trilhas
+                        </a>
                     </li>
                 </ul>
             </div>
