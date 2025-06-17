@@ -27,15 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Validação de E-mail
-    // Primeiro, uma validação básica de formato
+    // Validação de E-mail básica de formato
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo json_encode(['success' => false, 'message' => 'O endereço de e-mail informado é inválido.']);
         exit;
     }
 
-    // NOVO: Validação adicional para garantir que o e-mail tenha um ponto no domínio (ex: .com, .br)
-    // Isso evita emails como "teste@dominio" sem o TLD
+    // Validação de domínio (ex: .com, .br)
     if (!preg_match("/.+\@.+\..+/", $email)) {
         echo json_encode(['success' => false, 'message' => 'O endereço de e-mail informado é inválido. Ele deve conter um domínio válido (ex: exemplo@dominio.com).']);
         exit;
@@ -55,17 +53,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Port       = 587;
 
         // Remetente (O que o receptor vê como remetente - DEVE SER O MESMO DO USERNAME PARA O GMAIL)
-        $mail->setFrom('maffei.rosa.colegio@gmail.com', 'Site Escola'); // Seu email Gmail, Nome que aparece
+        $mail->setFrom('maffei.rosa.colegio@gmail.com', 'Site Escola'); 
 
         // Destinatário (Para onde o e-mail será enviado - SEU E-MAIL DE RECEBIMENTO)
         $mail->addAddress('luiz.zamzicki@gmail.com');
 
         // Endereço de Resposta (Quando você clicar em "Responder", vai para o e-mail do usuário)
-        $mail->addReplyTo($email, $nome); // Usar as variáveis $email e $nome coletadas acima
+        $mail->addReplyTo($email, $nome); 
 
         // Conteúdo do E-mail
         $mail->isHTML(true);
-        // Use as variáveis $assunto, $nome, $email, $telefone, etc. coletadas e sanitizadas
+        
         $mail->Subject = 'Mensagem do Site: ' . $assunto;
         $mail->Body    = "
             <strong>Nome:</strong> {$nome}<br>
@@ -81,11 +79,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     } catch (Exception $e) {
         // Captura qualquer erro durante o envio do e-mail
-        error_log("Erro ao enviar e-mail via PHPMailer: {$mail->ErrorInfo}", 0); // Loga o erro
+        error_log("Erro ao enviar e-mail via PHPMailer: {$mail->ErrorInfo}", 0); 
         echo json_encode(['success' => false, 'message' => 'Não foi possível enviar a mensagem no momento. Erro do servidor de e-mail.']);
     }
 
-} else { // Se a requisição NÃO for POST
+} else { 
     echo json_encode(['success' => false, 'message' => 'Método de requisição inválido.']);
 }
 exit;

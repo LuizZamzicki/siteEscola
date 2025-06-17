@@ -19,24 +19,76 @@ $instagram_posts = [
 
 ?>
 
-<section>
-    <h2 class="section-title">A escola</h2>
-    <div class="card-integral p-4 my-5 rounded d-flex flex-column flex-md-row align-items-center shadow">
-        <div class="card-integral-text flex-grow-1">
-            <h1 class="mb-3"><strong>Ensino Integral</strong></h1>
-            <h5>Para o desenvolvimento completo dos nossos alunos.
-            </h5><br><br>
-            <ul>
-                <li>Entrada às <strong>07:45</strong> e saída às <strong>16:00</strong></li>
-                <li>Refeições fornecidas pela escola (almoço e lanches)</li>
-                <li>Projetos de Vida e Apoio Pedagógico</li>
-                <li>Oficinas práticas e dinâmicas</li>
-                <li>Inúmeras trilhas para escolher</li>
-            </ul>
-            <a href="integral" class="btn btn-amarelo mt-3">Saiba mais</a>
+<section class="principal-section my-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-4">O colégio João Maffei Rosa</h2>
+        <p class="text-center mb-5 lead-text">
+            No Colégio Maffei, valorizamos um ambiente de aprendizado inovador e acolhedor.
+            Com foco no desenvolvimento integral, preparamos nossos alunos para os desafios do futuro.
+        </p>
+
+        <div class="card-integral p-4 my-5 rounded d-flex flex-column flex-md-row align-items-center shadow">
+
+            <div class="card-integral-text col-12 col-md-8 pe-md-4">
+
+                <h3><strong>Colégio com ensino integral</strong>
+                </h3>
+                <p>Nossas instalações foram projetadas para estimular a criatividade e o bem-estar em um ambiente
+                    seguro
+                    e acolhedor. Oferecemos salas de aula modernas, laboratórios equipados, áreas de lazer e um
+                    refeitório confortável, tudo pensando no desenvolvimento completo do seu filho.</p><br>
+                O <strong>Ensino Integral</strong> é a base da nossa metodologia, proporcionando um currículo
+                ampliado e
+                atividades que vão além da grade tradicional, preparando os alunos para a vida.</p>
+                <a href="integral" class="btn btn-amarelo mt-4">Conheça nosso Integral</a>
+            </div>
+
+            <div class="card-integral-image col-12 col-md-4 mt-4 mt-md-0 ps-md-4">
+                <img src="imagens/img-entrada-escola.jpg" alt="Entrada da Escola - Ensino Integral"
+                    class="img-fluid rounded">
+            </div>
         </div>
-        <div class="card-integral-image mt-4 mt-md-0 ms-md-4">
-            <img src="imagens/img-entrada-escola.jpg" alt="Ensino Integral" class="img-fluid rounded">
+        <div class="main-card-integral p-4 mb-5 shadow-lg">
+            <h3 class="text-center mb-5"><strong>As 3 Perguntas Mais Frequentes sobre o Ensino
+                    Integral</strong></h3>
+            <div class="row justify-content-center g-4">
+                <div class="col-md-4 col-sm-6 d-flex">
+                    <div class="feature-card flex-fill p-4 text-center rounded-3">
+                        <div class="icon-circle mb-3 mx-auto">
+                            <i class="bi bi-clock"></i>
+                        </div>
+                        <h4 class="feature-title">Horário do Integral</h4>
+                        <p class="feature-text">Nosso programa funciona das <strong>07:45 às 16:00</strong>,
+                            oferecendo
+                            um dia completo de atividades e aprendizado.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 d-flex">
+                    <div class="feature-card flex-fill p-4 text-center rounded-3">
+                        <div class="icon-circle mb-3 mx-auto">
+                            <i class="bi bi-cup-straw"></i>
+                        </div>
+                        <h4 class="feature-title">Refeições</h4>
+                        <p class="feature-text">Sim, a escola oferece todas as refeições necessárias durante o
+                            período
+                            integral, incluindo <strong>almoço e lanches</strong> balanceados.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 d-flex">
+                    <div class="feature-card flex-fill p-4 text-center rounded-3">
+                        <div class="icon-circle mb-3 mx-auto">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <h4 class="feature-title">Currículo Ampliado</h4>
+                        <p class="feature-text">Inclui <strong>projetos de vida, apoio pedagógico, oficinas práticas
+                                e
+                                dinâmicas, e trilhas de aprendizagem</strong> para desenvolvimento integral.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="integral" class="btn btn-amarelo">Explore nosso Ensino Integral</a>
+            </div>
         </div>
     </div>
 </section>
@@ -50,8 +102,10 @@ $instagram_posts = [
     <div class="swiper itinerariosSwiper">
         <div class="swiper-wrapper">
             <?php foreach ($itinerarios as $itinerario) : ?>
-            <div class="swiper-slide itinerario-slide"
-                style="background-image: url('<?= $itinerario['imagem_fundo'] ?>');">
+            <div class="swiper-slide itinerario-slide">
+                <img src="<?= $itinerario['imagem_fundo'] ?>" alt="<?= $itinerario['titulo'] ?>"
+                    class="itinerario-slide-img">
+
                 <div class="itinerario-slide-content">
                     <div class="itinerario-overlay-swiper"> </div>
                     <div class="itinerario-content-box-swiper">
@@ -60,7 +114,6 @@ $instagram_posts = [
                         <a href="detalhe_itinerario?id=<?= $itinerario['id'] ?>" class="btn btn-verde mt-3">Saiba
                             Mais</a>
                     </div>
-
                 </div>
             </div>
             <?php endforeach; ?>

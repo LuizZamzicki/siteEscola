@@ -1,12 +1,7 @@
 <?php
-// paginas/integral.php - Conteúdo detalhado sobre o Ensino Integral
-
-// Opcional: Se você quiser links para outras páginas dentro do texto, defina-os aqui
-// Por exemplo, se quiser linkar para os itinerários formativos em uma seção futura
-// $itinerarios_url = '/paginas/itinerarios.php'; // Ajuste conforme a sua estrutura real
 
 require_once __DIR__ . '/../objetos/faq_integral.php'; 
-$contato = '/paginas/contato.php'; // Caminho correto para o contato
+$contato = '/paginas/contato.php'; 
 
 $link_desempenho_integral_pr = 'https://www.aen.pr.gov.br/Noticia/Escolas-estaduais-em-tempo-integral-do-Parana-cresceram-acima-da-media-no-Ideb';
 
@@ -21,48 +16,62 @@ $link_desempenho_integral_pr = 'https://www.aen.pr.gov.br/Noticia/Escolas-estadu
             Conheça a proposta do Ensino Integral e como ele prepara nossos alunos para a vida com excelência.
         </p>
 
-        <div class="main-card-integral p-4 mb-5 shadow-lg">
-            <h3 class="text-center mb-5 custom-heading"><strong>O Que é o Ensino Integral no Colégio Maffei?</strong>
-            </h3>
-            <div class="row justify-content-center g-4">
-                <div class="col-md-4 col-sm-6 d-flex">
-                    <div class="feature-card flex-fill p-4 text-center rounded-3">
-                        <div class="icon-circle mb-3 mx-auto">
-                            <i class="bi bi-clock"></i>
+        <div class="main-card-integral p-4 mb-5 shadow-lg text-center">
+            <h3 class="text-center mb-5 custom-heading"><strong>O Dia a Dia no Integral</strong></h3>
+
+            <div id="integralCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#integralCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#integralCarousel" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#integralCarousel" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="imagens/integral/integral-alunos-praticas.jpg"
+                            class="d-block w-100 rounded-lg carousel-image"
+                            alt="Alunos em atividades práticas do integral">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Oficinas e Projetos Interativos</h5>
+                            <p>Engajamento em atividades que estimulam a criatividade e o pensamento crítico.</p>
                         </div>
-                        <h4 class="feature-title">Horário Estendido</h4>
-                        <p class="feature-text">Das **07:45h às 16:00h**, um dia de aprendizado contínuo e
-                            produtivo.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="imagens/integral/integral-refeicao.jpg"
+                            class="d-block w-100 rounded-lg carousel-image" alt="Alunos durante a refeição no integral">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Refeições Nutritivas e Bem-estar</h5>
+                            <p>Momentos de alimentação balanceada e convívio social, preparados com carinho.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="imagens/integral/integral-estudo-orientado.jpg"
+                            class="d-block w-100 rounded-lg carousel-image" alt="Alunos estudando com apoio pedagógico">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Apoio Pedagógico e Estudo Orientado</h5>
+                            <p>Suporte individualizado para fortalecer o aprendizado e sanar dúvidas.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 d-flex">
-                    <div class="feature-card flex-fill p-4 text-center rounded-3">
-                        <div class="icon-circle mb-3 mx-auto">
-                            <i class="bi bi-book"></i>
-                        </div>
-                        <h4 class="feature-title">Currículo Ampliado</h4>
-                        <p class="feature-text">Mais tempo para aprofundar conhecimentos e explorar novos temas com
-                            qualidade.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 d-flex">
-                    <div class="feature-card flex-fill p-4 text-center rounded-3">
-                        <div class="icon-circle mb-3 mx-auto">
-                            <i class="bi bi-cup-straw"></i>
-                        </div>
-                        <h4 class="feature-title">Refeições Inclusas</h4>
-                        <p class="feature-text">Almoço e lanches nutritivos para manter a energia e o bem-estar do seu
-                            filho.</p>
-                    </div>
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#integralCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#integralCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
             </div>
             <p class="mt-5 mb-0 text-center lead-text">
-                O Ensino Integral vai além da sala de aula, focando no **desenvolvimento completo** dos
-                alunos com atividades
-                que estimulam a criatividade, o pensamento crítico e habilidades essenciais para a vida.
+                O Ensino Integral no Colégio Maffei proporciona um ambiente dinâmico e enriquecedor,
+                onde cada momento é uma oportunidade para explorar, aprender e crescer.
+                Nossos alunos desfrutam de uma jornada educacional completa, que vai muito além da sala de aula.
             </p>
         </div>
-
         <div class="main-card-integral p-4 mb-5 shadow-lg">
             <h3 class="text-center mb-5 custom-heading"><strong>Por Que o Ensino Integral?</strong></h3>
             <div class="row justify-content-center g-4">
@@ -72,7 +81,7 @@ $link_desempenho_integral_pr = 'https://www.aen.pr.gov.br/Noticia/Escolas-estadu
                             <i class="bi bi-graph-up"></i>
                         </div>
                         <h4 class="feature-title">Melhor Desempenho</h4>
-                        <p class="feature-text">Escolas integrais no PR cresceram **18% no IDEB** entre
+                        <p class="feature-text">Escolas integrais no PR cresceram <strong>18% no IDEB</strong> entre
                             2021 e 2023.</p>
                     </div>
                 </div>
@@ -98,7 +107,7 @@ $link_desempenho_integral_pr = 'https://www.aen.pr.gov.br/Noticia/Escolas-estadu
             </div>
             <p class="mt-5 mb-0 text-center lead-text">
                 Essa modalidade de ensino, apoiada pelo Governo do Paraná, amplia as oportunidades de aprendizado,
-                contribui para a **redução da evasão escolar** e forma alunos mais engajados.
+                contribui para a <strong>redução da evasão escolar</strong> e forma alunos mais engajados.
                 <a href="<?= $link_desempenho_integral_pr ?>" target="_blank" rel="noopener noreferrer"
                     class="text-link-inline">Saiba mais sobre esses resultados em reportagem da Agência Estadual de
                     Notícias.</a>

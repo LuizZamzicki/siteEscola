@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gabriela&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -50,7 +51,7 @@
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="home">
                 <img src="imagens/logo.png" alt="Logo Maffei" class="navbar-logo me-2">
-                <!-- <span class="navbar-title">Maffei</span> -->
+                <span class="navbar-title">Maffei</span>
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -71,22 +72,22 @@
                             A escola
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="estrutura">Estrutura</a></li>
-                            <li><a class="dropdown-item" href="sobre">Nossa Equipe</a></li>
-                            <li><a class="dropdown-item" href="historia">Nossa história</a></li>
+                            <li><a class="dropdown-item" href="integral">Sobre o Integral</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+                            <li><a class="dropdown-item" href="estrutura">Estrutura</a></li>
+                            <li><a class="dropdown-item" href="nossa_equipe">Nossa Equipe</a></li>
+                            <li><a class="dropdown-item" href="historia">Nossa história</a></li>
 
-                            <li><a class="dropdown-item" href="integral">Sobre o Integral</a></li>
                         </ul>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link <?=is_active("contato", $pagina_atual)?>" href="contato">Contato</a>
                     </li>
                     <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        <a href="listar_itinerarios" class="btn btn-verde">
-                            Nossas Trilhas
+                        <a href="integral" class="btn btn-amarelo">
+                            Conheça o Integral
                         </a>
                     </li>
                 </ul>
