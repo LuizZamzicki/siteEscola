@@ -87,7 +87,7 @@
                     </li>
                     <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
                         <a href="integral" class="btn btn-amarelo">
-                            Conheça o Integral
+                            Conheça Nosso Integral
                         </a>
                     </li>
                 </ul>

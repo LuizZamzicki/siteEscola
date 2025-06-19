@@ -40,7 +40,7 @@ $instagram_posts = [
                 O <strong>Ensino Integral</strong> é a base da nossa metodologia, proporcionando um currículo
                 ampliado e
                 atividades que vão além da grade tradicional, preparando os alunos para a vida.</p>
-                <a href="integral" class="btn btn-amarelo mt-4">Conheça nosso Integral</a>
+                <a href="integral" class="btn btn-amarelo mt-4">Conheça o Integral</a>
             </div>
 
             <div class="card-integral-image col-12 col-md-4 mt-4 mt-md-0 ps-md-4">
@@ -100,6 +100,7 @@ $instagram_posts = [
         para o seu desenvolvimento. Conheça nossos itinerários:</p>
 
     <div class="swiper itinerariosSwiper">
+        <div class="swiper-pagination"></div>
         <div class="swiper-wrapper">
             <?php foreach ($itinerarios as $itinerario) : ?>
             <div class="swiper-slide itinerario-slide">
@@ -119,10 +120,9 @@ $instagram_posts = [
             <?php endforeach; ?>
         </div>
 
-        <div class="btn-itinerarios-swiper swiper-button-next"></div>
-        <div class="btn-itinerarios-swiper swiper-button-prev"></div>
+        <div class="swiper-button-next"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="swiper-button-prev"><i class="fa-solid fa-chevron-left"></i></div>
 
-        <div class="swiper-pagination"></div>
     </div>
 
     <hr class="my-5">

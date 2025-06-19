@@ -1038,32 +1038,108 @@ body {
 }
 
 /* Estilos para as setas de navegação do Swiper */
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(
+    --corPrimariaAmareloEscuro
+  ); /* Usa a mesma cor das setas do Bootstrap */
+  font-size: 2.5rem; /* Ajusta o tamanho do ícone Font Awesome */
+  width: 2rem; /* Mantém a largura da área do botão para consistência */
+  height: 2rem; /* Mantém a altura da área do botão para consistência */
+  margin-top: -1rem; /* Ajuste fino para centralizar verticalmente */
+
+  /* Remover backgrounds padrão do Swiper se existirem */
+  background-image: none !important;
+}
+
+/* Remover o texto padrão do Swiper, já que estamos usando ícone */
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  content: "" !important;
+}
+
+/* Se você tinha estilos específicos para btn-itinerarios-swiper, pode precisar ajustar */
 .btn-itinerarios-swiper {
-  color: var(--corPrimariaVerdeEscuro);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  background-color: white;
-  border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Mantenha ou adicione estilos de posicionamento ou tamanho se necessário,
+       mas a cor e o ícone agora vêm do .swiper-button-next/prev */
 }
 
-.btn-itinerarios-swiper::after {
-  font-size: 1.5rem;
+/* --- Estilos anteriores para as setas do Bootstrap Carrossel (para referência) --- */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-image: none; /* remove o ícone padrão do Bootstrap */
+  width: 2rem;
+  height: 2rem;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
-.btn-itinerarios-swiper:hover {
-  background-color: var(--corPrimariaVerdeClaro);
+.carousel-control-prev-icon::before {
+  content: "\f053"; /* Ícone 'chevron-left' do Font Awesome */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 2.5rem; /* Mesmo tamanho das setas do Swiper */
+  color: var(--corPrimariaAmareloEscuro); /* Mesma cor das setas do Swiper */
 }
+
+.carousel-control-next-icon::before {
+  content: "\f054"; /* Ícone 'chevron-right' do Font Awesome */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 2.5rem; /* Mesmo tamanho das setas do Swiper */
+  color: var(--corPrimariaAmareloEscuro); /* Mesma cor das setas do Swiper */
+}
+
+.carousel-control-prev-icon::before,
+.carousel-control-next-icon::before {
+  content: "\f053"; /* Ícone 'chevron-left' ou 'chevron-right' */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: var(--corPrimariaAmareloEscuro);
+  /* Adicionado para a transição */
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+  display: inline-block; /* Necessário para aplicar transform em ::before */
+}
+
+/* Animação ao passar o mouse nas setas do Bootstrap Carousel */
+.carousel-control-prev:hover .carousel-control-prev-icon::before,
+.carousel-control-next:hover .carousel-control-next-icon::before {
+  transform: scale(1.2); /* Aumenta o tamanho em 20% */
+  color: var(--corPrimariaAmarelo); /* Muda a cor ao passar o mouse */
+}
+
+/* --- Estilos para as setas do Swiper Carrossel --- */
+.swiper-button-next i,
+.swiper-button-prev i {
+  /* Seleciona o elemento <i> dentro do botão */
+  color: var(--corPrimariaAmareloEscuro);
+  font-size: 2.5rem;
+  /* Adicionado para a transição */
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+  display: inline-block; /* Garante que a transição de transform funcione */
+}
+
+/* Animação ao passar o mouse nas setas do Swiper Carrossel */
+.swiper-button-next:hover i,
+.swiper-button-prev:hover i {
+  transform: scale(1.2); /* Aumenta o tamanho em 20% */
+  color: var(--corPrimariaAmarelo); /* Muda a cor ao passar o mouse */
+}
+
+/* Garante que a área do botão Swiper tenha cor transparente ou não atrapalhe a visualização */
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: transparent !important;
+}x
 
 /* Estilos para a paginação (bullets) do Swiper */
 .swiper-pagination-bullet {
   background-color: rgba(59, 34, 105, 0.5);
   opacity: 1;
-  width: 24px;
-  height: 24px;
+  width: 10px;
+  height: 10px;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -1271,8 +1347,8 @@ body {
 .comentariosSwiper .swiper-pagination-bullet {
   background-color: rgba(59, 34, 105, 0.5);
   opacity: 1;
-  width: 24px;
-  height: 24px;
+  width: 10px;
+  height: 10px;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -1687,8 +1763,16 @@ body {
   background-color: white;
   border: 2px solid var(--corPrimariaAmareloEscuro);
   border-radius: calc(var(--tamanhoArredondamentoCard) * 1.5);
-  padding: 3.5rem !important;
+  padding: 2.5rem !important;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.integral-detalhado-section h2 {
+  color: var(--corPrimariaAmarelo) !important;
+  text-shadow: 1px 1px var(--corPrimariaAmareloDestaque),
+    -1px 1px var(--corPrimariaAmareloDestaque),
+    1px -1px var(--corPrimariaAmareloDestaque),
+    -1px -1px var(--corPrimariaAmareloDestaque);
 }
 
 .custom-heading {
@@ -1756,32 +1840,33 @@ body {
 }
 
 /* Carrossel do integral */
-
-/* --- Estilos para o Carrossel de Imagens na página Integral --- */
+/* --- Estilos para o Carrossel de Imagens na página Integral ou Home --- */
 .carousel-image {
-  max-height: 550px; /* Altura máxima das imagens no carrossel em desktop */
+  max-height: 400px; /* Reduzi a altura máxima da imagem para desktop */
   width: 100%;
-  object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer, cortando se necessário */
-  border-radius: var(
-    --tamanhoArredondamentoCard
-  ); /* Mantém o arredondamento dos seus cards */
-  border: 2px solid var(--corPrimariaAmareloEscuro); /* Borda amarela para combinar */
+  object-fit: cover;
+  border-radius: var(--tamanhoArredondamentoCard);
+  border: 2px solid var(--corPrimariaAmareloEscuro);
+}
+
+.main-card-integral h4 {
+  color: white;
+  margin: 0 !important;
+}
+
+.main-card-integral p strong {
+  color: var(--corPrimariaAmareloDestaque);
 }
 
 .carousel-caption {
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.6
-  ); /* Fundo semi-transparente para o texto */
+  background-color: rgba(0, 0, 0, 0.6);
   border-radius: var(--tamanhoArredondamentoCard);
   padding: 1rem;
-  bottom: 1.5rem; /* Posição da legenda */
+  bottom: 1.5rem; /* Mantém a legenda um pouco acima da base */
   left: 10%;
   right: 10%;
-  width: 80%; /* Largura da legenda */
-  margin: 0 auto; /* Centraliza a legenda */
+  width: 80%;
+  color: white;
 }
 
 .carousel-caption h5 {
@@ -1796,49 +1881,55 @@ body {
   font-size: 1rem;
 }
 
-/* Cores das setas e indicadores do carrossel */
+/* Cores das setas do carrossel (Font Awesome) */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-image: none; /* Remove a imagem padrão do Bootstrap */
+  background-image: none;
   width: 2rem;
   height: 2rem;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  filter: invert(100%); /* Torna a seta branca */
 }
 
 .carousel-control-prev-icon::before {
-  content: "\F284"; /* Ícone de seta esquerda do Bootstrap Icons */
-  font-family: "bootstrap-icons" !important;
+  content: "\f053"; /* Ícone 'chevron-left' do Font Awesome */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   font-size: 2.5rem;
-  color: var(--corPrimariaAmareloEscuro); /* Cor da seta */
+  color: var(--corPrimariaAmareloEscuro);
 }
 
 .carousel-control-next-icon::before {
-  content: "\F285"; /* Ícone de seta direita do Bootstrap Icons */
-  font-family: "bootstrap-icons" !important;
+  content: "\f054"; /* Ícone 'chevron-right' do Font Awesome */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   font-size: 2.5rem;
-  color: var(--corPrimariaAmareloEscuro); /* Cor da seta */
+  color: var(--corPrimariaAmareloEscuro);
+}
+
+/* Ajuste a posição dos indicadores (bolinhas) */
+.carousel-indicators {
+  position: relative; /* Mudamos de 'absolute' para 'relative' */
+  margin-bottom: 1; /* Remove margem inferior padrão se houver */
+  bottom: auto; /* Remove a propriedade bottom se estiver herdada do Bootstrap */
 }
 
 .carousel-indicators [data-bs-target] {
-  background-color: var(--corPrimariaAmarelo); /* Cor dos indicadores */
+  background-color: var(--corPrimariaAmarelo);
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: 2px solid var(--corPrimariaAmareloEscuro); /* Borda dos indicadores */
+  border: 2px solid var(--corPrimariaAmareloEscuro);
 }
 
 .carousel-indicators .active {
-  background-color: var(
-    --corPrimariaAmareloEscuro
-  ); /* Cor do indicador ativo */
+  background-color: var(--corPrimariaAmareloEscuro);
 }
 
 /* Responsividade para o carrossel */
 @media (max-width: 991.98px) {
   .carousel-image {
-    max-height: 450px;
+    max-height: 350px; /* Ajusta a altura da imagem para tablets */
   }
   .carousel-caption {
     bottom: 1rem;
@@ -1857,26 +1948,31 @@ body {
 
 @media (max-width: 767.98px) {
   .carousel-image {
-    max-height: 300px; /* Altura menor para mobile */
+    max-height: 250px; /* Altura menor para mobile */
   }
   .carousel-caption {
-    position: static; /* Remove a posição absoluta para que a legenda fique abaixo da imagem em mobile */
+    position: static;
     width: auto;
     margin: 1rem 0;
     text-align: center;
-    background-color: transparent; /* Fundo transparente para a legenda em mobile */
+    background-color: transparent;
   }
   .carousel-caption h5 {
-    color: var(--corPrimariaAmareloEscuro); /* Cor da legenda em mobile */
+    color: var(--corPrimariaAmareloEscuro);
     font-size: 1.2rem;
   }
   .carousel-caption p {
-    color: var(--text-color); /* Cor do texto em mobile */
+    color: var(--text-color);
     font-size: 0.85rem;
   }
   .carousel-control-prev-icon::before,
   .carousel-control-next-icon::before {
-    font-size: 2rem; /* Seta menor em mobile */
+    font-size: 2rem;
+  }
+  /* Para as setas do carrossel em mobile */
+  .carousel-control-prev,
+  .carousel-control-next {
+    top: 40%; /* Centraliza um pouco mais as setas verticalmente */
   }
 }
 
@@ -1897,7 +1993,11 @@ body {
 
 /* Estilos do Acordeão */
 .faq-section .section-title {
-  color: var(--corPrimariaAmareloDestaque);
+  color: var(--corPrimariaAmarelo) !important;
+  text-shadow: 1px 1px var(--corPrimariaAmareloDestaque),
+    -1px 1px var(--corPrimariaAmareloDestaque),
+    1px -1px var(--corPrimariaAmareloDestaque),
+    -1px -1px var(--corPrimariaAmareloDestaque);
 }
 
 .faq-section .card-padrao {
