@@ -1,6 +1,6 @@
 <section class="contact-section my-5">
     <div class="container">
-        <h2 class="section-title text-center mb-4">Entre em Contato Conosco!</h2>
+        <h2 class="section-title">Entre em Contato Conosco!</h2>
         <p class="text-center mb-5">
             Tem dúvidas sobre o Ensino Integral, matrículas ou quer saber mais sobre nossa escola?
             Preencha o formulário abaixo e retornaremos em breve!

@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../objetos/faq_integral.php'; 
 require_once __DIR__ . '/../objetos/dia_a_dia_integral.php';
 
-$contato = '/paginas/contato.php'; 
+$contato = '/siteEscola/contato'; 
 
 $link_desempenho_integral_pr = 'https://www.aen.pr.gov.br/Noticia/Escolas-estaduais-em-tempo-integral-do-Parana-cresceram-acima-da-media-no-Ideb';
 
@@ -12,31 +12,24 @@ $link_desempenho_integral_pr = 'https://www.aen.pr.gov.br/Noticia/Escolas-estadu
 
 <section class="integral-detalhado-section my-5">
     <div class="container">
-        <h2 class="section-title text-center mb-4">O dia a dia no Integral</h2>
+        <h2 class="section-title">Nosso dia a dia</h2>
 
 
-        <div class="swiper itinerariosSwiper">
+        <div class="swiper integralSwiper">
             <div class="swiper-pagination"></div>
             <div class="swiper-wrapper">
                 <?php foreach ($dia_a_dia_integral as $dia_dia) : ?>
-                <div class="swiper-slide itinerario-slide">
-                    <img src="<?= $dia_dia['imagem_url'] ?>" alt="<?= $dia_dia['titulo'] ?>"
-                        class="itinerario-slide-img">
+                <div class="swiper-slide integral-slide">
+                    <img src="<?= $dia_dia['imagem_url'] ?>" alt="<?= $dia_dia['titulo'] ?>" class="integral-slide-img">
 
-                    <div class="itinerario-slide-content">
-                        <div class="itinerario-overlay-swiper"> </div>
-                        <div class="itinerario-content-box-swiper">
-                            <h5><?= $dia_dia['titulo'] ?></h5>
-                            <a href="detalhe_itinerario?id=<?= $itinerario['id'] ?>" class="btn btn-verde mt-3">Conheça
-                                nossos itinerarios</a>
-                        </div>
-                    </div>
+
                 </div>
                 <?php endforeach; ?>
             </div>
-
-            <div class="swiper-button-next"><i class="fa-solid fa-chevron-right"></i></div>
-            <div class="swiper-button-prev"><i class="fa-solid fa-chevron-left"></i></div>
+            <div class="btn-swipper-itinerario">
+                <div class="swiper-button-next"><i class="fa-solid fa-angle-right"></i></div>
+                <div class="swiper-button-prev"><i class="fa-solid fa-angle-left"></i></div>
+            </div>
         </div>
 
         <div class="main-card-integral p-4 mb-5 shadow-lg">
@@ -86,9 +79,9 @@ $link_desempenho_integral_pr = 'https://www.aen.pr.gov.br/Noticia/Escolas-estadu
 
 <section class="faq-section my-5">
     <div class="container">
-        <h2 class="section-title text-center mb-4">Dúvidas Frequentes sobre o Ensino Integral</h2>
+        <h2 class="section-title">Dúvidas Frequentes sobre o Ensino Integral</h2>
         <p class="text-center mb-5">
-            Confira abaixo as perguntas mais comuns de pais e alunos.
+            Confira abaixo as perguntas mais comuns de pais e alunos.<br>
             Se sua dúvida não for respondida aqui, sinta-se à vontade para entrar em <a href="<?= $contato ?>">contato
                 conosco!</a>
         </p>

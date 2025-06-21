@@ -10,8 +10,8 @@ $contato = 'contato';
 
 <section class="estrutura-escola-section my-5">
     <div class="container">
-        <h2 class="section-title text-center mb-4">Estrutura de Ponta: Onde o Conhecimento Acontece</h2>
-        <p class="text-center mb-5 lead-text">
+        <h2 class="section-title">Estrutura de Ponta: Onde o Conhecimento Acontece</h2>
+        <p class="text-center mb-5">
             No Colégio Maffei, cada espaço é pensado para inspirar, acolher e potencializar o aprendizado.
             Conheça as instalações que fazem da nossa escola um ambiente completo para o desenvolvimento do seu filho.
         </p>

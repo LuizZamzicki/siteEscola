@@ -21,11 +21,10 @@ $instagram_posts = [
 
 <section class="principal-section my-5">
     <div class="container">
-        <h2 class="section-title text-center mb-4">O colégio João Maffei Rosa</h2>
-        <p class="text-center mb-5 lead-text">
-            No Colégio Maffei, valorizamos um ambiente de aprendizado inovador e acolhedor.
-            Com foco no desenvolvimento integral, preparamos nossos alunos para os desafios do futuro.
-        </p>
+        <h2 class="section-title">O colégio João Maffei Rosa</h2>
+        <p class="text-center mb-5">
+            No Colégio Maffei, valorizamos um ambiente de aprendizado inovador e acolhedor.<br>
+            Com foco no desenvolvimento integral, preparamos nossos alunos para os desafios do futuro. </p>
 
         <div class="card-integral p-4 my-5 rounded d-flex flex-column flex-md-row align-items-center shadow">
 
@@ -33,7 +32,8 @@ $instagram_posts = [
 
                 <h3><strong>Colégio com ensino integral</strong>
                 </h3>
-                <p>Nossas instalações foram projetadas para estimular a criatividade e o bem-estar em um ambiente
+                <p>Nossas instalações foram projetadas para estimular a criatividade e o bem-estar em um
+                    ambiente
                     seguro
                     e acolhedor. Oferecemos salas de aula modernas, laboratórios equipados, áreas de lazer e um
                     refeitório confortável, tudo pensando no desenvolvimento completo do seu filho.</p><br>
@@ -96,7 +96,7 @@ $instagram_posts = [
 
 <div class="integral-content">
     <h2 class="section-title">Nossos Itinerários Formativos</h2>
-    <p class="text-center mb-4 ">No Colégio João Maffei Rosa, o ensino integral oferece caminhos inovadores
+    <p class="text-center mb-5 ">No Colégio João Maffei Rosa, o ensino integral oferece caminhos inovadores
         para o seu desenvolvimento. Conheça nossos itinerários:</p>
 
     <div class="swiper itinerariosSwiper">
@@ -119,16 +119,16 @@ $instagram_posts = [
             </div>
             <?php endforeach; ?>
         </div>
-
-        <div class="swiper-button-next"><i class="fa-solid fa-chevron-right"></i></div>
-        <div class="swiper-button-prev"><i class="fa-solid fa-chevron-left"></i></div>
-
+        <div class="btn-swipper-itinerario">
+            <div class="swiper-button-next"><i class="fa-solid fa-angle-right"></i></div>
+            <div class="swiper-button-prev"><i class="fa-solid fa-angle-left"></i></div>
+        </div>
     </div>
 
     <hr class="my-5">
 
     <section class="comentarios-section">
-        <h2 class="section-title">O que nossos alunos dizem sobre nós</h2>
+        <h2 class="section-title mb-5">O que nossos alunos dizem sobre nós</h2>
         <div class="swiper comentariosSwiper">
             <div class="swiper-wrapper">
                 <?php foreach ($comentarios_alunos as $comentario) : ?>
@@ -148,18 +148,18 @@ $instagram_posts = [
                 </div>
                 <?php endforeach; ?>
             </div>
-            <div class="btn-comentarios-swiper swiper-button-next"></div>
-            <div class="btn-comentarios-swiper swiper-button-prev"></div>
+            <div class="btn-swipper-comentarios">
+                <div class="swiper-button-next"><i class="fa-solid fa-angle-right"></i></div>
+                <div class="swiper-button-prev"><i class="fa-solid fa-angle-left"></i></div>
+            </div>
 
-            <div class="swiper-pagination"></div>
-        </div>
     </section>
 
     <hr class="my-5">
 
     <section class="instagram-section">
         <h2 class="section-title">Fique por dentro das novidades no Instagram</h2>
-        <p class="text-center mb-4 ">Acompanhe nosso dia a dia, eventos e projetos através das nossas últimas
+        <p class="text-center mb-5">Acompanhe nosso dia a dia, eventos e projetos através das nossas últimas
             postagens:</p>
 
         <div class="instagram-grid">

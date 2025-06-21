@@ -4,7 +4,7 @@
 require_once __DIR__ . '/../objetos/itinerarios.php';
 
 // Defina a variável para o URL da página com todos os itinerários
-$todos_itinerarios_url = '/siteEscola/listar_itinerarios'; // Pode ser '/siteEscola/itinerarios' quando criar a página
+$todos_itinerarios_url = '/siteEscola/listar_itinerarios'; 
 
 $itinerario_id = $_GET['id'] ?? null;
 $itinerario_selecionado = null;
@@ -27,7 +27,7 @@ if (!$itinerario_selecionado) {
 <section class="itinerario-detalhe-section container my-5">
     <div class="row justify-content-center">
         <div class="col-lg-10 col-md-12">
-            <h1 class="detalhe-titulo-principal"><?= $itinerario_selecionado['titulo'] ?></h1>
+            <h2 class="section-title"><?= $itinerario_selecionado['titulo'] ?></h2>
 
             <div class="main-content-card">
                 <p class="card-text-itinerario text-center mb-3">

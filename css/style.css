@@ -38,12 +38,18 @@
   box-sizing: border-box;
 }
 
-p {
-  font-family: Gabriela, Roboto, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-    sans-serif !important;
-  margin-bottom: 0 !important;
-  font-size: 1.3rem;
+.section-title {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 2.5rem !important;
+  }
 }
 
 /* Estrutura do layout */
@@ -68,6 +74,10 @@ body {
 }
 
 /*Botoes*/
+
+.btn {
+  text-align: center !important;
+}
 
 .btn-roxo {
   background-color: var(--corPrimariaRoxoClaro);
@@ -143,7 +153,6 @@ body {
 .btn-azul:hover {
   background-color: var(--corSecundariaAzulCamisaEscuro) !important;
   color: var(--corSecundariaAzulCamisaClaro) !important;
-
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -705,6 +714,7 @@ body {
 }
 
 /* STYLE TELA DE ERRO CONTAINER */
+
 .erro404 {
   display: flex;
   flex-direction: row;
@@ -743,6 +753,10 @@ body {
       padding: 20px;
     }
   }
+
+  .btn-verde {
+    margin-top: 1rem;
+  }
 }
 
 /* TELAS */
@@ -751,17 +765,8 @@ body {
 /* Estilos Específicos da Home */
 /* --- */
 
-.section-title {
-  font-family: "Gabriela", cursive;
-  font-size: 2.8rem;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  color: var(--corPrimariaAmarelo);
-}
-
 .principal-section .section-title {
+  color: var(--corPrimariaAmarelo);
   text-shadow: 1px 1px var(--corPrimariaAmareloDestaque),
     -1px 1px var(--corPrimariaAmareloDestaque),
     1px -1px var(--corPrimariaAmareloDestaque),
@@ -814,7 +819,7 @@ body {
   border: 2px solid var(--corPrimariaAmareloEscuro);
 }
 
-/* Estilos para o CARD PRINCIPAL que envolve os destaques (FAQ, o segundo agora) */
+/* Estilos para o CARD PRINCIPAL que envolve os destaques */
 .main-card-integral {
   background-color: white;
   border: 2px solid var(--corPrimariaAmareloEscuro);
@@ -893,10 +898,6 @@ body {
   .card-integral {
     /* Aplica a ambos os cards */
     padding: 2rem !important;
-  }
-  .custom-heading {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
   }
   .icon-circle {
     width: 60px;
@@ -1038,114 +1039,87 @@ body {
 }
 
 /* Estilos para as setas de navegação do Swiper */
+.btn-swipper-itinerario {
+  .swiper-button-next,
+  .swiper-button-prev {
+    background-image: none !important;
+    outline: none !important;
+  }
 
-.swiper-button-next,
-.swiper-button-prev {
-  color: var(
-    --corPrimariaAmareloEscuro
-  ); /* Usa a mesma cor das setas do Bootstrap */
-  font-size: 2.5rem; /* Ajusta o tamanho do ícone Font Awesome */
-  width: 2rem; /* Mantém a largura da área do botão para consistência */
-  height: 2rem; /* Mantém a altura da área do botão para consistência */
-  margin-top: -1rem; /* Ajuste fino para centralizar verticalmente */
+  /* Esconde o conteúdo padrão do Swiper */
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    content: "" !important;
+  }
 
-  /* Remover backgrounds padrão do Swiper se existirem */
-  background-image: none !important;
-}
+  /* --- Estilos para as Setas do Carrossel de Comentários (Tons de Roxo) --- */
 
-/* Remover o texto padrão do Swiper, já que estamos usando ícone */
-.swiper-button-next:after,
-.swiper-button-prev:after {
-  content: "" !important;
-}
+  .swiper-button-next,
+  .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 15;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
 
-/* Se você tinha estilos específicos para btn-itinerarios-swiper, pode precisar ajustar */
-.btn-itinerarios-swiper {
-  /* Mantenha ou adicione estilos de posicionamento ou tamanho se necessário,
-       mas a cor e o ícone agora vêm do .swiper-button-next/prev */
-}
+  /* Posicionamento específico para as setas dos comentários */
+  .swiper-button-prev {
+    left: 25px;
+  }
 
-/* --- Estilos anteriores para as setas do Bootstrap Carrossel (para referência) --- */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-image: none; /* remove o ícone padrão do Bootstrap */
-  width: 2rem;
-  height: 2rem;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
+  .swiper-button-next {
+    right: 25px;
+  }
 
-.carousel-control-prev-icon::before {
-  content: "\f053"; /* Ícone 'chevron-left' do Font Awesome */
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  font-size: 2.5rem; /* Mesmo tamanho das setas do Swiper */
-  color: var(--corPrimariaAmareloEscuro); /* Mesma cor das setas do Swiper */
-}
+  /* Estilo para o ícone Font Awesome dentro do botão */
+  .swiper-button-next i,
+  .swiper-button-prev i {
+    font-size: 2.8rem;
+    color: var(--corPrimariaVerdeEscuro);
+    font-weight: 900;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+  }
 
-.carousel-control-next-icon::before {
-  content: "\f054"; /* Ícone 'chevron-right' do Font Awesome */
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  font-size: 2.5rem; /* Mesmo tamanho das setas do Swiper */
-  color: var(--corPrimariaAmareloEscuro); /* Mesma cor das setas do Swiper */
-}
+  /* Efeito ao passar o mouse sobre o botão */
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    background-color: var(--corPrimariaVerde);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-50%) scale(1.05);
+  }
 
-.carousel-control-prev-icon::before,
-.carousel-control-next-icon::before {
-  content: "\f053"; /* Ícone 'chevron-left' ou 'chevron-right' */
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  font-size: 2.5rem;
-  color: var(--corPrimariaAmareloEscuro);
-  /* Adicionado para a transição */
-  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-  display: inline-block; /* Necessário para aplicar transform em ::before */
-}
+  /* Efeito no ícone ao passar o mouse sobre o botão */
+  .swiper-button-next:hover i,
+  .swiper-button-prev:hover i {
+    color: var(--corPrimariaVerdeClaro);
+    transform: scale(1.1);
+  }
 
-/* Animação ao passar o mouse nas setas do Bootstrap Carousel */
-.carousel-control-prev:hover .carousel-control-prev-icon::before,
-.carousel-control-next:hover .carousel-control-next-icon::before {
-  transform: scale(1.2); /* Aumenta o tamanho em 20% */
-  color: var(--corPrimariaAmarelo); /* Muda a cor ao passar o mouse */
-}
+  /* Estilos para a paginação (bullets) do Swiper */
+  .swiper-pagination-bullet {
+    background-color: rgba(59, 34, 105, 0.5);
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
 
-/* --- Estilos para as setas do Swiper Carrossel --- */
-.swiper-button-next i,
-.swiper-button-prev i {
-  /* Seleciona o elemento <i> dentro do botão */
-  color: var(--corPrimariaAmareloEscuro);
-  font-size: 2.5rem;
-  /* Adicionado para a transição */
-  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-  display: inline-block; /* Garante que a transição de transform funcione */
-}
-
-/* Animação ao passar o mouse nas setas do Swiper Carrossel */
-.swiper-button-next:hover i,
-.swiper-button-prev:hover i {
-  transform: scale(1.2); /* Aumenta o tamanho em 20% */
-  color: var(--corPrimariaAmarelo); /* Muda a cor ao passar o mouse */
-}
-
-/* Garante que a área do botão Swiper tenha cor transparente ou não atrapalhe a visualização */
-.swiper-button-next,
-.swiper-button-prev {
-  background-color: transparent !important;
-}x
-
-/* Estilos para a paginação (bullets) do Swiper */
-.swiper-pagination-bullet {
-  background-color: rgba(59, 34, 105, 0.5);
-  opacity: 1;
-  width: 10px;
-  height: 10px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: var(--corPrimariaVerdeClaro);
-  transform: scale(1.2);
+  .swiper-pagination-bullet-active {
+    background-color: var(--corPrimariaVerdeClaro);
+    transform: scale(1.2);
+  }
 }
 
 /* --- */
@@ -1213,9 +1187,6 @@ body {
 
 .comentarios-section .section-title {
   color: var(--corPrimariaRoxoEscuro);
-  margin-bottom: 40px;
-  font-family: "Gabriela", cursive;
-  font-size: 3rem;
 }
 
 /* Swiper dos Comentários */
@@ -1257,6 +1228,13 @@ body {
     background-color 0.3s ease;
   transform: scale(0.85);
   opacity: 0.7;
+}
+
+.comentario-card:hover {
+  transform: scale(0.88); /* Aumenta um pouco mais que o normal (0.85) */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Sombra mais forte no hover */
+  cursor: pointer; /* Indica que o item é clicável */
+  background-color: var(--corPrimariaRoxoEscuro);
 }
 
 /* Estilo para o CARD ATIVO */
@@ -1319,42 +1297,104 @@ body {
 }
 
 /* Estilos para setas carrossel comentários */
+.btn-swipper-comentarios {
+  .swiper-button-next,
+  .swiper-button-prev {
+    background-image: none !important;
+    outline: none !important;
+  }
 
-.btn-comentarios-swiper {
-  color: var(--corPrimariaRoxoEscuro);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  border-radius: var(--tamanhoArredondamentoBotao);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+  /* Esconde o conteúdo padrão do Swiper */
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    content: "" !important;
+  }
 
-.btn-comentarios-swiper::after {
-  font-size: 1.2rem;
-}
+  /* --- Estilos para as Setas do Carrossel de Comentários (Tons de Roxo) --- */
 
-.btn-comentarios-swiper:hover {
-  background-color: var(--corPrimariaRoxoClaro);
-}
+  .swiper-button-next,
+  .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.125);
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 15;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
 
-.comentariosSwiper .swiper-pagination {
-  bottom: 0px !important;
-}
+  /* Posicionamento específico para as setas dos comentários */
+  .swiper-button-prev {
+    left: 25px;
+  }
 
-.comentariosSwiper .swiper-pagination-bullet {
-  background-color: rgba(59, 34, 105, 0.5);
-  opacity: 1;
-  width: 10px;
-  height: 10px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
+  .swiper-button-next {
+    right: 25px;
+  }
 
-.comentariosSwiper .swiper-pagination-bullet-active {
-  background-color: var(--corPrimariaRoxoEscuro);
-  transform: scale(1.2);
+  /* Estilo para o ícone Font Awesome dentro do botão */
+  .swiper-button-next i,
+  .swiper-button-prev i {
+    font-size: 2.8rem;
+    color: var(--corPrimariaRoxoEscuro);
+    font-weight: 900;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+  }
+
+  /* Efeito ao passar o mouse sobre o botão */
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    background-color: var(--corPrimariaRoxo);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  /* Efeito no ícone ao passar o mouse sobre o botão */
+  .swiper-button-next:hover i,
+  .swiper-button-prev:hover i {
+    color: var(--corPrimariaRoxoClaro);
+    transform: scale(1.1);
+  }
+
+  /* --- Ajuste na Paginação (as "bolinhas") do Swiper --- */
+  .swiper-pagination-bullet {
+    background-color: var(--corPrimariaRoxo); /* Cor das bolinhas inativas */
+    opacity: 0.5;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: var(
+      --corPrimariaAmareloEscuro
+    ); /* Cor da bolinha ativa: mantendo o amarelo de destaque */
+    opacity: 1;
+  }
+
+  /* --- Responsividade para telas menores --- */
+  @media (max-width: 768px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: 40px;
+      height: 40px;
+      left: 10px; /* Ajuste para mobile */
+      right: 10px; /* Ajuste para mobile */
+      transform: translateY(-50%); /* Sem escala extra em mobile */
+    }
+
+    .swiper-button-next i,
+    .swiper-button-prev i {
+      font-size: 2.2rem; /* Tamanho do ícone em mobile */
+    }
+  }
 }
 
 /* Media Queries Específicas para o Carrossel de Comentários */
@@ -1491,10 +1531,6 @@ body {
 
 /* Media Queries Específicas */
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 2rem;
-  }
-
   .itinerario-carousel .carousel-caption h5 {
     font-size: 1.8rem;
   }
@@ -1516,11 +1552,6 @@ body {
 /* Título da Seção */
 .contact-section .section-title {
   color: var(--corPrimariaRoxoEscuro);
-  font-family: "Gabriela", cursive;
-  font-size: 2.8rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 1rem;
 }
 
 /* Parágrafo de descrição */
@@ -1610,10 +1641,6 @@ body {
     padding: 40px 15px;
   }
 
-  .contact-section .section-title {
-    font-size: 2.2rem;
-  }
-
   .contact-section p.text-center {
     font-size: 1rem;
     margin-bottom: 2rem;
@@ -1669,88 +1696,11 @@ body {
 }
 
 /* --- */
-/* Seção do FAQ */
-/* --- */
-
-/* Estilos para o cabeçalho do acordeão */
-.accordion-button {
-  background-color: var(--corSecundariaAzulCamisaClaro);
-  color: var(--corPrimariaRoxoEscuro);
-  font-weight: bold;
-  font-size: 1.15rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.accordion-button:not(.collapsed) {
-  background-color: var(--corPrimariaRoxoEscuro) !important;
-  box-shadow: none;
-}
-
-.accordion-button::after {
-  filter: invert(0.5);
-}
-
-.accordion-button:not(.collapsed)::after {
-  filter: invert(1);
-}
-
-/* Estilos para o corpo do acordeão */
-.accordion-body {
-  background-color: white;
-  color: black;
-  font-size: 1.1rem;
-  padding: 1.25rem;
-}
-
-.accordion {
-  width: 100%;
-}
-
-.accordion-item {
-  border-radius: var(--tamanhoArredondamentoCard) !important;
-  overflow: hidden;
-}
-
-.accordion-item:first-of-type,
-.accordion-item:last-of-type {
-  border-radius: var(--tamanhoArredondamentoCard) !important;
-}
-
-.accordion-item:not(:first-of-type) {
-  border-top: none;
-}
-
-/* Ajustes para o card que fica o acordeão */
-.faq-section .card-padrao {
-  border: 2px solid var(--corSecundariaAzulCamisaClaro);
-}
-
-/* link dentro do parágrafo de introdução */
-.faq-section .mb-5 a {
-  color: var(--corPrimariaAmareloDestaque);
-  font-weight: bold;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.faq-section .mb-5 a:hover {
-  color: var(--corPrimariaRoxoEscuro);
-  text-decoration: underline;
-}
-
-/* --- */
 /* Sobre o Integral */
 /* --- */
 
 .integral-detalhado-section {
   margin-bottom: 0 !important;
-}
-
-.integral-detalhado-section .section-title {
-  color: var(--corPrimariaAmareloDestaque);
-  font-weight: bold;
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
 }
 
 .lead-text {
@@ -1760,11 +1710,7 @@ body {
 
 /* Estilo para o CARD PRINCIPAL que envolve os destaques */
 .main-card-integral {
-  background-color: white;
   border: 2px solid var(--corPrimariaAmareloEscuro);
-  border-radius: calc(var(--tamanhoArredondamentoCard) * 1.5);
-  padding: 2.5rem !important;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
 }
 
 .integral-detalhado-section h2 {
@@ -1773,27 +1719,6 @@ body {
     -1px 1px var(--corPrimariaAmareloDestaque),
     1px -1px var(--corPrimariaAmareloDestaque),
     -1px -1px var(--corPrimariaAmareloDestaque);
-}
-
-.custom-heading {
-  color: var(--corPrimariaAmareloDestaque);
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 3rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-
-.custom-heading::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  width: 80px;
-  height: 4px;
-  background-color: var(--corPrimariaAmareloEscuro);
-  border-radius: 2px;
 }
 
 /* Estilo para os CARDS DE DESTAQUE individuais */
@@ -1839,155 +1764,184 @@ body {
   line-height: 1.5;
 }
 
-/* Carrossel do integral */
-/* --- Estilos para o Carrossel de Imagens na página Integral ou Home --- */
-.carousel-image {
-  max-height: 400px; /* Reduzi a altura máxima da imagem para desktop */
-  width: 100%;
-  object-fit: cover;
-  border-radius: var(--tamanhoArredondamentoCard);
-  border: 2px solid var(--corPrimariaAmareloEscuro);
-}
-
-.main-card-integral h4 {
-  color: white;
-  margin: 0 !important;
-}
-
-.main-card-integral p strong {
+.integral-detalhado-section .main-card-integral .lead-text strong {
   color: var(--corPrimariaAmareloDestaque);
 }
 
-.carousel-caption {
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: var(--tamanhoArredondamentoCard);
-  padding: 1rem;
-  bottom: 1.5rem; /* Mantém a legenda um pouco acima da base */
-  left: 10%;
-  right: 10%;
-  width: 80%;
-  color: white;
-}
+/* Estilo para links inline e links */
 
-.carousel-caption h5 {
-  color: white;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.carousel-caption p {
-  color: #e0e0e0;
-  font-size: 1rem;
-}
-
-/* Cores das setas do carrossel (Font Awesome) */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-image: none;
-  width: 2rem;
-  height: 2rem;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-
-.carousel-control-prev-icon::before {
-  content: "\f053"; /* Ícone 'chevron-left' do Font Awesome */
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  font-size: 2.5rem;
-  color: var(--corPrimariaAmareloEscuro);
-}
-
-.carousel-control-next-icon::before {
-  content: "\f054"; /* Ícone 'chevron-right' do Font Awesome */
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  font-size: 2.5rem;
-  color: var(--corPrimariaAmareloEscuro);
-}
-
-/* Ajuste a posição dos indicadores (bolinhas) */
-.carousel-indicators {
-  position: relative; /* Mudamos de 'absolute' para 'relative' */
-  margin-bottom: 1; /* Remove margem inferior padrão se houver */
-  bottom: auto; /* Remove a propriedade bottom se estiver herdada do Bootstrap */
-}
-
-.carousel-indicators [data-bs-target] {
-  background-color: var(--corPrimariaAmarelo);
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid var(--corPrimariaAmareloEscuro);
-}
-
-.carousel-indicators .active {
-  background-color: var(--corPrimariaAmareloEscuro);
-}
-
-/* Responsividade para o carrossel */
-@media (max-width: 991.98px) {
-  .carousel-image {
-    max-height: 350px; /* Ajusta a altura da imagem para tablets */
-  }
-  .carousel-caption {
-    bottom: 1rem;
-    left: 5%;
-    right: 5%;
-    width: 90%;
-    padding: 0.8rem;
-  }
-  .carousel-caption h5 {
-    font-size: 1.3rem;
-  }
-  .carousel-caption p {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 767.98px) {
-  .carousel-image {
-    max-height: 250px; /* Altura menor para mobile */
-  }
-  .carousel-caption {
-    position: static;
-    width: auto;
-    margin: 1rem 0;
-    text-align: center;
-    background-color: transparent;
-  }
-  .carousel-caption h5 {
-    color: var(--corPrimariaAmareloEscuro);
-    font-size: 1.2rem;
-  }
-  .carousel-caption p {
-    color: var(--text-color);
-    font-size: 0.85rem;
-  }
-  .carousel-control-prev-icon::before,
-  .carousel-control-next-icon::before {
-    font-size: 2rem;
-  }
-  /* Para as setas do carrossel em mobile */
-  .carousel-control-prev,
-  .carousel-control-next {
-    top: 40%; /* Centraliza um pouco mais as setas verticalmente */
-  }
-}
-
-/* Estilo para links inline e links do FAQ */
-.integral-detalhado-section .text-link-inline,
-.integral-detalhado-section .mb-5 a {
-  color: var(--corPrimariaAmareloDestaque) !important;
+.integral-detalhado-section .main-card-integral .lead-text a,
+.integral-detalhado-section .main-card-integral .feature-text a {
+  color: var(--corPrimariaAmareloDestaque);
   font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.integral-detalhado-section .text-link-inline:hover,
-.integral-detalhado-section .mb-5 a:hover {
-  color: var(--corPrimariaRoxo) !important;
+.integral-detalhado-section .main-card-integral .lead-text a:hover,
+.integral-detalhado-section .main-card-integral .feature-text a:hover {
+  color: var(--corPrimariaAmareloEscuro);
+  text-decoration: underline;
+}
+
+/* Carrossel do integral */
+
+.integralSwiper {
+  width: 100%;
+
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.integral-slide {
+  background-position: center;
+  background-size: cover;
+  min-height: 530px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: var(--tamanhoArredondamentoCard);
+  overflow: hidden;
+}
+
+.integral-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.integral-slide-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  color: white;
+}
+
+.integral-overlay-swiper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+
+  z-index: 1;
+}
+
+.integral-content-box-swiper {
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  color: var(--corPrimariaVerdeEscuro);
+  padding: 2rem 3rem 3rem 3rem;
+  border-radius: var(--tamanhoArredondamentoCard);
+  text-align: center;
+  max-width: 700px;
+  max-height: 80%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  position: relative;
+
+  p {
+    color: black !important;
+  }
+}
+
+.integral-content-box-swiper h5 {
+  font-family: "Gabriela", cursive;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--corPrimariaVerde);
+}
+
+.integral-content-box-swiper p {
+  font-family: Roboto, sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  color: #444;
+}
+
+/* --- */
+/* Media Queries */
+/* --- */
+
+@media (max-width: 992px) {
+  .integral-slide {
+    min-height: 450px;
+  }
+  .integral-content-box-swiper {
+    padding: 2rem;
+    max-width: 90%;
+  }
+  .integral-content-box-swiper h5 {
+    font-size: 2.2rem;
+  }
+  .integral-content-box-swiper p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .integral-slide {
+    min-height: 350px;
+  }
+  /* Oculta setas em telas menores */
+  .btn-integral-swiper {
+    display: none;
+  }
+  .integral-content-box-swiper {
+    padding: 1.5rem;
+  }
+  .integral-content-box-swiper h5 {
+    font-size: 1.8rem;
+  }
+  .integral-content-box-swiper p {
+    font-size: 1rem;
+  }
+  .swiper-pagination {
+    bottom: 5px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .integral-slide {
+    min-height: 300px;
+  }
+  .integral-content-box-swiper h5 {
+    font-size: 1.5rem;
+  }
+  .integral-content-box-swiper p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Estilo para links inline e links do FAQ */
+
+.faq-section .mb-5 a {
+  color: var(--corPrimariaAmareloDestaque);
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.faq-section .mb-5 a:hover {
+  color: var(--corPrimariaRoxoEscuro);
   text-decoration: underline;
 }
 
@@ -2001,7 +1955,7 @@ body {
 }
 
 .faq-section .card-padrao {
-  border: 1px solid var(--corPrimariaAmareloEscuro);
+  border: 2px solid var(--corPrimariaAmareloEscuro);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
@@ -2045,10 +1999,6 @@ body {
   .main-card-integral {
     padding: 2rem !important;
   }
-  .custom-heading {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-  }
   .main-card-integral .icon-circle {
     width: 60px;
     height: 60px;
@@ -2069,15 +2019,11 @@ body {
 /* --- */
 
 .estrutura-escola-section {
-  padding-top: 3rem;
   padding-bottom: 3rem;
 }
 
 .estrutura-escola-section .section-title {
   color: var(--corPrimariaRoxoEscuro);
-  font-weight: bold;
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
 }
 
 .lead-text {
@@ -2150,25 +2096,22 @@ body {
 }
 
 /* Estilo para links inline */
-.lead-text a,
-.feature-text a {
+.estrutura-escola-section .lead-text a,
+.estrutura-escola-section .feature-text a {
   color: var(--corPrimariaRoxoEscuro);
   font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.lead-text a:hover,
-.feature-text a:hover {
+.estrutura-escola-section.lead-text a:hover,
+.estrutura-escola-section .feature-text a:hover {
   color: var(--corPrimariaRoxoClaro);
   text-decoration: underline;
 }
 
 /* Responsividade */
 @media (max-width: 767.98px) {
-  .section-title {
-    font-size: 2rem;
-  }
   .lead-text {
     font-size: 1rem;
   }
@@ -2197,24 +2140,14 @@ body {
 /* Detalhes Itinerários */
 /* --- */
 
-.itinerario-detalhe-section {
-  padding: 4rem 0;
-}
-
 .itinerario-detalhe-section .btn-verde {
   font-size: larger;
   text-align: center;
 }
 
 /* Título Principal da Página */
-.detalhe-titulo-principal {
-  font-size: 3.5rem;
-  font-weight: bold;
+.itinerario-detalhe-section .section-title {
   color: var(--corPrimariaVerdeEscuro);
-  text-align: center;
-  margin-bottom: 2.5rem;
-  line-height: 1.2;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* Card Principal de Conteúdo (para Descrição Curta e Completa) */
@@ -2355,9 +2288,6 @@ body {
 
 /* --- Responsividade para a página de detalhes --- */
 @media (max-width: 991.98px) {
-  .detalhe-titulo-principal {
-    font-size: 2.8rem;
-  }
   .main-content-card {
     padding: 2.5rem;
   }
@@ -2383,9 +2313,6 @@ body {
 }
 
 @media (max-width: 767.98px) {
-  .detalhe-titulo-principal {
-    font-size: 2.2rem;
-  }
   .main-content-card {
     padding: 2rem;
     margin-bottom: 3rem;
@@ -2419,9 +2346,6 @@ body {
 }
 
 @media (max-width: 575.98px) {
-  .detalhe-titulo-principal {
-    font-size: 1.8rem;
-  }
   .main-content-card {
     padding: 1.5rem;
   }
@@ -2446,7 +2370,10 @@ body {
 
 .itinerarios-listagem-section {
   background-color: var(--corFundoPadrao);
-  padding: 4rem 0;
+}
+
+.itinerarios-listagem-section .section-title {
+  color: var(--corPrimariaVerde);
 }
 
 .lead-text-listagem {
@@ -2645,12 +2572,12 @@ body {
 /* Lista de Funcionários */
 /* --- */
 
-.equipe-listagem-section {
-  padding: 4rem 0;
-}
-
 .equipe-listagem-section .card-padrao {
   border: 2px solid var(--corPrimariaVerdeClaro);
+}
+
+.equipe-listagem-section .section-title {
+  color: var(--corPrimariaVerde);
 }
 
 .equipe-listagem-section .card-padrao .filter-controls {
@@ -2879,5 +2806,139 @@ body {
   .btn-departamento {
     width: 100%;
     max-width: 250px;
+  }
+}
+
+/* ----- */
+/* Tela História */
+/* ----- */
+
+/* --- Seção de História do Colégio --- */
+.historia-section .section-title {
+  color: var(--corPrimariaAmarelo);
+  text-shadow: 1px 1px var(--corPrimariaAmareloDestaque),
+    -1px 1px var(--corPrimariaAmareloDestaque),
+    1px -1px var(--corPrimariaAmareloDestaque),
+    -1px -1px var(--corPrimariaAmareloDestaque);
+}
+
+.historia-timeline .timeline-item {
+  border: 2px solid var(--corPrimariaAmareloEscuro);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: var(--tamanhoArredondamentoCard);
+}
+
+.historia-timeline .timeline-item:hover {
+  transform: translateY(-5px); /* Efeito flutuante ao passar o mouse */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+}
+
+.historia-timeline .timeline-year {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--corPrimariaAmareloEscuro); /* Cor de destaque para o ano */
+  margin-bottom: 0.5rem;
+}
+
+.historia-timeline .timeline-icon {
+  font-size: 3rem; /* Tamanho dos ícones */
+  color: var(--corPrimariaAmareloEscuro); /* Cor para os ícones */
+  margin-bottom: 1rem;
+}
+
+.historia-timeline .timeline-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--text-color); /* Cor do título do marco */
+}
+
+.historia-timeline .timeline-description {
+  font-size: 0.95rem;
+  color: var(--text-color-light); /* Cor do texto da descrição */
+}
+
+/* Linha horizontal personalizada para divisões */
+.custom-hr {
+  border: 0;
+  height: 2px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    var(--corPrimariaAmareloEscuro),
+    rgba(0, 0, 0, 0)
+  );
+  opacity: 0.5; /* Suaviza a cor */
+}
+
+/* Ajustes para os cards de valores (reutilizando .feature-card) */
+.feature-card {
+  background-color: white;
+  border: 2px solid var(--corPrimariaRoxo);
+  padding: 1.5rem;
+  border-radius: var(--tamanhoArredondamentoCard);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card .icon-circle {
+  font-size: 2.5rem;
+  color: var(--corPrimariaAmareloEscuro); /* Cor dos ícones dos valores */
+  margin-bottom: 1rem;
+}
+
+/* Card padrão para seções de texto */
+.card-padrao {
+  background-color: white;
+  border-radius: var(--tamanhoArredondamentoCard);
+  padding: 2rem;
+  box-shadow: var(--shadow-small); /* ou sua variável de sombra */
+  border: 1px solid var(--corBorda);
+}
+
+/* Responsividade para a página de História */
+@media (max-width: 991.98px) {
+  .historia-timeline .timeline-item {
+    padding: 1.2rem;
+  }
+  .historia-timeline .timeline-year {
+    font-size: 1.6rem;
+  }
+  .historia-timeline .timeline-icon {
+    font-size: 2.5rem;
+  }
+  .historia-timeline .timeline-title {
+    font-size: 1.2rem;
+  }
+  .historia-timeline .timeline-description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .historia-timeline .timeline-item {
+    padding: 1rem;
+  }
+  .historia-timeline .timeline-year {
+    font-size: 1.4rem;
+  }
+  .historia-timeline .timeline-icon {
+    font-size: 2rem;
+  }
+  .historia-timeline .timeline-title {
+    font-size: 1.1rem;
+  }
+  .historia-timeline .timeline-description {
+    font-size: 0.85rem;
+  }
+  .card-padrao {
+    padding: 1.5rem;
+  }
+  .feature-card {
+    padding: 1rem;
   }
 }

@@ -72,13 +72,14 @@
                             A escola
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="integral">Sobre o Integral</a></li>
+                            <li><a class="dropdown-item" href="listar_itinerarios">Itinerários</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="estrutura">Estrutura</a></li>
                             <li><a class="dropdown-item" href="nossa_equipe">Nossa Equipe</a></li>
                             <li><a class="dropdown-item" href="historia">Nossa história</a></li>
+
 
                         </ul>
                     </li>

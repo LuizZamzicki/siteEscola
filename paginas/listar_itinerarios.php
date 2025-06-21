@@ -32,9 +32,9 @@ $base_url_categoria = strtok($_SERVER["REQUEST_URI"], '?');
 <section class="itinerarios-listagem-section container my-5">
     <div class="row justify-content-center">
         <div class="col-lg-10 col-md-12">
-            <h1 class="detalhe-titulo-principal">Explore Nossos Itinerários Formativos</h1>
+            <h2 class="section-title">Explore Nossos Itinerários Formativos</h2>
 
-            <p class="lead-text-listagem text-center mb-5">
+            <p class="text-center mb-5">
                 Descubra as diversas trilhas de conhecimento que oferecemos para o desenvolvimento do seu filho.
                 Nossos itinerários formativos são pensados para aprofundar interesses e preparar para o futuro.
             </p>

@@ -28,9 +28,9 @@ $base_url_departamento = strtok($_SERVER["REQUEST_URI"], '?');
 <section class="equipe-listagem-section container my-5">
     <div class="row justify-content-center">
         <div class="col-lg-10 col-md-12">
-            <h1 class="detalhe-titulo-principal">Nossa Equipe</h1>
+            <h2 class="section-title">Nossa Equipe</h2>
 
-            <p class="lead-text-listagem text-center mb-5">
+            <p class="text-center mb-5">
                 Conheça os profissionais dedicados que fazem da nossa escola um ambiente de excelência.
                 Nossa equipe é composta por educadores e colaboradores apaixonados por transformar vidas.
             </p>
