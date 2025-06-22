@@ -58,7 +58,7 @@
                                         <option value="8_ano_fund">8º Ano</option>
                                         <option value="9_ano_fund">9º Ano</option>
                                     </optgroup>
-                                    <optgroup label="Ensino Médio Diurno">
+                                    <optgroup label="Ensino Médio Integral">
                                         <option value="1_ano_medio">1º Ano</option>
                                         <option value="2_ano_medio">2º Ano</option>
                                         <option value="3_ano_medio">3º Ano</option>

@@ -1,23 +1,27 @@
 :root {
   --corSecundariaAzulCamisa: rgb(32, 175, 232);
-  --corSecundariaAzulCamisaClaro: rgba(183, 228, 246, 1);
-  --corSecundariaAzulCamisaEscuro: rgba(16, 95, 126, 1);
+  --corSecundariaAzulCamisaClaro: rgba(183, 228, 246);
+  --corSecundariaAzulCamisaEscuro: rgba(16, 95, 126);
 
   --corPrimariaRoxo: rgb(59, 34, 105);
-  --corPrimariaVerde: rgba(18, 104, 55, 1);
+  --corPrimariaVerde: rgba(18, 104, 55);
   --corPrimariaAmarelo: #fff10c;
 
   --corPrimariaRoxoClaro: rgb(184, 153, 234);
-  --corPrimariaVerdeClaro: rgba(82, 224, 143, 1);
+  --corPrimariaVerdeClaro: rgba(82, 224, 143);
   --corPrimariaAmareloClaro: rgb(255, 250, 161);
 
   --corPrimariaRoxoEscuro: rgb(31, 8, 69);
-  --corPrimariaVerdeEscuro: rgba(12, 69, 37, 1);
+  --corPrimariaVerdeEscuro: rgba(12, 69, 37);
   --corPrimariaAmareloEscuro: #cb9d07;
   --corPrimariaAmareloDestaque: #555506;
 
+  --corPrimariaVerdeClaroTransparente: rgba(82, 224, 143, 0.3);
+
   --tamanhoArredondamentoCard: 12px;
   --tamanhoArredondamentoBotao: 50px;
+
+  --corInstagram: #e1306c;
 
   --instagram-gradient: linear-gradient(
     45deg,
@@ -27,6 +31,18 @@
     #cc2366 75%,
     #bc1888 100%
   );
+
+  --instagram-text-reveal-gradient: linear-gradient(
+    to right,
+    var(--corPrimariaRoxoEscuro) 0%,
+    var(--corPrimariaRoxoEscuro) 49.9%,
+    #f09433 50%,
+    #e6683c 62.5%,
+    #dc2743 75%,
+    #cc2366 87.5%,
+    #bc1888 100%
+  );
+
   --facebook-blue: #1877f2;
   --twitter: black;
 }
@@ -36,6 +52,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  padding-top: 76px;
 }
 
 .section-title {
@@ -76,52 +96,8 @@ body {
 /*Botoes*/
 
 .btn {
-  text-align: center !important;
-}
-
-.btn-roxo {
-  background-color: var(--corPrimariaRoxoClaro);
+  border: 2px solid white;
   color: rgba(0, 0, 0, 0.8);
-  border: 2px solid var(--corPrimariaRoxoEscuro);
-  border-radius: var(--tamanhoArredondamentoBotao);
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease,
-    box-shadow 0.2s ease;
-  padding: 0.7rem 1.5rem;
-}
-
-.btn-roxo:hover {
-  background-color: var(--corPrimariaRoxoEscuro);
-  color: var(--corPrimariaRoxoClaro);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.btn-verde {
-  background-color: var(--corPrimariaVerdeClaro);
-  color: rgba(0, 0, 0, 0.8);
-  border: 2px solid var(--corPrimariaVerdeEscuro);
-
-  border-radius: var(--tamanhoArredondamentoBotao);
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease,
-    box-shadow 0.2s ease;
-  padding: 0.7rem 1.5rem;
-}
-
-.btn-verde:hover {
-  background-color: var(--corPrimariaVerdeEscuro);
-  color: var(--corPrimariaVerdeClaro);
-
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.btn-amarelo {
-  background-color: var(--corPrimariaAmareloClaro);
-  color: rgba(0, 0, 0, 0.7);
-  border: 2px solid var(--corPrimariaAmareloEscuro);
-
   border-radius: var(--tamanhoArredondamentoBotao);
   font-weight: bold;
   font-size: 1.2rem !important;
@@ -130,64 +106,55 @@ body {
   padding: 0.7rem 1.5rem;
 }
 
-.btn-amarelo:hover {
-  background-color: #aa7a01;
-  color: var(--corPrimariaAmareloClaro);
-
+.btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.btn-azul {
-  background-color: var(--corSecundariaAzulCamisaClaro) !important;
-  color: var(--corSecundariaAzulCamisaEscuro) !important;
-  border: 2px solid var(--corSecundariaAzulCamisaEscuro) !important;
+.btn-roxo {
+  background-color: var(--corPrimariaRoxoClaro);
+  border-color: var(--corPrimariaRoxoEscuro);
+}
 
-  border-radius: var(--tamanhoArredondamentoBotao) !important;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease,
-    box-shadow 0.2s ease;
-  padding: 0.7rem 1.5rem;
+.btn-roxo:hover {
+  background-color: var(--corPrimariaRoxoEscuro);
+  color: var(--corPrimariaRoxoClaro);
+}
+
+.btn-verde {
+  background-color: var(--corPrimariaVerdeClaro);
+  border-color: var(--corPrimariaVerdeEscuro);
+}
+
+.btn-verde:hover {
+  background-color: var(--corPrimariaVerdeEscuro);
+  color: var(--corPrimariaVerdeClaro);
+}
+
+.btn-amarelo {
+  background-color: var(--corPrimariaAmareloClaro);
+  color: rgba(0, 0, 0, 0.7);
+  border-color: var(--corPrimariaAmareloEscuro);
+}
+
+.btn-amarelo:hover {
+  background-color: var(--corPrimariaAmareloEscuro);
+  color: var(--corPrimariaAmareloClaro);
+}
+
+.btn-azul {
+  background-color: var(--corSecundariaAzulCamisaClaro);
+  border-color: var(--corSecundariaAzulCamisaEscuro);
 }
 
 .btn-azul:hover {
   background-color: var(--corSecundariaAzulCamisaEscuro) !important;
   color: var(--corSecundariaAzulCamisaClaro) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 991.98px) {
-  .btn-roxo {
+  .btn {
     width: 100%;
-    text-align: left;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-left: 0 !important;
-    margin-top: 0.5rem !important;
-  }
-
-  .btn-amarelo {
-    width: 100%;
-    text-align: left;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-left: 0 !important;
-    margin-top: 0.5rem !important;
-  }
-
-  .btn-verde {
-    width: 100%;
-    text-align: left;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-left: 0 !important;
-    margin-top: 0.5rem !important;
-  }
-
-  .btn-azul {
-    width: 100%;
-    text-align: left;
     padding-left: 1rem;
     padding-right: 1rem;
     margin-left: 0 !important;
@@ -203,13 +170,31 @@ body {
 }
 
 .custom-navbar-bg {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030; /* Garante que fique acima de outros elementos */
+  transition: transform 0.3s ease-out; /* Adiciona uma transição suave para aparecer/desaparecer */
+  transform: translateY(-100%); /* Esconde a navbar para cima por padrão */
+}
+
+/* Classe para mostrar a navbar */
+.custom-navbar-bg.navbar-show {
+  transform: translateY(0); /* Faz a navbar aparecer */
+}
+
+/* Classe para esconder a navbar */
+.custom-navbar-bg.navbar-hide {
+  transform: translateY(-100%); /* Esconde a navbar */
+}
+
+.custom-navbar-bg {
   background-color: var(--corSecundariaAzulCamisa) !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand {
   margin-left: 20px;
-  color: var(--corPrimariaRoxoEscuro) !important;
   font-family: Gabriela, cursive;
   font-size: 2.2rem;
   font-weight: bold;
@@ -220,13 +205,6 @@ body {
   width: auto;
   margin-right: 10px;
 }
-
-/* .navbar-title {
-  padding-left: 20px;
-  color: var(--corPrimariaRoxo);
-  font-size: 3.2rem;
-  font-weight: bold;
-} */
 
 .nav-link {
   color: var(--corPrimariaRoxoEscuro) !important;
@@ -402,13 +380,11 @@ body {
 
 .card-title {
   font-size: 2.5em;
-  color: black;
   margin-bottom: 15px;
 }
 
 .card-text {
   font-size: 1.1em;
-  color: black;
   line-height: 1.5;
   margin-bottom: 25px;
 }
@@ -450,14 +426,12 @@ body {
   /* Estilos para ícone de casa grande no endereço */
   .footer-icon-lg {
     font-size: 2.2em;
-    color: var(--corPrimariaRoxoEscuro);
   }
 }
 
 /* Estilos para texto genérico do footer (endereço, telefone, email) */
 .footer-text {
   font-size: 1em !important;
-  color: var(--corPrimariaRoxoEscuro);
   line-height: 1.2;
 }
 
@@ -469,7 +443,6 @@ body {
   /* Estilos para ícones pequenos (telefone, email) */
   .footer-icon {
     font-size: 1.2em;
-    color: var(--corPrimariaRoxoEscuro);
     margin-right: 8px;
     min-width: 20px;
   }
@@ -493,7 +466,6 @@ body {
 
 .redes-card .card-title {
   font-weight: bold;
-  color: var(--corPrimariaRoxoEscuro);
   margin-bottom: 8px;
   font-size: 0.95em;
   text-align: center;
@@ -788,13 +760,11 @@ body {
 }
 
 .card-integral h1 {
-  color: var(--corPrimariaAmareloDestaque);
   font-size: 2.5rem;
   font-weight: bold;
 }
 
 .card-integral h5 {
-  color: var(--dark-blue);
   font-size: 1.25rem;
   margin-bottom: 1.5rem;
 }
@@ -802,15 +772,10 @@ body {
 .card-integral p {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: var(--text-color);
 }
 
 .card-integral-text {
   flex-grow: 1;
-}
-
-.card-integral-text strong {
-  color: var(--corPrimariaAmareloDestaque);
 }
 
 .card-integral-image .img-fluid {
@@ -829,7 +794,6 @@ body {
 }
 
 .main-card-integral h3 {
-  color: var(--corPrimariaAmareloDestaque);
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 3rem;
@@ -870,7 +834,6 @@ body {
 }
 
 .main-card-integral .feature-title {
-  color: var(--corPrimariaAmareloDestaque);
   font-weight: bold;
   font-size: 1.35rem;
   margin-bottom: 0.75rem;
@@ -879,11 +842,6 @@ body {
 .feature-text {
   font-size: 0.95rem;
   line-height: 1.5;
-  color: var(--text-color);
-}
-
-.feature-text strong {
-  color: var(--corPrimariaAmareloDestaque);
 }
 
 .btn-amarelo:hover {
@@ -1007,7 +965,6 @@ body {
 
 .itinerario-content-box-swiper {
   background-color: rgba(255, 255, 255, 0.9);
-  color: var(--corPrimariaVerdeEscuro);
   padding: 2rem 3rem 3rem 3rem;
   border-radius: var(--tamanhoArredondamentoCard);
   text-align: center;
@@ -1035,7 +992,6 @@ body {
   font-size: 1.3rem;
   line-height: 1.7;
   margin-bottom: 2rem;
-  color: #444;
 }
 
 /* Estilos para as setas de navegação do Swiper */
@@ -1439,52 +1395,130 @@ body {
     margin-right: 10px;
   }
 }
-
-/* Instagram */
+/* Seção do Instagram */
 .instagram-section {
-  padding: 3rem 0;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  padding: 60px 0;
 }
 
 .instagram-section .section-title {
-  color: #c40b27;
+  color: var(--corPrimariaRoxoEscuro);
 }
 
+/* Estilos para o link "Instagram" */
+.instagram-section .section-title a {
+  background-image: var(
+    --instagram-gradient
+  ); /* O gradiente real do Instagram */
+  background-clip: text; /* Clipa o fundo ao formato do texto */
+  -webkit-background-clip: text; /* Compatibilidade Webkit */
+  -webkit-text-fill-color: transparent; /* Torna a cor do texto transparente para o gradiente aparecer */
+  color: transparent; /* Fallback para navegadores que não suportam -webkit-text-fill-color */
+
+  position: relative; /* Essencial para posicionar o pseudo-elemento ::before */
+  display: inline-block; /* Necessário para que 'position: relative' e 'width/height' funcionem corretamente */
+  text-decoration: none; /* Remove sublinhado padrão */
+  padding-bottom: 3px; /* Espaço para o sublinhado animado */
+  z-index: 0; /* Garante que este seja a camada de baixo */
+}
+
+/* Pseudo-elemento ::before: Cria a "máscara" de cor sólida sobre o texto com gradiente */
+.instagram-section .section-title a::before {
+  content: attr(data-text); /* Pega o texto do atributo data-text do HTML */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Aplica a cor sólida e a clipa ao formato do texto */
+  background-color: var(
+    --corInstagram
+  ); /* A cor sólida que você quer no início */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: var(
+    --corInstagram
+  ); /* Torna o texto do ::before sólido */
+  color: var(--corInstagram); /* Fallback */
+
+  z-index: 1; /* Garante que esta "máscara" esteja acima do texto com gradiente */
+  transition: opacity 0.4s ease-out; /* Animação suave da opacidade */
+
+  /* Garante que o texto no pseudo-elemento herde o estilo do texto pai */
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  white-space: nowrap; /* Evita quebras de linha indesejadas no pseudo-elemento */
+  pointer-events: none; /* Permite que eventos do mouse (como hover) passem para o elemento <a> subjacente */
+}
+
+/* Efeito de hover: a máscara de cor sólida desaparece, revelando o gradiente */
+.instagram-section .section-title a:hover::before {
+  opacity: 0; /* Ao passar o mouse, a máscara fica transparente */
+}
+
+/* Sublinhado animado ::after (mantido como estava, funciona independentemente) */
+.instagram-section .section-title a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px; /* Espessura do sublinhado */
+  background-color: var(--corPrimariaAmarelo); /* Cor do sublinhado */
+  transform: scaleX(0); /* Esconde o sublinhado inicialmente */
+  transform-origin: bottom right; /* Origem da animação */
+  transition: transform 0.3s ease-out; /* Transição para o efeito */
+}
+
+.instagram-section .section-title a:hover::after {
+  transform: scaleX(1); /* Revela o sublinhado ao passar o mouse */
+  transform-origin: bottom left; /* Direção da animação ao hover */
+}
+
+.instagram-section p {
+  font-size: 1.1em;
+  color: #6c757d; /* Cor do parágrafo de descrição */
+  max-width: 700px; /* Limita a largura do parágrafo para melhor leitura */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem !important; /* Espaço maior antes da grade de posts */
+}
+
+/* Grade de Posts do Instagram */
 .instagram-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-.instagram-grid .instagram-post:nth-child(n + 5) {
-  display: none;
+  /* Define 3 colunas para telas maiores e responsividade */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px; /* Espaçamento entre os posts */
+  max-width: 1200px; /* Largura máxima da grade */
+  margin: 0 auto; /* Centraliza a grade */
+  padding: 0 15px; /* Padding nas laterais para telas menores */
 }
 
 .instagram-post {
   position: relative;
-  overflow: hidden;
-  border-radius: var(--tamanhoArredondamentoCard);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Esconde o que sai dos limites do post */
+  border-radius: 8px; /* Cantos arredondados */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .instagram-post:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px); /* Efeito de "subir" ao passar o mouse */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Sombra mais intensa */
 }
 
 .instagram-post img {
   width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+  height: 250px; /* Altura fixa para as imagens */
+  object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+  display: block; /* Remove espaço extra abaixo da imagem */
+  transition: transform 0.4s ease-in-out; /* Transição para o zoom */
 }
 
 .instagram-post:hover img {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Efeito de zoom na imagem ao passar o mouse */
 }
 
 .instagram-overlay {
@@ -1493,40 +1527,53 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente escuro */
   display: flex;
-  align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  align-items: center;
+  opacity: 0; /* Esconde o overlay inicialmente */
+  transition: opacity 0.3s ease-in-out;
 }
 
 .instagram-post:hover .instagram-overlay {
-  opacity: 1;
+  opacity: 1; /* Mostra o overlay ao passar o mouse */
 }
 
-.instagram-overlay .bi-instagram {
-  font-size: 3rem;
-  color: white;
+.instagram-overlay i {
+  color: white; /* Cor do ícone */
+  font-size: 3em; /* Tamanho do ícone do Instagram */
 }
 
-.btn-instagram-more {
-  display: block;
-  margin: 2.5rem auto 0 auto;
-  width: fit-content;
-  background: var(--instagram-gradient) !important;
-  border: none;
-  color: white;
-  padding: 0.8rem 2rem;
-  border-radius: var(--tamanhoArredondamentoBotao);
-  font-weight: bold;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+  .instagram-section .section-title {
+    font-size: 2em; /* Ajuste para telas menores */
+  }
+
+  .instagram-section p {
+    font-size: 1em;
+    padding: 0 15px; /* Adiciona padding para o parágrafo em telas menores */
+  }
+
+  .instagram-grid {
+    /* Em telas menores, mostra 1 ou 2 colunas dependendo do espaço */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .instagram-post img {
+    height: 200px; /* Altura menor para imagens em telas menores */
+  }
+
+  .instagram-overlay i {
+    font-size: 2.5em; /* Tamanho menor para o ícone */
+  }
 }
 
-.btn-instagram-more:hover {
-  transform: translateY(-2px);
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+@media (max-width: 576px) {
+  .instagram-grid {
+    grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas */
+  }
 }
 
 /* Media Queries Específicas */
@@ -1753,7 +1800,6 @@ body {
 }
 
 .feature-title {
-  color: var(--corPrimariaAmareloDestaque);
   font-weight: bold;
   font-size: 1.35rem;
   margin-bottom: 0.75rem;
@@ -1762,10 +1808,6 @@ body {
 .feature-text {
   font-size: 0.95rem;
   line-height: 1.5;
-}
-
-.integral-detalhado-section .main-card-integral .lead-text strong {
-  color: var(--corPrimariaAmareloDestaque);
 }
 
 /* Estilo para links inline e links */
@@ -1846,7 +1888,6 @@ body {
 .integral-content-box-swiper {
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(4px);
-  color: var(--corPrimariaVerdeEscuro);
   padding: 2rem 3rem 3rem 3rem;
   border-radius: var(--tamanhoArredondamentoCard);
   text-align: center;
@@ -1874,7 +1915,6 @@ body {
   font-size: 1.3rem;
   line-height: 1.7;
   margin-bottom: 2rem;
-  color: #444;
 }
 
 /* --- */
@@ -1934,14 +1974,14 @@ body {
 /* Estilo para links inline e links do FAQ */
 
 .faq-section .mb-5 a {
-  color: var(--corPrimariaAmareloDestaque);
+  color: var(--corPrimariaRoxoEscuro);
   font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .faq-section .mb-5 a:hover {
-  color: var(--corPrimariaRoxoEscuro);
+  color: var(--corPrimariaRoxoClaro);
   text-decoration: underline;
 }
 
@@ -1989,7 +2029,6 @@ body {
 
 .faq-section .accordion-body {
   background-color: white;
-  color: var(--dark-blue);
   font-size: 1rem;
   padding: 1.25rem;
 }
@@ -2028,7 +2067,6 @@ body {
 
 .lead-text {
   font-size: 1.15rem;
-  color: black;
   line-height: 1.6;
 }
 
@@ -2083,14 +2121,12 @@ body {
 }
 
 .feature-title {
-  color: var(--corPrimariaRoxoEscuro);
   font-weight: bold;
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
 }
 
 .feature-text {
-  color: black;
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -2104,7 +2140,7 @@ body {
   transition: color 0.3s ease;
 }
 
-.estrutura-escola-section.lead-text a:hover,
+.estrutura-escola-section .lead-text a:hover,
 .estrutura-escola-section .feature-text a:hover {
   color: var(--corPrimariaRoxoClaro);
   text-decoration: underline;
@@ -2165,14 +2201,12 @@ body {
 .main-content-card .card-title-itinerario {
   font-size: 2.2rem;
   font-weight: bold;
-  color: var(--corPrimariaVerdeEscuro);
   text-align: center;
   margin-bottom: 1.5rem;
 }
 
 .main-content-card .card-text-itinerario {
   font-size: 1.1rem;
-  color: black !important;
   line-height: 1.8;
   text-align: justify;
   margin-bottom: 0;
@@ -2241,7 +2275,7 @@ body {
 }
 
 .project-card {
-  border: 1px solid var(--corPrimariaVerdeClaro);
+  border: 2px solid var(--corPrimariaVerdeClaro);
   border-radius: var(--tamanhoArredondamentoCard);
   overflow: hidden;
   background-color: #ffffff;
@@ -2280,7 +2314,6 @@ body {
 
 .project-caption {
   font-size: 1rem;
-  color: var(--dark-blue);
   font-weight: 600;
   line-height: 1.4;
   margin-bottom: 0;
@@ -2376,26 +2409,73 @@ body {
   color: var(--corPrimariaVerde);
 }
 
-.lead-text-listagem {
-  font-size: 1.25rem;
-  color: var(--dark-blue);
-  text-align: center;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-}
-
-.itinerarios-listagem-section .card-padrao {
-  margin-bottom: 3rem;
-  border: 2px solid var(--corPrimariaVerdeClaro);
-
-  .mb-5 {
-    margin: 0 !important;
-  }
-}
-
 /* Estilos para os Botões de Filtro */
+
+.categorias-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 5px;
+  gap: 8px;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  justify-content: center;
+  width: 100%;
+}
+
+/* NOVO ESTILO: Botão redondo "Mostrar mais/menos" */
+.ver-mais-categorias {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--corPrimariaVerdeEscuro);
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 15px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.ver-mais-categorias:hover {
+  background-color: var(
+    --corSecundariaAzulCamisaEscuro
+  ); /* Cor mais escura no hover */
+  transform: translateY(-2px); /* Efeito sutil de levantar */
+}
+
+.form-select {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 2px solid #ced4da;
+  border-radius: var(--tamanhoArredondamentoBotao);
+  background-color: white;
+  appearance: none; /* Remove estilo padrão do navegador (para personalização) */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); /* Seta para baixo customizada */
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  cursor: pointer;
+  margin-top: 10px; /* Para dar um espacinho em cima */
+}
+
+/* Estilo para dropdown ativo (ex: cor de borda) */
+.form-select:focus {
+  border-color: var(--corPrimariaRoxo); /* Exemplo */
+  box-shadow: 0 0 0 0.25rem rgba(103, 58, 183, 0.25); /* Exemplo */
+  outline: 0;
+}
+
+/* Se você quiser o mesmo estilo de 'btn-verde' no select */
+.form-select.btn-verde {
+  background-color: #e6ffe6; /* Exemplo de um verde claro, ou a cor do seu btn-verde */
+  color: #007b5e; /* Exemplo da cor do texto do seu btn-verde */
+  border-color: #007b5e;
+}
+
 .filter-controls {
   display: flex;
   flex-wrap: wrap;
@@ -2404,30 +2484,26 @@ body {
 }
 
 .btn-categoria {
-  background-color: var(--light-gray);
-  color: var(--dark-blue);
-  border: 1px solid var(--medium-gray);
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--tamanhoArredondamentoBotao);
+  background-color: var(--corPrimariaVerdeClaroTransparente);
   font-weight: 500;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  white-space: nowrap;
 }
 
 .btn-categoria:hover {
   background-color: var(--corPrimariaVerdeClaro);
   color: var(--corPrimariaVerdeEscuro);
   border-color: var(--corPrimariaVerde);
-  transform: translateY(-2px);
 }
 
 .btn-categoria.active {
-  background-color: var(--corPrimariaVerde);
-  color: white;
-  border-color: var(--corPrimariaVerdeEscuro);
+  background-color: var(--corPrimariaVerdeEscuro);
+  color: var(--corPrimariaVerdeClaro);
+  border-color: var(--corPrimariaVerde);
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(var(--corPrimariaVerdeRgb), 0.3);
+}
+
+.btn-categoria {
+  width: auto !important;
 }
 
 .itinerario-item-card {
@@ -2469,14 +2545,12 @@ body {
 .itinerario-item-card .itinerario-card-title {
   font-size: 1.3rem;
   font-weight: bold;
-  color: var(--corPrimariaVerdeEscuro);
   margin-bottom: 0.5rem;
   line-height: 1.3;
 }
 
 .itinerario-item-card .itinerario-card-description {
   font-size: 0.9rem;
-  color: #666;
   line-height: 1.5;
   text-align: center;
   flex-grow: 1;
@@ -2490,7 +2564,6 @@ body {
 
 .no-results-message {
   font-size: 1.2rem;
-  color: #666;
   padding: 2rem;
   text-align: center;
 }
@@ -2501,10 +2574,7 @@ body {
   .lead-text-listagem {
     font-size: 1.15rem;
   }
-  .btn-categoria {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-  }
+
   .itinerario-item-card .card-img-top {
     height: 180px;
   }
@@ -2585,28 +2655,20 @@ body {
 }
 
 .btn-departamento {
-  background-color: var(--light-gray);
-  color: var(--dark-blue);
-  border: 1px solid var(--medium-gray);
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--tamanhoArredondamentoBotao);
+  background-color: var(--corPrimariaVerdeClaroTransparente);
   font-weight: 500;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  white-space: nowrap;
 }
 
 .btn-departamento:hover {
   background-color: var(--corPrimariaVerdeClaro);
   color: var(--corPrimariaVerdeEscuro);
   border-color: var(--corPrimariaVerde);
-  transform: translateY(-2px);
 }
 
 .btn-departamento.active {
-  background-color: var(--corPrimariaVerde);
-  color: white;
-  border-color: var(--corPrimariaVerdeEscuro);
+  background-color: var(--corPrimariaVerdeEscuro);
+  color: var(--corPrimariaVerdeClaro);
+  border-color: var(--corPrimariaVerde);
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(var(--corPrimariaVerdeRgb), 0.3);
 }
@@ -2672,7 +2734,6 @@ body {
 .funcionario-nome {
   font-size: 1.3rem;
   font-weight: bold;
-  color: var(--corPrimariaVerdeEscuro);
   margin-bottom: 0.5rem;
   line-height: 1.3;
 }
@@ -2713,13 +2774,13 @@ body {
 }
 
 .funcionario-redes a {
-  color: var(--dark-blue);
+  color: var(--corSecundariaAzulCamisa);
   font-size: 1.4rem;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .funcionario-redes a:hover {
-  color: var(--corPrimariaVerde);
+  color: var(--corSecundariaAzulCamisaEscuro);
   transform: translateY(-2px);
 }
 
@@ -2836,25 +2897,22 @@ body {
 .historia-timeline .timeline-year {
   font-size: 1.8rem;
   font-weight: bold;
-  color: var(--corPrimariaAmareloEscuro); /* Cor de destaque para o ano */
   margin-bottom: 0.5rem;
 }
 
 .historia-timeline .timeline-icon {
-  font-size: 3rem; /* Tamanho dos ícones */
-  color: var(--corPrimariaAmareloEscuro); /* Cor para os ícones */
+  font-size: 3rem;
+  color: var(--corPrimariaAmareloEscuro);
   margin-bottom: 1rem;
 }
 
 .historia-timeline .timeline-title {
   font-size: 1.4rem;
   font-weight: bold;
-  color: var(--text-color); /* Cor do título do marco */
 }
 
 .historia-timeline .timeline-description {
   font-size: 0.95rem;
-  color: var(--text-color-light); /* Cor do texto da descrição */
 }
 
 /* Linha horizontal personalizada para divisões */
@@ -2887,17 +2945,8 @@ body {
 
 .feature-card .icon-circle {
   font-size: 2.5rem;
-  color: var(--corPrimariaAmareloEscuro); /* Cor dos ícones dos valores */
+  color: var(--corPrimariaAmareloEscuro);
   margin-bottom: 1rem;
-}
-
-/* Card padrão para seções de texto */
-.card-padrao {
-  background-color: white;
-  border-radius: var(--tamanhoArredondamentoCard);
-  padding: 2rem;
-  box-shadow: var(--shadow-small); /* ou sua variável de sombra */
-  border: 1px solid var(--corBorda);
 }
 
 /* Responsividade para a página de História */

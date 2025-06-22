@@ -7,14 +7,15 @@ require_once __DIR__ . '/../objetos/comentarios.php';
 
 // Dados para os posts do Instagram (placeholders - podem ser movidos para outro arquivo se crescerem)
 $instagram_posts = [
-    ['imagem' => 'https://placehold.co/400', 'link' => 'https://www.instagram.com/colegio_maffei/'],
-    ['imagem' => 'https://placehold.co/400', 'link' => 'https://www.instagram.com/colegio_maffei/'],
-    ['imagem' => 'https://placehold.co/400', 'link' => 'https://www.instagram.com/colegio_maffei/'],
-    ['imagem' => 'https://placehold.co/400', 'link' => 'https://www.instagram.com/colegio_maffei/'],
-    ['imagem' => 'https://placehold.co/400', 'link' => 'https://www.instagram.com/colegio_maffei/'],
-    ['imagem' => 'https://placehold.co/400', 'link' => 'https://www.instagram.com/colegio_maffei/'],
-    ['imagem' => 'https://placehold.co/400', 'link' => 'https://www.instagram.com/colegio_maffei/'],
-    ['imagem' => 'https://placehold.co/400', 'link' => 'https://www.instagram.com/colegio_maffei/']
+ 
+    ['imagem' => 'imagens/postInsta/post1.webp', 'link' => 'https://www.instagram.com/p/DLKk-PkuQnj/'],
+    ['imagem' => 'imagens/postInsta/post2.jpg', 'link' => 'https://www.instagram.com/p/DLKiYigOI_0/'],
+    ['imagem' => 'imagens/postInsta/post3.webp', 'link' => 'https://www.instagram.com/p/DLKgmKtuOjh/?img_index=1'],
+    ['imagem' => 'imagens/postInsta/post4.jpg', 'link' => 'https://www.instagram.com/p/DK5sg6mMwXk/'],
+    ['imagem' => 'imagens/postInsta/post5.jpg', 'link' => 'https://www.instagram.com/p/DKw6jNgJYDV/'],
+    ['imagem' => 'imagens/postInsta/post6.jpg', 'link' => 'https://www.instagram.com/p/DKk-XBbJBJR/'],
+    ['imagem' => 'imagens/postInsta/post7.jpg', 'link' => 'https://www.instagram.com/p/DKfxdMrRhoO6a5Nl-L-AzbOhOLwZAPli_pEz7M0/'],
+    ['imagem' => 'imagens/postInsta/post8.webp', 'link' => 'https://www.instagram.com/p/DKdWsDPJx6e/?img_index=1']
 ];
 
 ?>
@@ -69,9 +70,8 @@ $instagram_posts = [
                             <i class="bi bi-cup-straw"></i>
                         </div>
                         <h4 class="feature-title">Refeições</h4>
-                        <p class="feature-text">Sim, a escola oferece todas as refeições necessárias durante o
-                            período
-                            integral, incluindo <strong>almoço e lanches</strong> balanceados.</p>
+                        <p class="feature-text"><strong>Sim, a escola oferece todas as refeições necessárias</strong>
+                            durante o período integral, incluindo almoço e lanches balanceados.</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 d-flex">
@@ -80,9 +80,10 @@ $instagram_posts = [
                             <i class="bi bi-lightbulb"></i>
                         </div>
                         <h4 class="feature-title">Currículo Ampliado</h4>
-                        <p class="feature-text">Inclui <strong>projetos de vida, apoio pedagógico, oficinas práticas
-                                e
-                                dinâmicas, e trilhas de aprendizagem</strong> para desenvolvimento integral.</p>
+                        <p class="feature-text">Inclui oficinas práticas
+                            e
+                            dinâmicas, projetos de vida, apoio pedagógico e trilhas de
+                            aprendizagem para desenvolvimento integral.</p>
                     </div>
                 </div>
             </div>
@@ -158,7 +159,9 @@ $instagram_posts = [
     <hr class="my-5">
 
     <section class="instagram-section">
-        <h2 class="section-title">Fique por dentro das novidades no Instagram</h2>
+        <h2 class="section-title">Fique por dentro das novidades no
+            <a href="https://www.instagram.com/colegio_maffei/" target="_blank" data-text="Instagram">Instagram</a>
+        </h2>
         <p class="text-center mb-5">Acompanhe nosso dia a dia, eventos e projetos através das nossas últimas
             postagens:</p>
 
@@ -174,8 +177,5 @@ $instagram_posts = [
             </div>
             <?php endforeach; ?>
         </div>
-        <a href="https://www.instagram.com/colegio_maffei/" target="_blank" class="btn btn-instagram-more">Ver Mais
-            no
-            Instagram</a>
     </section>
 </div>

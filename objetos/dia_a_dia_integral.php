@@ -2,19 +2,36 @@
 
 $dia_a_dia_integral = [
     [
-        'titulo' => 'Oficinas e Projetos Interativos',
-          'imagem_url' => 'https://placehold.co/800x450/C6E3B4/3B6023?text=Atividades+Praticas'
+        'titulo' => '',
+          'imagem_url' => 'imagens/diadia/foto1.png'
     ],
     [
-        'titulo' => 'Refeições Nutritivas e Bem-estar',
-        'imagem_url' => 'https://placehold.co/800x450/C6E3B4/3B6023?text=Refeicoes+e+Convivio'
+        'titulo' => '',
+          'imagem_url' => 'imagens/diadia/foto2.jpg'
+    ],   
+    [
+        'titulo' => '',
+          'imagem_url' => 'imagens/diadia/foto3.png'
+    ],    
+    [
+        'titulo' => '',
+          'imagem_url' => 'imagens/diadia/foto4.png'
     ],
     [
-        'titulo' => 'Apoio Pedagógico e Estudo Orientado',
-        'imagem_url' => 'https://placehold.co/800x450/C6E3B4/3B6023?text=Apoio+Pedagogico'
+        'titulo' => '',
+          'imagem_url' => 'imagens/diadia/foto5.png'
+    ],   
+    [
+        'titulo' => '',
+          'imagem_url' => 'imagens/diadia/foto6.png'
+    ],    
+    [
+        'titulo' => '',
+          'imagem_url' => 'imagens/diadia/foto7.png'
     ],
     [
-        'titulo' => 'Espaços Abertos e Lazer Educativo',
-      'imagem_url' => 'https://placehold.co/800x450/C6E3B4/3B6023?text=Lazer+Educativo'
-    ]
+        'titulo' => '',
+          'imagem_url' => 'imagens/diadia/foto8.png'
+    ],   
+   
 ];

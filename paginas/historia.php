@@ -132,8 +132,7 @@
                 <h3 class="text-center mb-4 custom-heading">Nossa Resiliência e Conquistas</h3>
                 <div class="row align-items-center">
                     <div class="col-md-6 mb-4 mb-md-0">
-                        <img src="https://placehold.co/800x450/C6E3B4/3B6023?text=Superacao+e+Alunos"
-                            class="img-fluid rounded" alt="Alunos superando desafios">
+                        <img src="imagens/Escola.jpeg" class="img-fluid rounded" alt="Alunos superando desafios">
                     </div>
                     <div class="col-md-6">
                         <p class="feature-text">

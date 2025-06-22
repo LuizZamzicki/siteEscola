@@ -21,8 +21,7 @@ $contato = 'contato';
             <?php foreach ($estrutura_escola as $item): ?>
             <div class="col-lg-6 col-md-8 col-sm-10 d-flex">
                 <div class="feature-card flex-fill rounded-3">
-                    <img src="https://placehold.co/800x450/B7E4F6/105F7E?text=<?= $item['imagem_placeholder'] ?>"
-                        class="img-estrutura card-img-top img-fluid rounded-top mb-3"
+                    <img src="<?= $item['imagem_url'] ?>" class="img-estrutura card-img-top img-fluid rounded-top mb-3"
                         alt="Imagem de <?= $item['titulo'] ?>">
                     <div class="card-body-custom p-4 text-center">
                         <div class="icon-circle mb-3 mx-auto">

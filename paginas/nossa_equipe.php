@@ -35,20 +35,50 @@ $base_url_departamento = strtok($_SERVER["REQUEST_URI"], '?');
                 Nossa equipe é composta por educadores e colaboradores apaixonados por transformar vidas.
             </p>
 
+
             <div class="card-padrao">
                 <?php if (!empty($departamentos_disponiveis)): ?>
-                <div class="filter-controls text-center mb-5">
-                    <a href="<?= $base_url_departamento ?>?departamento=todos"
-                        class="btn btn-departamento <?= ($departamento_selecionado === 'todos') ? 'active' : '' ?>">Todos</a>
-                    <?php foreach ($departamentos_disponiveis as $departamento_nome): ?>
-                    <a href="<?= $base_url_departamento ?>?departamento=<?= urlencode($departamento_nome) ?>"
-                        class="btn btn-departamento <?= ($departamento_selecionado === $departamento_nome) ? 'active' : '' ?>">
-                        <?= htmlspecialchars($departamento_nome) ?>
-                    </a>
-                    <?php endforeach; ?>
+                <div class="filter-controls text-center mb-2">
+
+                    <div id="departamentos" class="categorias-wrapper d-none d-md-flex">
+                        <a href="<?= $base_url_departamento ?>?departamento=todos"
+                            class="btn btn-verde btn-categoria <?= ($departamento_selecionado === 'todos') ? 'active' : '' ?>">Todos</a>
+                        <?php foreach ($departamentos_disponiveis as $categoria_nome): ?>
+                        <a href="<?= $base_url_departamento ?>?departamento=<?= urlencode($categoria_nome) ?>"
+                            class="btn btn-verde btn-categoria <?= ($departamento_selecionado === $categoria_nome) ? 'active' : '' ?>">
+                            <?= htmlspecialchars($categoria_nome) ?>
+                        </a>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php
+            // O botão de toggle só aparece se houver categorias o suficiente no desktop
+            $max_categorias_visiveis_inicialmente = 3; // Ajuste este número conforme a sua necessidade no desktop
+            if (count($departamentos_disponiveis) > $max_categorias_visiveis_inicialmente):
+        ?>
+                    <div class="ver-mais-categorias d-none d-md-flex" id="toggleCategorias"
+                        onclick="toggleCategorias()">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <?php endif; ?>
+
+                    <div class="form-group d-md-none w-100">
+                        <label for="mobileCategoriaSelect" class="sr-only">Selecione uma categoria</label>
+                        <select class="form-select btn-verde" id="mobileCategoriaSelect"
+                            onchange="window.location.href = this.value;">
+                            <option value="<?= $base_url_departamento ?>?departamento=todos"
+                                <?= ($departamento_selecionado === 'todos') ? 'selected' : '' ?>>Todos</option>
+                            <?php foreach ($departamentos_disponiveis as $categoria_nome): ?>
+                            <option value="<?= $base_url_departamento ?>?departamento=<?= urlencode($categoria_nome) ?>"
+                                <?= ($departamento_selecionado === $categoria_nome) ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($categoria_nome) ?>
+                            </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
                 </div>
+                <?php endif; ?>
             </div>
-            <?php endif; ?>
 
             <div class="equipe-grid-wrapper">
                 <div class="equipe-grid">

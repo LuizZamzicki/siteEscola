@@ -209,7 +209,8 @@
     </footer>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+    <script async src="//www.instagram.com/embed.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 

@@ -41,15 +41,44 @@ $base_url_categoria = strtok($_SERVER["REQUEST_URI"], '?');
 
             <div class="card-padrao">
                 <?php if (!empty($categorias_disponiveis)): ?>
-                <div class="filter-controls text-center mb-5">
-                    <a href="<?= $base_url_categoria ?>?categoria=todos"
-                        class="btn btn-categoria <?= ($categoria_selecionada === 'todos') ? 'active' : '' ?>">Todos</a>
-                    <?php foreach ($categorias_disponiveis as $categoria_nome): ?>
-                    <a href="<?= $base_url_categoria ?>?categoria=<?= urlencode($categoria_nome) ?>"
-                        class="btn btn-categoria <?= ($categoria_selecionada === $categoria_nome) ? 'active' : '' ?>">
-                        <?= htmlspecialchars($categoria_nome) ?>
-                    </a>
-                    <?php endforeach; ?>
+                <div class="filter-controls text-center mb-2">
+
+                    <div id="categorias" class="categorias-wrapper d-none d-md-flex">
+                        <a href="<?= $base_url_categoria ?>?categoria=todos"
+                            class="btn btn-verde btn-categoria <?= ($categoria_selecionada === 'todos') ? 'active' : '' ?>">Todos</a>
+                        <?php foreach ($categorias_disponiveis as $categoria_nome): ?>
+                        <a href="<?= $base_url_categoria ?>?categoria=<?= urlencode($categoria_nome) ?>"
+                            class="btn btn-verde btn-categoria <?= ($categoria_selecionada === $categoria_nome) ? 'active' : '' ?>">
+                            <?= htmlspecialchars($categoria_nome) ?>
+                        </a>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php
+            // O botão de toggle só aparece se houver categorias o suficiente no desktop
+            $max_categorias_visiveis_inicialmente = 6; // Ajuste este número conforme a sua necessidade no desktop
+            if (count($categorias_disponiveis) > $max_categorias_visiveis_inicialmente):
+        ?>
+                    <div class="ver-mais-categorias d-none d-md-flex" id="toggleCategorias"
+                        onclick="toggleCategorias()">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <?php endif; ?>
+
+                    <div class="form-group d-md-none w-100">
+                        <label for="mobileCategoriaSelect" class="sr-only">Selecione uma categoria</label>
+                        <select class="form-select btn-verde" id="mobileCategoriaSelect"
+                            onchange="window.location.href = this.value;">
+                            <option value="<?= $base_url_categoria ?>?categoria=todos"
+                                <?= ($categoria_selecionada === 'todos') ? 'selected' : '' ?>>Todos</option>
+                            <?php foreach ($categorias_disponiveis as $categoria_nome): ?>
+                            <option value="<?= $base_url_categoria ?>?categoria=<?= urlencode($categoria_nome) ?>"
+                                <?= ($categoria_selecionada === $categoria_nome) ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($categoria_nome) ?>
+                            </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
                 </div>
                 <?php endif; ?>
             </div>
