@@ -25,7 +25,7 @@ $base_url_departamento = strtok($_SERVER["REQUEST_URI"], '?');
 
 ?>
 
-<section class="equipe-listagem-section container my-5">
+<section class="equipe-listagem-section container mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-10 col-md-12">
             <h2 class="section-title">Nossa Equipe</h2>
@@ -98,7 +98,7 @@ $base_url_departamento = strtok($_SERVER["REQUEST_URI"], '?');
                             <p class="funcionario-descricao"><?= $funcionario['descricao'] ?></p>
                             <?php endif; ?>
                             <?php if (!empty($funcionario['formacao'])): ?>
-                            <p class="funcionario-formacao"><i class="bi bi-mortarboard-fill"></i>
+                            <p class="funcionario-formacao"><i class="fa-solid fa-graduation-cap"></i>
                                 <?= $funcionario['formacao'] ?></p>
                             <?php endif; ?>
                             <?php if (!empty($funcionario['redes_sociais'])): ?>
@@ -107,9 +107,9 @@ $base_url_departamento = strtok($_SERVER["REQUEST_URI"], '?');
                                 <a href="<?= $url ?>" target="_blank"
                                     aria-label="<?= ucfirst($rede) ?> de <?= $funcionario['nome'] ?>">
                                     <?php if ($rede === 'linkedin'): ?>
-                                    <i class="bi bi-linkedin"></i>
+                                    <i class="fa-brands fa-linkedin"></i>
                                     <?php elseif ($rede === 'instagram'): ?>
-                                    <i class="bi bi-instagram"></i>
+                                    <i class="fa-brands fa-instagram"></i>
                                     <?php  ?>
                                     <?php endif; ?>
                                 </a>
@@ -122,6 +122,20 @@ $base_url_departamento = strtok($_SERVER["REQUEST_URI"], '?');
                     <?php endif; ?>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="chamada-para-contato py-5">
+    <div class="card-padrao card-roxo text-center">
+        <h3 class="mb-4">Conheça a Jornada que Nos Trouxe Até Aqui</h3>
+        <p class="mb-5">
+            Por trás de cada profissional, há uma história rica de dedicação e um legado construído com paixão. Descubra
+            a trajetória do Colégio João Maffei Rosa.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="historia" class="btn btn-amarelo btn-lg">Saiba Mais Sobre Nossa história</a>
+            <a href="home" class="btn btn-azul btn-lg">Voltar à Página Inicial</a>
         </div>
     </div>
 </section>

@@ -66,9 +66,49 @@ body {
   margin-bottom: 1rem;
 }
 
+@media (max-width: 1050px) {
+  .navbar-title {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  h5 {
+    font-size: 2.2rem;
+  }
+  p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .section-title {
+    font-size: 2em;
+  }
+
+  .h5 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+}
+
 @media (max-width: 576px) {
   .section-title {
     font-size: 2.5rem !important;
+  }
+
+  h5 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
   }
 }
 
@@ -93,6 +133,11 @@ body {
   flex-direction: column;
 }
 
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
 /*Botoes*/
 
 .btn {
@@ -104,6 +149,7 @@ body {
   transition: background-color 0.3s ease, transform 0.2s ease,
     box-shadow 0.2s ease;
   padding: 0.7rem 1.5rem;
+  white-space: nowrap;
 }
 
 .btn:hover {
@@ -173,9 +219,9 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1030; /* Garante que fique acima de outros elementos */
-  transition: transform 0.3s ease-out; /* Adiciona uma transição suave para aparecer/desaparecer */
-  transform: translateY(-100%); /* Esconde a navbar para cima por padrão */
+  z-index: 1030;
+  transition: transform 0.3s ease-out;
+  transform: translateY(-100%);
 }
 
 /* Classe para mostrar a navbar */
@@ -269,6 +315,11 @@ body {
   color: var(--corPrimariaRoxoEscuro);
 }
 
+.dropdown-item.active {
+  background-color: var(--corSecundariaAzulCamisaEscuro);
+  color: var(--corPrimariaAmarelo) !important;
+}
+
 .dropdown-divider {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -323,59 +374,19 @@ body {
 }
 
 .card-amarelo {
-  background-color: var(--corPrimariaAmareloClaro);
-  border-color: var(--corPrimariaAmareloEscuro);
-  border-width: 2px;
-  border-radius: var(--tamanhoArredondamentoCard);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  border: 2px solid var(--corPrimariaAmareloEscuro);
 }
 
 .card-roxo {
-  background-color: var(--corPrimariaRoxoClaro);
-  border-color: var(--corPrimariaRoxoEscuro);
-  border-width: 2px;
-  border-radius: var(--tamanhoArredondamentoCard);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  border: 2px solid var(--corPrimariaRoxoEscuro);
 }
 
 .card-verde {
-  background-color: var(--corPrimariaVerdeClaro);
-  border-color: var(--corPrimariaVerdeEscuro);
-  border-width: 2px;
-  border-radius: var(--tamanhoArredondamentoCard);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  border: 2px solid var(--corPrimariaVerdeClaro);
 }
 
 .card-azul {
-  background-color: var(--corSecundariaAzulCamisaClaro);
-  border-color: var(--corSecundariaAzulCamisaEscuro);
-  border-width: 2px;
-  border-radius: var(--tamanhoArredondamentoCard);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  border: 2px solid var(--corSecundariaAzulCamisaEscuro);
 }
 
 .card-title {
@@ -508,9 +519,13 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.social-icon .bi {
+.social-icon {
+  text-decoration: none;
+}
+
+.fa-brands {
   font-size: 1.3rem;
-  color: inherit;
+  color: white;
 }
 
 /* Cores específicas dos ícones */
@@ -518,24 +533,12 @@ body {
   background: var(--instagram-gradient);
 }
 
-.instagram-icon .bi {
-  color: white;
-}
-
 .facebook-icon {
   background-color: var(--facebook-blue);
 }
 
-.facebook-icon .bi {
-  color: white;
-}
-
 .twitter-icon {
   background-color: var(--twitter);
-}
-
-.twitter-icon .bi {
-  color: white;
 }
 
 /* Seção de Créditos */
@@ -745,78 +748,23 @@ body {
     -1px -1px var(--corPrimariaAmareloDestaque);
 }
 
-.lead-text {
-  font-size: 1.15rem;
-  line-height: 1.6;
-}
-
-/* Estilos para o Card com a Imagem (o primeiro agora) */
-.card-integral {
-  background-color: #f8fbfc;
-  border-radius: var(--tamanhoArredondamentoCard) !important;
-  border: 2px solid var(--corPrimariaAmareloEscuro);
-  padding: 2.5rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
-}
-
-.card-integral h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-}
-
-.card-integral h5 {
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
-}
-
-.card-integral p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.card-integral-text {
-  flex-grow: 1;
-}
-
-.card-integral-image .img-fluid {
+.integral-image .img-fluid {
   max-height: 400px;
   border-radius: var(--tamanhoArredondamentoCard) !important;
   border: 2px solid var(--corPrimariaAmareloEscuro);
 }
 
-/* Estilos para o CARD PRINCIPAL que envolve os destaques */
-.main-card-integral {
-  background-color: white;
-  border: 2px solid var(--corPrimariaAmareloEscuro);
-  border-radius: calc(var(--tamanhoArredondamentoCard) * 1.5);
-  padding: 3.5rem !important;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-}
-
-.main-card-integral h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 3rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-
-/* Estilo para os CARDS DE DESTAQUE individuais (as FAQs) */
-.main-card-integral .feature-card {
-  background-color: var(--corPrimariaAmareloClaro);
-  border: 1px solid var(--corPrimariaAmareloEscuro);
-  padding: 2rem !important;
-  border-radius: var(--tamanhoArredondamentoCard);
+.card-perguntas {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
-.main-card-integral .feature-card:hover {
+.card-perguntas:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
-.icon-circle {
+.icone-circulo {
   width: 70px;
   height: 70px;
   background-color: var(--corPrimariaAmareloEscuro);
@@ -827,83 +775,60 @@ body {
   margin-bottom: 1.5rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   color: white;
-}
-
-.icon-circle i {
   font-size: 2rem;
 }
 
-.main-card-integral .feature-title {
+.card-perguntas h4 {
   font-weight: bold;
   font-size: 1.35rem;
   margin-bottom: 0.75rem;
 }
 
-.feature-text {
+.card-perguntas p {
   font-size: 0.95rem;
   line-height: 1.5;
 }
 
-.btn-amarelo:hover {
-  background-color: var(--corPrimariaAmareloEscuro);
-  color: white;
-  transform: translateY(-2px);
-}
-
 /* Responsividade geral */
 @media (max-width: 767.98px) {
-  .main-card-integral,
-  .card-integral {
-    /* Aplica a ambos os cards */
-    padding: 2rem !important;
-  }
-  .icon-circle {
+  .icone-circulo {
     width: 60px;
     height: 60px;
   }
-  .icon-circle i {
-    font-size: 1.8rem !important;
-  }
-  .feature-title {
-    font-size: 1.2rem;
-  }
-  .lead-text {
-    font-size: 1rem;
-  }
+
   /* Responsividade específica para o card da imagem */
-  .card-integral {
+  .principal-section .card-padrao {
     flex-direction: column;
     text-align: center;
   }
-  .card-integral-text {
+
+  .texto-escola {
     order: 2;
   }
-  .card-integral-image {
+
+  .integral-image {
     order: 1;
     margin-left: 0 !important;
     margin-bottom: 1.5rem;
   }
-  .card-integral .img-fluid {
+  .integral-image .img-fluid {
     max-height: 300px !important;
     width: 100%;
-  }
-  .card-integral h1 {
-    font-size: 2rem;
-  }
-  .card-integral h5 {
-    font-size: 1.1rem;
   }
 }
 
 /* Estilos para o Carrossel  */
+.chamada-para-itinerarios .section-title {
+  font-weight: normal;
+  color: var(--corPrimariaVerdeEscuro) !important;
+}
 
 .integral-content .section-title {
-  color: var(--corPrimariaVerde);
+  color: var(--corPrimariaVerdeEscuro);
 }
 
 .itinerariosSwiper {
   width: 100%;
-
   padding-top: 0;
   padding-bottom: 0;
   margin-top: 2rem;
@@ -964,6 +889,11 @@ body {
 }
 
 .itinerario-content-box-swiper {
+  h1 {
+    color: var(--corPrimariaVerdeEscuro);
+    font-weight: bold;
+  }
+
   background-color: rgba(255, 255, 255, 0.9);
   padding: 2rem 3rem 3rem 3rem;
   border-radius: var(--tamanhoArredondamentoCard);
@@ -977,21 +907,6 @@ body {
   p {
     color: black !important;
   }
-}
-
-.itinerario-content-box-swiper h5 {
-  font-family: "Gabriela", cursive;
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: var(--corPrimariaVerde);
-}
-
-.itinerario-content-box-swiper p {
-  font-family: Roboto, sans-serif;
-  font-size: 1.3rem;
-  line-height: 1.7;
-  margin-bottom: 2rem;
 }
 
 /* Estilos para as setas de navegação do Swiper */
@@ -1008,7 +923,7 @@ body {
     content: "" !important;
   }
 
-  /* --- Estilos para as Setas do Carrossel de Comentários (Tons de Roxo) --- */
+  /* --- Estilos para as Setas do Carrossel de Comentários --- */
 
   .swiper-button-next,
   .swiper-button-prev {
@@ -1029,7 +944,6 @@ body {
       transform 0.3s ease;
   }
 
-  /* Posicionamento específico para as setas dos comentários */
   .swiper-button-prev {
     left: 25px;
   }
@@ -1090,12 +1004,6 @@ body {
     padding: 2rem;
     max-width: 90%;
   }
-  .itinerario-content-box-swiper h5 {
-    font-size: 2.2rem;
-  }
-  .itinerario-content-box-swiper p {
-    font-size: 1.1rem;
-  }
 }
 
 @media (max-width: 768px) {
@@ -1103,18 +1011,17 @@ body {
     min-height: 350px;
   }
   /* Oculta setas em telas menores */
-  .btn-itinerarios-swiper {
-    display: none;
+  .swiper-button-next {
+    display: none !important;
   }
+  .swiper-button-prev {
+    display: none !important;
+  }
+
   .itinerario-content-box-swiper {
     padding: 1.5rem;
   }
-  .itinerario-content-box-swiper h5 {
-    font-size: 1.8rem;
-  }
-  .itinerario-content-box-swiper p {
-    font-size: 1rem;
-  }
+
   .swiper-pagination {
     bottom: 5px !important;
   }
@@ -1124,22 +1031,11 @@ body {
   .itinerario-slide {
     min-height: 300px;
   }
-  .itinerario-content-box-swiper h5 {
-    font-size: 1.5rem;
-  }
-  .itinerario-content-box-swiper p {
-    font-size: 0.9rem;
-  }
 }
 
 /* --- */
 /* Seção dos comentários dos Alunos */
 /* --- */
-
-.comentarios-section {
-  padding: 60px 20px;
-  text-align: center;
-}
 
 .comentarios-section .section-title {
   color: var(--corPrimariaRoxoEscuro);
@@ -1187,9 +1083,9 @@ body {
 }
 
 .comentario-card:hover {
-  transform: scale(0.88); /* Aumenta um pouco mais que o normal (0.85) */
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Sombra mais forte no hover */
-  cursor: pointer; /* Indica que o item é clicável */
+  transform: scale(0.88);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
   background-color: var(--corPrimariaRoxoEscuro);
 }
 
@@ -1204,7 +1100,6 @@ body {
 /* --- Conteúdo interno do Card de Comentário --- */
 
 .comentario-texto {
-  font-size: 1.1rem;
   line-height: 1.6;
   color: white;
   margin-bottom: 20px;
@@ -1320,45 +1215,6 @@ body {
     color: var(--corPrimariaRoxoClaro);
     transform: scale(1.1);
   }
-
-  /* --- Ajuste na Paginação (as "bolinhas") do Swiper --- */
-  .swiper-pagination-bullet {
-    background-color: var(--corPrimariaRoxo); /* Cor das bolinhas inativas */
-    opacity: 0.5;
-    transition: opacity 0.3s ease, background-color 0.3s ease;
-  }
-
-  .swiper-pagination-bullet-active {
-    background-color: var(
-      --corPrimariaAmareloEscuro
-    ); /* Cor da bolinha ativa: mantendo o amarelo de destaque */
-    opacity: 1;
-  }
-
-  /* --- Responsividade para telas menores --- */
-  @media (max-width: 768px) {
-    .swiper-button-next,
-    .swiper-button-prev {
-      width: 40px;
-      height: 40px;
-      left: 10px; /* Ajuste para mobile */
-      right: 10px; /* Ajuste para mobile */
-      transform: translateY(-50%); /* Sem escala extra em mobile */
-    }
-
-    .swiper-button-next i,
-    .swiper-button-prev i {
-      font-size: 2.2rem; /* Tamanho do ícone em mobile */
-    }
-  }
-}
-
-/* Media Queries Específicas para o Carrossel de Comentários */
-
-@media (max-width: 992px) {
-  .btn-comentarios-swiper {
-    display: none;
-  }
 }
 
 @media (max-width: 768px) {
@@ -1366,16 +1222,16 @@ body {
     padding: 20px;
     min-height: 250px;
   }
-  .comentario-texto {
-    font-size: 1rem;
-  }
+
   .comentariosSwiper {
     padding-top: 30px;
     padding-bottom: 30px;
   }
+
   .comentario-autor-info .nome-aluno {
     font-size: 0.9rem;
   }
+
   .comentario-autor-info .serie-aluno {
     font-size: 0.75rem;
   }
@@ -1395,10 +1251,8 @@ body {
     margin-right: 10px;
   }
 }
+
 /* Seção do Instagram */
-.instagram-section {
-  padding: 60px 0;
-}
 
 .instagram-section .section-title {
   color: var(--corPrimariaRoxoEscuro);
@@ -1406,119 +1260,103 @@ body {
 
 /* Estilos para o link "Instagram" */
 .instagram-section .section-title a {
-  background-image: var(
-    --instagram-gradient
-  ); /* O gradiente real do Instagram */
-  background-clip: text; /* Clipa o fundo ao formato do texto */
-  -webkit-background-clip: text; /* Compatibilidade Webkit */
-  -webkit-text-fill-color: transparent; /* Torna a cor do texto transparente para o gradiente aparecer */
-  color: transparent; /* Fallback para navegadores que não suportam -webkit-text-fill-color */
-
-  position: relative; /* Essencial para posicionar o pseudo-elemento ::before */
-  display: inline-block; /* Necessário para que 'position: relative' e 'width/height' funcionem corretamente */
-  text-decoration: none; /* Remove sublinhado padrão */
-  padding-bottom: 3px; /* Espaço para o sublinhado animado */
-  z-index: 0; /* Garante que este seja a camada de baixo */
+  background-image: var(--instagram-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  padding-bottom: 3px;
+  z-index: 0;
 }
 
 /* Pseudo-elemento ::before: Cria a "máscara" de cor sólida sobre o texto com gradiente */
 .instagram-section .section-title a::before {
-  content: attr(data-text); /* Pega o texto do atributo data-text do HTML */
+  content: attr(data-text);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-
-  /* Aplica a cor sólida e a clipa ao formato do texto */
-  background-color: var(
-    --corInstagram
-  ); /* A cor sólida que você quer no início */
+  background-color: var(--corInstagram);
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: var(
-    --corInstagram
-  ); /* Torna o texto do ::before sólido */
-  color: var(--corInstagram); /* Fallback */
-
-  z-index: 1; /* Garante que esta "máscara" esteja acima do texto com gradiente */
-  transition: opacity 0.4s ease-out; /* Animação suave da opacidade */
-
-  /* Garante que o texto no pseudo-elemento herde o estilo do texto pai */
+  -webkit-text-fill-color: var(--corInstagram);
+  color: var(--corInstagram);
+  z-index: 1;
+  transition: opacity 0.4s ease-out;
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
-  white-space: nowrap; /* Evita quebras de linha indesejadas no pseudo-elemento */
-  pointer-events: none; /* Permite que eventos do mouse (como hover) passem para o elemento <a> subjacente */
+  white-space: nowrap;
+  pointer-events: none;
 }
 
-/* Efeito de hover: a máscara de cor sólida desaparece, revelando o gradiente */
 .instagram-section .section-title a:hover::before {
-  opacity: 0; /* Ao passar o mouse, a máscara fica transparente */
+  opacity: 0;
 }
 
-/* Sublinhado animado ::after (mantido como estava, funciona independentemente) */
 .instagram-section .section-title a::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 3px; /* Espessura do sublinhado */
-  background-color: var(--corPrimariaAmarelo); /* Cor do sublinhado */
-  transform: scaleX(0); /* Esconde o sublinhado inicialmente */
-  transform-origin: bottom right; /* Origem da animação */
-  transition: transform 0.3s ease-out; /* Transição para o efeito */
+  height: 3px;
+  background-color: var(--corInstagram);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
 }
 
 .instagram-section .section-title a:hover::after {
-  transform: scaleX(1); /* Revela o sublinhado ao passar o mouse */
-  transform-origin: bottom left; /* Direção da animação ao hover */
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 .instagram-section p {
-  font-size: 1.1em;
-  color: #6c757d; /* Cor do parágrafo de descrição */
-  max-width: 700px; /* Limita a largura do parágrafo para melhor leitura */
+  color: #6c757d;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 3rem !important; /* Espaço maior antes da grade de posts */
+  margin-bottom: 3rem !important;
 }
 
 /* Grade de Posts do Instagram */
 .instagram-grid {
   display: grid;
-  /* Define 3 colunas para telas maiores e responsividade */
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px; /* Espaçamento entre os posts */
-  max-width: 1200px; /* Largura máxima da grade */
-  margin: 0 auto; /* Centraliza a grade */
-  padding: 0 15px; /* Padding nas laterais para telas menores */
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .instagram-post {
   position: relative;
-  overflow: hidden; /* Esconde o que sai dos limites do post */
-  border-radius: 8px; /* Cantos arredondados */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  overflow: hidden;
+  border-radius: var(--tamanhoArredondamentoCard);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .instagram-post:hover {
-  transform: translateY(-5px); /* Efeito de "subir" ao passar o mouse */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Sombra mais intensa */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .instagram-post img {
   width: 100%;
-  height: 250px; /* Altura fixa para as imagens */
-  object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
-  display: block; /* Remove espaço extra abaixo da imagem */
-  transition: transform 0.4s ease-in-out; /* Transição para o zoom */
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease-in-out;
 }
 
 .instagram-post:hover img {
-  transform: scale(1.05); /* Efeito de zoom na imagem ao passar o mouse */
+  transform: scale(1.05);
 }
 
 .instagram-overlay {
@@ -1527,71 +1365,46 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente escuro */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0; /* Esconde o overlay inicialmente */
+  opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
 
 .instagram-post:hover .instagram-overlay {
-  opacity: 1; /* Mostra o overlay ao passar o mouse */
+  opacity: 1;
 }
 
 .instagram-overlay i {
-  color: white; /* Cor do ícone */
-  font-size: 3em; /* Tamanho do ícone do Instagram */
+  color: white;
+  font-size: 3em;
 }
 
 /* Media Queries para responsividade */
 @media (max-width: 768px) {
-  .instagram-section .section-title {
-    font-size: 2em; /* Ajuste para telas menores */
-  }
-
-  .instagram-section p {
-    font-size: 1em;
-    padding: 0 15px; /* Adiciona padding para o parágrafo em telas menores */
-  }
-
   .instagram-grid {
-    /* Em telas menores, mostra 1 ou 2 colunas dependendo do espaço */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
   }
 
   .instagram-post img {
-    height: 200px; /* Altura menor para imagens em telas menores */
+    height: 200px;
   }
 
   .instagram-overlay i {
-    font-size: 2.5em; /* Tamanho menor para o ícone */
+    font-size: 2.5em;
   }
 }
 
 @media (max-width: 576px) {
   .instagram-grid {
-    grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas */
+    grid-template-columns: 1fr;
   }
 }
 
-/* Media Queries Específicas */
-@media (max-width: 768px) {
-  .itinerario-carousel .carousel-caption h5 {
-    font-size: 1.8rem;
-  }
-
-  .itinerario-carousel .carousel-caption p {
-    font-size: 1rem;
-  }
-
-  .comentario-card {
-    padding: 1rem;
-  }
-}
-
-/* --- Seção de Contato --- */
+/* --- Tela de Contato de Contato --- */
 .contact-section {
   padding: 0 20px 20px 20px;
 }
@@ -1603,24 +1416,9 @@ body {
 
 /* Parágrafo de descrição */
 .contact-section p.text-center {
-  font-size: 1.1rem;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 3rem;
-}
-
-.my-5 {
-  margin-top: 0 !important;
-}
-
-/* Estilos para o Card do Formulário */
-.contact-section .card-padrao {
-  height: auto;
-  padding: 30px;
-  border: 2px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-  border-color: var(--corPrimariaRoxoEscuro);
 }
 
 /* Estilos dos Labels do Formulário */
@@ -1654,9 +1452,6 @@ body {
 /* Estilos para o botão de envio */
 .contact-section .btn-azul {
   width: 100%;
-  padding: 0.8rem 1.5rem;
-  font-size: 1.2rem;
-  margin-top: 1rem;
 }
 
 /* Estilos para mensagens de Alerta (Sucesso/Erro) */
@@ -1689,7 +1484,6 @@ body {
   }
 
   .contact-section p.text-center {
-    font-size: 1rem;
     margin-bottom: 2rem;
   }
 
@@ -1746,21 +1540,7 @@ body {
 /* Sobre o Integral */
 /* --- */
 
-.integral-detalhado-section {
-  margin-bottom: 0 !important;
-}
-
-.lead-text {
-  font-size: 1.15rem;
-  line-height: 1.6;
-}
-
-/* Estilo para o CARD PRINCIPAL que envolve os destaques */
-.main-card-integral {
-  border: 2px solid var(--corPrimariaAmareloEscuro);
-}
-
-.integral-detalhado-section h2 {
+.integral-detalhado-section .section-title {
   color: var(--corPrimariaAmarelo) !important;
   text-shadow: 1px 1px var(--corPrimariaAmareloDestaque),
     -1px 1px var(--corPrimariaAmareloDestaque),
@@ -1768,207 +1548,18 @@ body {
     -1px -1px var(--corPrimariaAmareloDestaque);
 }
 
-/* Estilo para os CARDS DE DESTAQUE individuais */
-.integral-detalhado-section .feature-card {
-  background-color: var(--corPrimariaAmareloClaro);
-  border: 1px solid var(--corPrimariaAmareloEscuro);
-  padding: 2rem !important;
-  border-radius: var(--tamanhoArredondamentoCard);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.feature-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-}
-
-.main-card-integral .icon-circle {
-  width: 70px;
-  height: 70px;
-  background-color: var(--corPrimariaAmareloEscuro);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.main-card-integral .icon-circle i {
-  font-size: 2rem;
-}
-
-.feature-title {
-  font-weight: bold;
-  font-size: 1.35rem;
-  margin-bottom: 0.75rem;
-}
-
-.feature-text {
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
 /* Estilo para links inline e links */
 
-.integral-detalhado-section .main-card-integral .lead-text a,
-.integral-detalhado-section .main-card-integral .feature-text a {
+.link-estudo {
   color: var(--corPrimariaAmareloDestaque);
   font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.integral-detalhado-section .main-card-integral .lead-text a:hover,
-.integral-detalhado-section .main-card-integral .feature-text a:hover {
+.link-estudo:hover {
   color: var(--corPrimariaAmareloEscuro);
   text-decoration: underline;
-}
-
-/* Carrossel do integral */
-
-.integralSwiper {
-  width: 100%;
-
-  padding-top: 0;
-  padding-bottom: 0;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-.integral-slide {
-  background-position: center;
-  background-size: cover;
-  min-height: 530px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  border-radius: var(--tamanhoArredondamentoCard);
-  overflow: hidden;
-}
-
-.integral-slide-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}
-
-.integral-slide-content {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  color: white;
-}
-
-.integral-overlay-swiper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-
-  height: 100%;
-  background: rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-
-  z-index: 1;
-}
-
-.integral-content-box-swiper {
-  background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(4px);
-  padding: 2rem 3rem 3rem 3rem;
-  border-radius: var(--tamanhoArredondamentoCard);
-  text-align: center;
-  max-width: 700px;
-  max-height: 80%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  z-index: 2;
-  position: relative;
-
-  p {
-    color: black !important;
-  }
-}
-
-.integral-content-box-swiper h5 {
-  font-family: "Gabriela", cursive;
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: var(--corPrimariaVerde);
-}
-
-.integral-content-box-swiper p {
-  font-family: Roboto, sans-serif;
-  font-size: 1.3rem;
-  line-height: 1.7;
-  margin-bottom: 2rem;
-}
-
-/* --- */
-/* Media Queries */
-/* --- */
-
-@media (max-width: 992px) {
-  .integral-slide {
-    min-height: 450px;
-  }
-  .integral-content-box-swiper {
-    padding: 2rem;
-    max-width: 90%;
-  }
-  .integral-content-box-swiper h5 {
-    font-size: 2.2rem;
-  }
-  .integral-content-box-swiper p {
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .integral-slide {
-    min-height: 350px;
-  }
-  /* Oculta setas em telas menores */
-  .btn-integral-swiper {
-    display: none;
-  }
-  .integral-content-box-swiper {
-    padding: 1.5rem;
-  }
-  .integral-content-box-swiper h5 {
-    font-size: 1.8rem;
-  }
-  .integral-content-box-swiper p {
-    font-size: 1rem;
-  }
-  .swiper-pagination {
-    bottom: 5px !important;
-  }
-}
-
-@media (max-width: 576px) {
-  .integral-slide {
-    min-height: 300px;
-  }
-  .integral-content-box-swiper h5 {
-    font-size: 1.5rem;
-  }
-  .integral-content-box-swiper p {
-    font-size: 0.9rem;
-  }
 }
 
 /* Estilo para links inline e links do FAQ */
@@ -2033,63 +1624,23 @@ body {
   padding: 1.25rem;
 }
 
-/* Responsividade */
-@media (max-width: 767.98px) {
-  .main-card-integral {
-    padding: 2rem !important;
-  }
-  .main-card-integral .icon-circle {
-    width: 60px;
-    height: 60px;
-  }
-  .main-card-integral .icon-circle i {
-    font-size: 1.8rem !important;
-  }
-  .feature-title {
-    font-size: 1.2rem;
-  }
-  .lead-text {
-    font-size: 1rem;
-  }
-}
-
 /* --- */
 /* Estrutura da Escola */
 /* --- */
 
-.estrutura-escola-section {
-  padding-bottom: 3rem;
-}
-
 .estrutura-escola-section .section-title {
   color: var(--corPrimariaRoxoEscuro);
 }
-
-.lead-text {
-  font-size: 1.15rem;
-  line-height: 1.6;
-}
-
-/* Estilo para os CARDS DE DESTAQUE individuais (reaproveitei da parte do integral hehe) */
-.feature-card {
-  background-color: white;
-  border: 1px solid var(--corPrimariaRoxoClaro);
-  border-radius: var(--tamanhoArredondamentoCard) !important;
-  overflow: hidden;
+.estrutura-escola-section .card-padrao {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
 }
 
-.feature-card:hover {
+.estrutura-escola-section .card-padrao:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
 }
 
-.feature-card .card-img-top {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+.estrutura-escola-section .card-roxo .card-img-top {
   height: 250px;
   object-fit: cover;
 }
@@ -2098,118 +1649,27 @@ body {
   border-radius: var(--tamanhoArredondamentoCard) !important;
 }
 
+.estrutura-escola-section .icone-circulo {
+  background-color: var(--corPrimariaRoxoEscuro);
+}
+
 .card-body-custom {
   flex-grow: 1;
   padding: 2.5rem !important;
-}
-
-.icon-circle {
-  width: 80px;
-  height: 80px;
-  background-color: var(--corPrimariaRoxo);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.icon-circle i {
-  color: white;
-  font-size: 3rem;
-}
-
-.feature-title {
-  font-weight: bold;
-  font-size: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.feature-text {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-/* Estilo para links inline */
-.estrutura-escola-section .lead-text a,
-.estrutura-escola-section .feature-text a {
-  color: var(--corPrimariaRoxoEscuro);
-  font-weight: bold;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.estrutura-escola-section .lead-text a:hover,
-.estrutura-escola-section .feature-text a:hover {
-  color: var(--corPrimariaRoxoClaro);
-  text-decoration: underline;
-}
-
-/* Responsividade */
-@media (max-width: 767.98px) {
-  .lead-text {
-    font-size: 1rem;
-  }
-  .feature-card .card-body-custom {
-    padding: 2rem !important;
-  }
-  .feature-card .card-img-top {
-    height: 180px;
-  }
-  .icon-circle {
-    width: 70px;
-    height: 70px;
-  }
-  .icon-circle i {
-    font-size: 2.2rem !important;
-  }
-  .feature-title {
-    font-size: 1.3rem;
-  }
-  .feature-text {
-    font-size: 0.9rem;
-  }
 }
 
 /* --- */
 /* Detalhes Itinerários */
 /* --- */
 
-.itinerario-detalhe-section .btn-verde {
-  font-size: larger;
-  text-align: center;
+.itinerario-detalhe-section {
+  .btn {
+    margin: 5px !important;
+  }
 }
 
-/* Título Principal da Página */
 .itinerario-detalhe-section .section-title {
   color: var(--corPrimariaVerdeEscuro);
-}
-
-/* Card Principal de Conteúdo (para Descrição Curta e Completa) */
-.main-content-card {
-  background-color: #ffffff;
-  border-radius: var(--tamanhoArredondamentoCard);
-  border: 2px solid var(--corPrimariaVerdeClaro);
-
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  padding: 3.5rem;
-  margin-bottom: 4rem;
-}
-
-/* Título e Texto dentro do Card Principal */
-.main-content-card .card-title-itinerario {
-  font-size: 2.2rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.main-content-card .card-text-itinerario {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  text-align: justify;
-  margin-bottom: 0;
 }
 
 .imagem-destaque-card {
@@ -2233,31 +1693,7 @@ body {
   border: 2px solid var(--corPrimariaVerdeClaro);
 }
 
-/* Subtítulos de Seção (como "Projetos e Atividades") */
-.section-subtitle-detalhe {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: var(--corPrimariaVerdeEscuro);
-  text-align: center;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-  position: relative;
-  padding-bottom: 0.75rem;
-}
-
-.section-subtitle-detalhe::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -10px;
-  width: 100px;
-  height: 5px;
-  background-color: var(--corPrimariaVerde);
-  border-radius: 3px;
-}
-
-/* Galeria de Projetos (Cards) - FLEXBOX para 3 colunas e centralização */
+/* Galeria de Projetos - FLEXBOX para 3 colunas e centralização */
 .projetos-grid-wrapper {
   display: flex;
   justify-content: center;
@@ -2324,12 +1760,6 @@ body {
   .main-content-card {
     padding: 2.5rem;
   }
-  .main-content-card .card-title-itinerario {
-    font-size: 1.8rem;
-  }
-  .main-content-card .card-text-itinerario {
-    font-size: 1rem;
-  }
   .imagem-destaque-card img {
     max-height: 400px;
   }
@@ -2349,9 +1779,6 @@ body {
   .main-content-card {
     padding: 2rem;
     margin-bottom: 3rem;
-  }
-  .main-content-card .card-title-itinerario {
-    font-size: 1.6rem;
   }
   .imagem-destaque-card img {
     max-height: 300px;
@@ -2382,15 +1809,9 @@ body {
   .main-content-card {
     padding: 1.5rem;
   }
-  .main-content-card .card-title-itinerario {
-    font-size: 1.4rem;
-  }
   .imagem-destaque-card img {
     height: 220px;
     max-height: 220px;
-  }
-  .section-subtitle-detalhe {
-    font-size: 1.5rem;
   }
   .project-card img {
     height: 150px;
@@ -2406,7 +1827,7 @@ body {
 }
 
 .itinerarios-listagem-section .section-title {
-  color: var(--corPrimariaVerde);
+  color: var(--corPrimariaVerdeEscuro);
 }
 
 /* Estilos para os Botões de Filtro */
@@ -2422,7 +1843,7 @@ body {
   width: 100%;
 }
 
-/* NOVO ESTILO: Botão redondo "Mostrar mais/menos" */
+/* Botão "Mostrar mais/menos" */
 .ver-mais-categorias {
   display: flex;
   align-items: center;
@@ -2440,10 +1861,8 @@ body {
 }
 
 .ver-mais-categorias:hover {
-  background-color: var(
-    --corSecundariaAzulCamisaEscuro
-  ); /* Cor mais escura no hover */
-  transform: translateY(-2px); /* Efeito sutil de levantar */
+  background-color: var(--corSecundariaAzulCamisaEscuro);
+  transform: translateY(-2px);
 }
 
 .form-select {
@@ -2453,26 +1872,25 @@ body {
   border: 2px solid #ced4da;
   border-radius: var(--tamanhoArredondamentoBotao);
   background-color: white;
-  appearance: none; /* Remove estilo padrão do navegador (para personalização) */
+  appearance: none;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); /* Seta para baixo customizada */
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 16px 12px;
   cursor: pointer;
-  margin-top: 10px; /* Para dar um espacinho em cima */
+  margin-top: 10px;
 }
 
 /* Estilo para dropdown ativo (ex: cor de borda) */
 .form-select:focus {
-  border-color: var(--corPrimariaRoxo); /* Exemplo */
-  box-shadow: 0 0 0 0.25rem rgba(103, 58, 183, 0.25); /* Exemplo */
+  border-color: var(--corPrimariaRoxo);
+  box-shadow: 0 0 0 0.25rem rgba(103, 58, 183, 0.25);
   outline: 0;
 }
 
-/* Se você quiser o mesmo estilo de 'btn-verde' no select */
 .form-select.btn-verde {
-  background-color: #e6ffe6; /* Exemplo de um verde claro, ou a cor do seu btn-verde */
-  color: #007b5e; /* Exemplo da cor do texto do seu btn-verde */
+  background-color: #e6ffe6;
+  color: #007b5e;
   border-color: #007b5e;
 }
 
@@ -2534,27 +1952,8 @@ body {
   align-items: center;
 }
 
-.itinerario-item-card .icon-circle {
+.itinerario-item-card .icone-circulo {
   background-color: var(--corPrimariaVerde);
-  color: white;
-  font-size: 1.5rem !important;
-  line-height: 50px !important;
-  margin-bottom: 0.75rem !important;
-}
-
-.itinerario-item-card .itinerario-card-title {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
-}
-
-.itinerario-item-card .itinerario-card-description {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  text-align: center;
-  flex-grow: 1;
-  margin-bottom: 0;
 }
 
 .itinerario-item-card:hover {
@@ -2571,29 +1970,15 @@ body {
 /* --- Responsividade para a página de listagem --- */
 
 @media (max-width: 991.98px) {
-  .lead-text-listagem {
-    font-size: 1.15rem;
-  }
-
   .itinerario-item-card .card-img-top {
     height: 180px;
   }
   .itinerario-item-card .card-body-custom {
     padding: 1rem;
   }
-  .itinerario-item-card .itinerario-card-title {
-    font-size: 1.2rem;
-  }
-  .itinerario-item-card .itinerario-card-description {
-    font-size: 0.85rem;
-  }
 }
 
 @media (max-width: 767.98px) {
-  .lead-text-listagem {
-    font-size: 1.1rem;
-    margin-bottom: 2.5rem;
-  }
   .filter-controls {
     gap: 0.75rem;
   }
@@ -2604,7 +1989,7 @@ body {
   .itinerario-item-card .card-img-top {
     height: 150px;
   }
-  .itinerario-item-card .icon-circle {
+  .itinerario-item-card .icone-circulo {
     width: 45px;
     height: 45px;
     line-height: 45px;
@@ -2613,9 +1998,6 @@ body {
 }
 
 @media (max-width: 575.98px) {
-  .lead-text-listagem {
-    font-size: 1rem;
-  }
   .filter-controls {
     flex-direction: column;
     align-items: center;
@@ -2629,12 +2011,6 @@ body {
   }
   .itinerario-item-card .card-body-custom {
     padding: 0.75rem;
-  }
-  .itinerario-item-card .itinerario-card-title {
-    font-size: 1.1rem;
-  }
-  .itinerario-item-card .itinerario-card-description {
-    font-size: 0.8rem;
   }
 }
 
@@ -2915,38 +2291,9 @@ body {
   font-size: 0.95rem;
 }
 
-/* Linha horizontal personalizada para divisões */
-.custom-hr {
-  border: 0;
-  height: 2px;
-  background-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0),
-    var(--corPrimariaAmareloEscuro),
-    rgba(0, 0, 0, 0)
-  );
-  opacity: 0.5; /* Suaviza a cor */
-}
-
-/* Ajustes para os cards de valores (reutilizando .feature-card) */
-.feature-card {
-  background-color: white;
-  border: 2px solid var(--corPrimariaRoxo);
-  padding: 1.5rem;
-  border-radius: var(--tamanhoArredondamentoCard);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.feature-card:hover {
+.card-padrao .card-amarelo .flex-fill .p-4:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.feature-card .icon-circle {
-  font-size: 2.5rem;
-  color: var(--corPrimariaAmareloEscuro);
-  margin-bottom: 1rem;
 }
 
 /* Responsividade para a página de História */

@@ -24,12 +24,12 @@ if (!$itinerario_selecionado) {
 }
 ?>
 
-<section class="itinerario-detalhe-section container my-5">
+<section class="itinerario-detalhe-section container mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-10 col-md-12">
             <h2 class="section-title"><?= $itinerario_selecionado['titulo'] ?></h2>
 
-            <div class="main-content-card">
+            <div class="card-padrao card-verde mb-5">
                 <p class="card-text-itinerario text-center mb-3">
                     <?= $itinerario_selecionado['descricao'] ?>
                 </p>
@@ -47,7 +47,7 @@ if (!$itinerario_selecionado) {
             <?php endif; ?>
 
             <?php if (!empty($itinerario_selecionado['projetos_imagens'])) : ?>
-            <h3 class="section-subtitle-detalhe">Projetos e Atividades</h3>
+            <h3 class="section-title">Projetos e Atividades</h3>
             <div class="projetos-grid-wrapper">
                 <div class="projetos-grid">
                     <?php foreach ($itinerario_selecionado['projetos_imagens'] as $projeto_img) : ?>
@@ -66,7 +66,9 @@ if (!$itinerario_selecionado) {
                 <a href="<?= $todos_itinerarios_url ?>" class="btn btn-verde">
                     Veja mais Itinerários
                 </a>
+                <a href="estrutura" class="btn btn-roxo btn-lg">Explore Nossa Estrutura</a>
             </div>
         </div>
     </div>
+
 </section>

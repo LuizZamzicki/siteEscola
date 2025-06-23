@@ -29,7 +29,7 @@ $base_url_categoria = strtok($_SERVER["REQUEST_URI"], '?');
 
 ?>
 
-<section class="itinerarios-listagem-section container my-5">
+<section class="itinerarios-listagem-section container mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-10 col-md-12">
             <h2 class="section-title">Explore Nossos Itinerários Formativos</h2>
@@ -94,7 +94,7 @@ $base_url_categoria = strtok($_SERVER["REQUEST_URI"], '?');
                                 alt="<?= $itinerario['titulo'] ?>">
                             <div class="card-body-custom">
                                 <?php if (!empty($itinerario['icone'])): ?>
-                                <div class="icon-circle mb-3 mx-auto">
+                                <div class="icone-circulo mb-3 mx-auto">
                                     <i class="<?= $itinerario['icone'] ?>"></i>
                                 </div>
                                 <?php endif; ?>
@@ -107,6 +107,18 @@ $base_url_categoria = strtok($_SERVER["REQUEST_URI"], '?');
                     <?php endif; ?>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+<section class="chamada-para-contato py-5">
+    <div class="card-padrao card-roxo text-center">
+        <h2 class="mb-4">Conheça os Espaços que Tornam o Aprendizado no Maffei Ainda Mais Completo</h2>
+        <p class="mb-5">
+            Salas bem equipadas, laboratórios modernos, biblioteca, áreas de convivência e muito mais: nossa estrutura
+            foi pensada para apoiar cada etapa do desenvolvimento dos alunos.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="estrutura" class="btn btn-roxo btn-lg">Explore Nossa Estrutura</a>
         </div>
     </div>
 </section>

@@ -1,8 +1,10 @@
-document.addEventListener("DOMContentLoaded", function () {
-  var integralSwiperElement = document.querySelector(".integralSwiper");
+//Itinerários
 
-  if (integralSwiperElement) {
-    var swiper = new Swiper(".integralSwiper", {
+document.addEventListener("DOMContentLoaded", function () {
+  var itinerariosSwiperElement = document.querySelector(".itinerariosSwiper");
+
+  if (itinerariosSwiperElement) {
+    var swiper = new Swiper(".itinerariosSwiper", {
       effect: "slide",
       grabCursor: true,
       centeredSlides: true,
@@ -33,6 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   } else {
-    console.warn("Elemento .integralSwiper não encontrado na página.");
+    console.warn("Elemento .itinerariosSwiper não encontrado na página.");
   }
 });

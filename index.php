@@ -11,8 +11,7 @@
         return ($page_name === $current_page) ? 'active' : '';
     }
 
-    // Função auxiliar para verificar se um link dropdown tem um item ativo
-    
+    // Função auxiliar para verificar se um link dropdown tem um item ativo    
     function is_dropdown_active($dropdown_pages, $current_page) {
         foreach ($dropdown_pages as $page) {
             if ($page === $current_page) {
@@ -36,13 +35,11 @@
     <link rel="icon" href="imagens/logo.png" type="image/png">
     <link rel="shortcut icon" href="imagens/logo.png" type="image/png">
     <link rel=" stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gabriela&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -51,7 +48,7 @@
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="home">
                 <img src="imagens/logo.png" alt="Logo Maffei" class="navbar-logo me-2">
-                <span class="navbar-title">Maffei</span>
+                <span class="navbar-title">João Maffei Rosa</span>
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -67,18 +64,23 @@
                             href="home">Início</a>
                     </li>
                     <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle <?= is_dropdown_active(['integral', 'sobre', 'historia', 'estrutura'], $pagina_atual) ?>"
+                        <a class="nav-link dropdown-toggle <?= is_dropdown_active(['detalhe_itinerario', 'listar_itinerarios', 'estrutura', 'nossa_equipe', 'historia'], $pagina_atual) ?>"
                             href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             A escola
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="listar_itinerarios">Itinerários</a></li>
+                            <li><a class="dropdown-item <?= is_dropdown_active(['detalhe_itinerario', 'listar_itinerarios'], $pagina_atual) ?>"
+                                    href="listar_itinerarios">Itinerários</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="estrutura">Estrutura</a></li>
-                            <li><a class="dropdown-item" href="nossa_equipe">Nossa Equipe</a></li>
-                            <li><a class="dropdown-item" href="historia">Nossa história</a></li>
+                            <li><a class="dropdown-item <?=is_active("estrutura", $pagina_atual)?>"
+                                    href="estrutura">Estrutura</a></li>
+                            <li><a class="dropdown-item <?=is_active("nossa_equipe", $pagina_atual)?>"
+                                    href="nossa_equipe">Nossa
+                                    Equipe</a></li>
+                            <li><a class="dropdown-item <?=is_active("historia", $pagina_atual)?>" href="historia">Nossa
+                                    história</a></li>
 
 
                         </ul>
@@ -129,7 +131,7 @@
                     class="col-lg-3 col-md-3 text-center text-md-start mb-3 mb-md-0 d-flex flex-column align-items-center align-items-md-center">
 
                     <div class="enderecoInfos">
-                        <i class="bi bi-geo-alt-fill footer-icon me-2">
+                        <i class="fa-solid fa-location-dot footer-icon me-2">
                         </i>
                         <address class="endereco mb-0 footer-text">
                             <p
@@ -148,12 +150,12 @@
                     <div class="contatoInfos">
                         <p
                             class="mb-0 footer-text d-flex align-items-center justify-content-center justify-content-md-center">
-                            <i class="bi bi-telephone-fill footer-icon me-2"></i>
+                            <i class="fa-solid fa-phone-alt footer-icon me-2"></i>
                             (44) 3569-1318
                         </p>
                         <p
                             class="mb-0 footer-text d-flex align-items-center justify-content-center justify-content-md-center">
-                            <i class="bi bi-envelope-fill footer-icon me-2"></i>
+                            <i class="fa-solid fa-envelope footer-icon me-2"></i>
                             jrnjoaorosa@escola.pr.gov.br
                         </p>
                     </div>
@@ -168,20 +170,20 @@
                                     <a href="https://www.instagram.com/colegio_maffei/" target="_blank"
                                         class="social-icon instagram-icon" data-bs-toggle="tooltip"
                                         data-bs-placement="top" title="Instagram">
-                                        <i class="bi bi-instagram"></i>
+                                        <i class="fa-brands fa-instagram"></i>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a href="https://www.facebook.com/profile.php?id=212544995436310" target="_blank"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook"
                                         class="social-icon facebook-icon">
-                                        <i class="bi bi-facebook"></i>
+                                        <i class="fa-brands fa-facebook-f"></i>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a href="https://x.com/maffeirosa" target="_blank" class="social-icon twitter-icon"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter">
-                                        <i class="bi bi-twitter-x"></i>
+                                        <i class="fa-brands fa-x-twitter"></i>
                                     </a>
                                 </li>
                             </ul>
