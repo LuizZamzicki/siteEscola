@@ -56,9 +56,9 @@ if (empty($nome) || empty($email) || empty($telefone) || empty($assunto) || empt
 echo json_encode(['success' => false, 'message' => 'Por favor, preencha todos os campos obrigatórios.']);
 exit;
 }
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-echo json_encode(['success' => false, 'message' => 'O endereço de e-mail informado é inválido.']);
-exit;
+if (!preg_match("/.+\@.+\..+/", $email)) {
+    echo json_encode(['success' => false, 'message' => 'O endereço de e-mail informado é inválido. Ele deve conter um final válido (ex: exemplo@gmail.com).']);
+    exit;
 }
 
 // Envio
