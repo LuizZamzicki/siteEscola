@@ -5,10 +5,9 @@ require_once __DIR__ . '/../objetos/itinerarios.php';
 
 
 $contato = '/siteEscola/contato'; 
-$link_desempenho_integral_pr = 'https://www.aen.pr.gov.br/Noticia/Escolas-estaduais-em-tempo-integral-do-Parana-cresceram-acima-da-media-no-Ideb';
+$link_desempenho_integral_pr = 'https://www.parana.pr.gov.br/aen/Noticia/Escolas-estaduais-em-tempo-integral-do-Parana-cresceram-acima-da-media-no-Ideb';
 
 ?>
-
 
 <section class="integral-detalhado-section mb-5">
 
@@ -92,7 +91,7 @@ $link_desempenho_integral_pr = 'https://www.aen.pr.gov.br/Noticia/Escolas-estadu
 <section class="faq-section mb-5">
 
     <h2 class="section-title">Dúvidas Frequentes sobre o Ensino Integral</h2>
-    <p class="text-center mb-5">
+    <p class="subtitulo-secao text-center mb-5">
         Confira abaixo as perguntas mais comuns de pais e alunos.<br>
         Se sua dúvida não for respondida aqui, sinta-se à vontade para entrar em <a href="<?= $contato ?>">contato
             conosco!</a>
@@ -125,4 +124,5 @@ $link_desempenho_integral_pr = 'https://www.aen.pr.gov.br/Noticia/Escolas-estadu
         </div>
 
     </div>
+
 </section>

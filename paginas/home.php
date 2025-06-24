@@ -11,17 +11,15 @@ $instagram_posts = [
     ['imagem' => 'imagens/postInsta/post3.webp', 'link' => 'https://www.instagram.com/p/DLKgmKtuOjh/?img_index=1'],
     ['imagem' => 'imagens/postInsta/post4.jpg', 'link' => 'https://www.instagram.com/p/DK5sg6mMwXk/'],
     ['imagem' => 'imagens/postInsta/post5.jpg', 'link' => 'https://www.instagram.com/p/DKw6jNgJYDV/'],
-    ['imagem' => 'imagens/postInsta/post6.jpg', 'link' => 'https://www.instagram.com/p/DKk-XBbJBJR/'],
-    ['imagem' => 'imagens/postInsta/post7.jpg', 'link' => 'https://www.instagram.com/p/DKfxdMrRhoO6a5Nl-L-AzbOhOLwZAPli_pEz7M0/'],
     ['imagem' => 'imagens/postInsta/post8.webp', 'link' => 'https://www.instagram.com/p/DKdWsDPJx6e/?img_index=1']
 ];
 
 ?>
 
-<section class="principal-section mb-5">
+<section class="principal-section pb-5">
 
     <h2 class="section-title">O colégio João Maffei Rosa</h2>
-    <p class="text-center mb-5">
+    <p class="subtitulo-secao text-center mb-5">
         No Colégio Maffei, valorizamos um ambiente de aprendizado inovador e acolhedor.<br>
         Com foco no desenvolvimento integral, preparamos nossos alunos para os desafios do futuro. </p>
 
@@ -47,7 +45,7 @@ $instagram_posts = [
         </div>
     </div>
 
-    <div class="card-padrao card-amarelo p-4 mb-5">
+    <div class="card-padrao card-amarelo p-4 pb-5">
         <h3 class="mb-5"><strong>As 3 Perguntas Mais Frequentes sobre o Ensino
                 Integral</strong></h3>
         <div class="row justify-content-center g-4">
@@ -57,9 +55,8 @@ $instagram_posts = [
                         <i class="fa-solid fa-clock"></i>
                     </div>
                     <h4>Horário do Integral</h4>
-                    <p>Nosso programa funciona das <strong>07:45 às 16:00</strong>,
-                        oferecendo
-                        um dia completo de atividades e aprendizado.</p>
+                    <p>Nossas aulas vão das <strong>07:40 às 16:45,</strong>
+                        oferecendo um dia completo de atividades e aprendizado.</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 d-flex">
@@ -68,8 +65,9 @@ $instagram_posts = [
                         <i class="fa-solid fa-utensils"></i>
                     </div>
                     <h4>Refeições</h4>
-                    <p><strong>Sim, a escola oferece todas as refeições necessárias</strong>
-                        durante o período integral, incluindo almoço e lanches balanceados.</p>
+                    <p><strong>São 2 intervalos de 20 minutos (manhã e tarde) e 1 hora de almoço,</strong> incluindo
+                        almoço e
+                        lanches balanceados.</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 d-flex">
@@ -77,22 +75,23 @@ $instagram_posts = [
                     <div class="icone-circulo mb-3 mx-auto">
                         <i class="fa-solid fa-lightbulb"></i>
                     </div>
-                    <h4>Currículo Ampliado</h4>
+                    <h4>Grade Ampliada</h4>
                     <p>Inclui oficinas práticas e dinâmicas, projetos de vida, apoio pedagógico e trilhas de
                         aprendizagem para desenvolvimento integral.</p>
                 </div>
             </div>
         </div>
-        <div class="mt-5">
+        <div class="pt-5">
             <a href="integral" class="btn btn-amarelo">Explore nosso Ensino Integral</a>
         </div>
     </div>
 </section>
 
 
-<div class="integral-content mb-5">
+<div class="integral-content pb-5">
     <h2 class="section-title">Nossos Itinerários Formativos</h2>
-    <p class="text-center mb-5 ">No Colégio João Maffei Rosa, o ensino integral oferece caminhos inovadores
+    <p class="subtitulo-secao text-center mb-5 ">No Colégio João Maffei Rosa, o ensino integral oferece caminhos
+        inovadores
         para o seu desenvolvimento. Conheça nossos itinerários:</p>
 
     <div class="swiper itinerariosSwiper">
@@ -122,7 +121,7 @@ $instagram_posts = [
     </div>
 </div>
 
-<section class="comentarios-section mb-5">
+<section class="comentarios-section pb-5">
     <h2 class="section-title mb-5">O que nossos alunos dizem sobre nós</h2>
     <div class="swiper comentariosSwiper">
         <div class="swiper-pagination"></div>
@@ -151,11 +150,12 @@ $instagram_posts = [
 
 </section>
 
-<section class="instagram-section mb-5">
+<section class="instagram-section pb-5">
     <h2 class="section-title">Fique por dentro das novidades no
         <a href="https://www.instagram.com/colegio_maffei/" target="_blank" data-text="Instagram">Instagram</a>
     </h2>
-    <p class="text-center mb-5">Acompanhe nosso dia a dia, eventos e projetos através das nossas últimas
+    <p class="subtitulo-secao text-center mb-5">Acompanhe nosso dia a dia, eventos e projetos através das nossas
+        últimas
         postagens:</p>
 
     <div class="instagram-grid">
@@ -170,4 +170,5 @@ $instagram_posts = [
         </div>
         <?php endforeach; ?>
     </div>
+
 </section>

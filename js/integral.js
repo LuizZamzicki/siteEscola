@@ -1,4 +1,4 @@
-//Itinerários
+//Carrossel Itinerários
 
 document.addEventListener("DOMContentLoaded", function () {
   var itinerariosSwiperElement = document.querySelector(".itinerariosSwiper");

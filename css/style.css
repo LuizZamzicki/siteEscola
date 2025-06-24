@@ -66,6 +66,13 @@ body {
   margin-bottom: 1rem;
 }
 
+.subtitulo-secao {
+  color: #6c757d;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem !important;
+}
+
 @media (max-width: 1050px) {
   .navbar-title {
     display: none;
@@ -81,7 +88,7 @@ body {
   }
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
   .section-title {
     font-size: 2em;
   }
@@ -224,14 +231,12 @@ p {
   transform: translateY(-100%);
 }
 
-/* Classe para mostrar a navbar */
 .custom-navbar-bg.navbar-show {
-  transform: translateY(0); /* Faz a navbar aparecer */
+  transform: translateY(0);
 }
 
-/* Classe para esconder a navbar */
 .custom-navbar-bg.navbar-hide {
-  transform: translateY(-100%); /* Esconde a navbar */
+  transform: translateY(-100%);
 }
 
 .custom-navbar-bg {
@@ -287,13 +292,12 @@ p {
   transform: translateY(-2px);
 }
 
-/* Sobrescrita de cor para hover/active */
 .nav-link:hover,
 .nav-link.active {
   color: var(--corPrimariaAmarelo) !important;
 }
 
-/* Esconde a seta padrão do Bootstrap */
+/* Esconde a seta padrão do Bootstrap (Arrumar aqui depois, a linha tá ficando grossa se deixo aparecendo)*/
 .dropdown-toggle::after {
   border: none;
 }
@@ -303,6 +307,28 @@ p {
   background-color: var(--corSecundariaAzulCamisaEscuro);
   border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  pointer-events: none;
+  display: block;
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-menu .dropdown-item {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.dropdown-menu.show .dropdown-item {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .dropdown-item {
@@ -324,9 +350,6 @@ p {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Estilo para o botão "Integral" */
-
-/* MEDIA QUERIES para responsividade da Navbar */
 @media (max-width: 991.98px) {
   .navbar-nav {
     margin-top: 1rem;
@@ -338,37 +361,51 @@ p {
     text-align: left;
   }
 
-  /*aqui*/
-
+  /* ESTILOS E ANIMAÇÃO PARA DROPDOWN NO MOBILE */
   .dropdown-menu {
     position: static;
     width: 100%;
     border-radius: 0;
+    box-shadow: none;
+    display: block !important;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+    pointer-events: none;
   }
-}
 
-.centro {
-  flex-grow: 1;
+  .dropdown-menu.show {
+    max-height: 500px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .dropdown-menu .dropdown-item {
+    opacity: 1;
+    transform: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 }
 
 /*Estilo do Main*/
 .container {
-  flex-grow: 1; /* Permite que o conteúdo principal ocupe todo o espaço disponível */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box; /* Inclui padding na largura/altura total */
-  width: 100%; /* Garante que o wrapper ocupe a largura total */
+  box-sizing: border-box;
+  width: 100%;
 }
 
-/* CARD STILO DE CARD */
+/* CARDS */
 .card-padrao {
-  background-color: #fff;
+  background-color: white;
   border-radius: var(--tamanhoArredondamentoCard);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   padding: 30px;
   text-align: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: column !important;
   justify-content: center;
   align-items: center;
 }
@@ -711,7 +748,7 @@ p {
     margin-right: 40px;
   }
 
-  /* Responsividade em telas menores */
+  /* Responsividade */
   @media (max-width: 768px) {
     flex-direction: column-reverse;
     width: 95%;
@@ -789,14 +826,13 @@ p {
   line-height: 1.5;
 }
 
-/* Responsividade geral */
+/* Responsividade */
 @media (max-width: 767.98px) {
   .icone-circulo {
     width: 60px;
     height: 60px;
   }
 
-  /* Responsividade específica para o card da imagem */
   .principal-section .card-padrao {
     flex-direction: column;
     text-align: center;
@@ -843,7 +879,7 @@ p {
 .itinerario-slide {
   background-position: center;
   background-size: cover;
-  min-height: 530px;
+  min-height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -878,13 +914,11 @@ p {
   top: 0;
   left: 0;
   width: 100%;
-
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-grow: 1;
   align-items: center;
-
   z-index: 1;
 }
 
@@ -909,6 +943,31 @@ p {
   }
 }
 
+@media (max-width: 576px) {
+  .itinerario-content-box-swiper {
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    height: 60%;
+
+    p {
+      display: none;
+    }
+
+    .btn {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 0;
+      width: calc(100% - 40px);
+      max-width: 250px;
+
+      padding: 0.8rem 1.2rem;
+      font-size: 0.95rem;
+    }
+  }
+}
+
 /* Estilos para as setas de navegação do Swiper */
 .btn-swipper-itinerario {
   .swiper-button-next,
@@ -923,7 +982,7 @@ p {
     content: "" !important;
   }
 
-  /* --- Estilos para as Setas do Carrossel de Comentários --- */
+  /* Estilos para as Setas do Carrossel de Comentários */
 
   .swiper-button-next,
   .swiper-button-prev {
@@ -952,7 +1011,6 @@ p {
     right: 25px;
   }
 
-  /* Estilo para o ícone Font Awesome dentro do botão */
   .swiper-button-next i,
   .swiper-button-prev i {
     font-size: 2.8rem;
@@ -962,7 +1020,6 @@ p {
     display: inline-block;
   }
 
-  /* Efeito ao passar o mouse sobre o botão */
   .swiper-button-next:hover,
   .swiper-button-prev:hover {
     background-color: var(--corPrimariaVerde);
@@ -970,14 +1027,13 @@ p {
     transform: translateY(-50%) scale(1.05);
   }
 
-  /* Efeito no ícone ao passar o mouse sobre o botão */
   .swiper-button-next:hover i,
   .swiper-button-prev:hover i {
     color: var(--corPrimariaVerdeClaro);
     transform: scale(1.1);
   }
 
-  /* Estilos para a paginação (bullets) do Swiper */
+  /* Estilos dos bullets do Swiper */
   .swiper-pagination-bullet {
     background-color: rgba(59, 34, 105, 0.5);
     opacity: 1;
@@ -1010,7 +1066,7 @@ p {
   .itinerario-slide {
     min-height: 350px;
   }
-  /* Oculta setas em telas menores */
+
   .swiper-button-next {
     display: none !important;
   }
@@ -1097,7 +1153,7 @@ p {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* --- Conteúdo interno do Card de Comentário --- */
+/* --- Conteúdo do Card de Comentário --- */
 
 .comentario-texto {
   line-height: 1.6;
@@ -1161,7 +1217,7 @@ p {
     content: "" !important;
   }
 
-  /* --- Estilos para as Setas do Carrossel de Comentários (Tons de Roxo) --- */
+  /* --- Estilos para as Setas do Carrossel de Comentários --- */
 
   .swiper-button-next,
   .swiper-button-prev {
@@ -1182,7 +1238,6 @@ p {
       transform 0.3s ease;
   }
 
-  /* Posicionamento específico para as setas dos comentários */
   .swiper-button-prev {
     left: 25px;
   }
@@ -1191,7 +1246,6 @@ p {
     right: 25px;
   }
 
-  /* Estilo para o ícone Font Awesome dentro do botão */
   .swiper-button-next i,
   .swiper-button-prev i {
     font-size: 2.8rem;
@@ -1201,7 +1255,6 @@ p {
     display: inline-block;
   }
 
-  /* Efeito ao passar o mouse sobre o botão */
   .swiper-button-next:hover,
   .swiper-button-prev:hover {
     background-color: var(--corPrimariaRoxo);
@@ -1209,7 +1262,6 @@ p {
     transform: translateY(-50%) scale(1.05);
   }
 
-  /* Efeito no ícone ao passar o mouse sobre o botão */
   .swiper-button-next:hover i,
   .swiper-button-prev:hover i {
     color: var(--corPrimariaRoxoClaro);
@@ -1258,7 +1310,6 @@ p {
   color: var(--corPrimariaRoxoEscuro);
 }
 
-/* Estilos para o link "Instagram" */
 .instagram-section .section-title a {
   background-image: var(--instagram-gradient);
   background-clip: text;
@@ -1272,7 +1323,6 @@ p {
   z-index: 0;
 }
 
-/* Pseudo-elemento ::before: Cria a "máscara" de cor sólida sobre o texto com gradiente */
 .instagram-section .section-title a::before {
   content: attr(data-text);
   position: absolute;
@@ -1316,27 +1366,19 @@ p {
   transform-origin: bottom left;
 }
 
-.instagram-section p {
-  color: #6c757d;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 3rem !important;
-}
-
 /* Grade de Posts do Instagram */
 .instagram-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px;
 }
 
 .instagram-post {
   position: relative;
   overflow: hidden;
+  border: 2px solid black;
   border-radius: var(--tamanhoArredondamentoCard);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -1382,7 +1424,7 @@ p {
   font-size: 3em;
 }
 
-/* Media Queries para responsividade */
+/* responsividade */
 @media (max-width: 768px) {
   .instagram-grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1409,12 +1451,10 @@ p {
   padding: 0 20px 20px 20px;
 }
 
-/* Título da Seção */
 .contact-section .section-title {
   color: var(--corPrimariaRoxoEscuro);
 }
 
-/* Parágrafo de descrição */
 .contact-section p.text-center {
   max-width: 800px;
   margin-left: auto;
@@ -1429,7 +1469,6 @@ p {
   font-size: 1rem;
 }
 
-/* Estilos dos Campos de Input e Textarea */
 .contact-section .form-control,
 .contact-section .form-select {
   border: 1px solid var(--corSecundariaAzulCamisaClaro);
@@ -1449,12 +1488,10 @@ p {
   outline: none;
 }
 
-/* Estilos para o botão de envio */
 .contact-section .btn-azul {
   width: 100%;
 }
 
-/* Estilos para mensagens de Alerta (Sucesso/Erro) */
 .alert {
   padding: 1rem;
   margin-top: 1.5rem;
@@ -1477,7 +1514,7 @@ p {
   border-color: #f5c6cb;
 }
 
-/* --- Media Queries para Responsividade --- */
+/* --- Responsividade --- */
 @media (max-width: 768px) {
   .contact-section {
     padding: 40px 15px;
@@ -1673,7 +1710,7 @@ p {
 }
 
 .imagem-destaque-card {
-  background-color: #ffffff;
+  background-color: white;
   border-radius: var(--tamanhoArredondamentoCard);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -1714,7 +1751,7 @@ p {
   border: 2px solid var(--corPrimariaVerdeClaro);
   border-radius: var(--tamanhoArredondamentoCard);
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: white;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
@@ -1733,7 +1770,7 @@ p {
 
 .project-card img {
   width: 100%;
-  height: 250px;
+  height: 250px !important;
   object-fit: cover;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
@@ -1748,14 +1785,7 @@ p {
   min-height: 80px;
 }
 
-.project-caption {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: 0;
-}
-
-/* --- Responsividade para a página de detalhes --- */
+/* Responsividade para a página de detalhes  */
 @media (max-width: 991.98px) {
   .main-content-card {
     padding: 2.5rem;
@@ -1769,9 +1799,6 @@ p {
   }
   .project-card {
     flex-basis: calc(50% - 1rem);
-  }
-  .project-card img {
-    height: 200px;
   }
 }
 
@@ -1794,14 +1821,8 @@ p {
     flex-basis: 100%;
     max-width: unset;
   }
-  .project-card img {
-    height: 180px;
-  }
   .card-body-custom {
     padding: 1.25rem;
-  }
-  .project-caption {
-    font-size: 0.9rem;
   }
 }
 
@@ -1812,9 +1833,6 @@ p {
   .imagem-destaque-card img {
     height: 220px;
     max-height: 220px;
-  }
-  .project-card img {
-    height: 150px;
   }
 }
 
@@ -1872,8 +1890,8 @@ p {
   border: 2px solid #ced4da;
   border-radius: var(--tamanhoArredondamentoBotao);
   background-color: white;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); /* Seta para baixo customizada */
+  appearance: none; /* Seta para baixo customizada          VVVV */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 16px 12px;
@@ -1881,7 +1899,7 @@ p {
   margin-top: 10px;
 }
 
-/* Estilo para dropdown ativo (ex: cor de borda) */
+/* Estilo para dropdown ativo */
 .form-select:focus {
   border-color: var(--corPrimariaRoxo);
   box-shadow: 0 0 0 0.25rem rgba(103, 58, 183, 0.25);
@@ -2070,7 +2088,7 @@ p {
 .funcionario-card {
   border: 2px solid var(--corPrimariaVerdeClaro);
   border-radius: var(--tamanhoArredondamentoCard);
-  background-color: #ffffff;
+  background-color: white;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
@@ -2266,8 +2284,8 @@ p {
 }
 
 .historia-timeline .timeline-item:hover {
-  transform: translateY(-5px); /* Efeito flutuante ao passar o mouse */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .historia-timeline .timeline-year {
