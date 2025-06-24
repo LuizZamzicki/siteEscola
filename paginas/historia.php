@@ -7,7 +7,7 @@
 
         <h2 class="section-title">Nossa História: Colégio João Maffei
             Rosa</h2>
-        <p class="text-center mb-5">
+        <p class="subtitulo-secao text-center mb-5">
             A jornada do Colégio João Maffei Rosa é uma tapeçaria de dedicação, crescimento e inovação.
             Desde sua fundação, o compromisso com a educação de qualidade e a formação integral tem sido o
             farol

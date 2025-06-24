@@ -63,29 +63,28 @@
                         <a class="nav-link <?=is_active("home", $pagina_atual)?>" aria-current="page"
                             href="home">Início</a>
                     </li>
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle <?= is_dropdown_active(['detalhe_itinerario', 'listar_itinerarios', 'estrutura', 'nossa_equipe', 'historia'], $pagina_atual) ?>"
-                            href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle <?= is_dropdown_active(['integral', 'detalhe_itinerario', 'listar_itinerarios', 'estrutura', 'nossa_equipe', 'historia'], $pagina_atual) ?>"
+                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             A escola
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item <?= is_dropdown_active(['detalhe_itinerario', 'listar_itinerarios'], $pagina_atual) ?>"
-                                    href="listar_itinerarios">Itinerários</a></li>
+                            <li><a class="dropdown-item <?=is_active("integral", $pagina_atual)?>"
+                                    href="integral">Integral</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+                            <li><a class="dropdown-item <?= is_dropdown_active(['detalhe_itinerario', 'listar_itinerarios'], $pagina_atual) ?>"
+                                    href="listar_itinerarios">Itinerários</a></li>
                             <li><a class="dropdown-item <?=is_active("estrutura", $pagina_atual)?>"
                                     href="estrutura">Estrutura</a></li>
                             <li><a class="dropdown-item <?=is_active("nossa_equipe", $pagina_atual)?>"
-                                    href="nossa_equipe">Nossa
-                                    Equipe</a></li>
+                                    href="nossa_equipe">Nossa Equipe</a></li>
                             <li><a class="dropdown-item <?=is_active("historia", $pagina_atual)?>" href="historia">Nossa
-                                    história</a></li>
-
-
+                                    História</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="nav-link <?=is_active("contato", $pagina_atual)?>" href="contato">Contato</a>
                     </li>
                     <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
@@ -98,7 +97,9 @@
         </div>
     </nav>
     <main class="container">
-        <?php
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12">
+                <?php
             $pagina = $_GET['param'] ?? "home";
             $pagina_path = "paginas/$pagina.php";
             if (file_exists($pagina_path)) {
@@ -118,7 +119,8 @@
             }
         ?>
 
-
+            </div>
+        </div>
     </main>
     <footer class="footer mt-auto py-3">
         <div class="container">
