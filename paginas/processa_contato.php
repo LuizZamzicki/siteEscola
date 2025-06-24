@@ -12,7 +12,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-
 header('Content-Type: application/json');
 date_default_timezone_set('America/Sao_Paulo');
 
