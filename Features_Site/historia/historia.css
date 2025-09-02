@@ -1,0 +1,88 @@
+/* --- Seção de História do Colégio --- */
+.historia-section .section-title {
+  color: var(--corPrimariaAmarelo);
+  text-shadow: 1px 1px var(--corPrimariaAmareloDestaque),
+    -1px 1px var(--corPrimariaAmareloDestaque),
+    1px -1px var(--corPrimariaAmareloDestaque),
+    -1px -1px var(--corPrimariaAmareloDestaque);
+}
+
+.historia-timeline .timeline-item {
+  border: 2px solid var(--corPrimariaAmareloEscuro);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: var(--tamanhoArredondamentoCard);
+}
+
+.historia-timeline .timeline-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.historia-timeline .timeline-year {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.historia-timeline .timeline-icon {
+  font-size: 3rem;
+  color: var(--corPrimariaAmareloEscuro);
+  margin-bottom: 1rem;
+}
+
+.historia-timeline .timeline-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.historia-timeline .timeline-description {
+  font-size: 0.95rem;
+}
+
+.card-padrao .card-amarelo .flex-fill .p-4:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade para a página de História */
+@media (max-width: 991.98px) {
+  .historia-timeline .timeline-item {
+    padding: 1.2rem;
+  }
+  .historia-timeline .timeline-year {
+    font-size: 1.6rem;
+  }
+  .historia-timeline .timeline-icon {
+    font-size: 2.5rem;
+  }
+  .historia-timeline .timeline-title {
+    font-size: 1.2rem;
+  }
+  .historia-timeline .timeline-description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .historia-timeline .timeline-item {
+    padding: 1rem;
+  }
+  .historia-timeline .timeline-year {
+    font-size: 1.4rem;
+  }
+  .historia-timeline .timeline-icon {
+    font-size: 2rem;
+  }
+  .historia-timeline .timeline-title {
+    font-size: 1.1rem;
+  }
+  .historia-timeline .timeline-description {
+    font-size: 0.85rem;
+  }
+  .card-padrao {
+    padding: 1.5rem;
+  }
+  .feature-card {
+    padding: 1rem;
+  }
+}

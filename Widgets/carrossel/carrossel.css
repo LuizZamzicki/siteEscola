@@ -1,0 +1,239 @@
+/* Estilos para o Carrossel  */
+.chamada-para-itinerarios .section-title {
+  font-weight: normal;
+  color: var(--corPrimariaVerdeEscuro) !important;
+}
+
+.integral-content .section-title {
+  color: var(--corPrimariaVerdeEscuro);
+}
+
+.itinerariosSwiper {
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.swiper-wrapper {
+  height: auto;
+  align-items: stretch;
+}
+
+.itinerario-slide {
+  background-position: center;
+  background-size: cover;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: var(--tamanhoArredondamentoCard);
+  overflow: hidden;
+}
+
+.itinerario-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.itinerario-slide-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  color: white;
+}
+
+.itinerario-overlay-swiper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  z-index: 1;
+}
+
+.itinerario-content-box-swiper {
+  h1 {
+    color: var(--corPrimariaVerdeEscuro);
+    font-weight: bold;
+  }
+
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem 3rem 3rem 3rem;
+  border-radius: var(--tamanhoArredondamentoCard);
+  text-align: center;
+  max-width: 700px;
+  max-height: 80%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  position: relative;
+
+  p {
+    color: black !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .itinerario-overlay-swiper {
+    display: none;
+  }
+
+  .itinerario-content-box-swiper {
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    height: 60%;
+
+    p {
+      display: none;
+    }
+
+    .btn {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 0;
+      width: calc(100% - 40px);
+      max-width: 250px;
+
+      padding: 0.8rem 1.2rem;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+/* Estilos para as setas de navegação do Swiper */
+.btn-swipper-itinerario {
+  .swiper-button-next,
+  .swiper-button-prev {
+    background-image: none !important;
+    outline: none !important;
+  }
+
+  /* Esconde o conteúdo padrão do Swiper */
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    content: "" !important;
+  }
+
+  /* Estilos para as Setas do Carrossel */
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 15;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .swiper-button-prev {
+    left: 25px;
+  }
+
+  .swiper-button-next {
+    right: 25px;
+  }
+
+  .swiper-button-next i,
+  .swiper-button-prev i {
+    font-size: 2.8rem;
+    color: var(--corPrimariaVerdeEscuro);
+    font-weight: 900;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+  }
+
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    background-color: var(--corPrimariaVerde);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .swiper-button-next:hover i,
+  .swiper-button-prev:hover i {
+    color: var(--corPrimariaVerdeClaro);
+    transform: scale(1.1);
+  }
+
+  /* Estilos dos bullets do Swiper */
+  .swiper-pagination-bullet {
+    background-color: rgba(59, 34, 105, 0.5);
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: var(--corPrimariaVerdeClaro);
+    transform: scale(1.2);
+  }
+}
+
+/* --- */
+/* Media Queries */
+/* --- */
+
+@media (max-width: 992px) {
+  .itinerario-slide {
+    min-height: 450px;
+  }
+  .itinerario-content-box-swiper {
+    padding: 2rem;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .itinerario-slide {
+    min-height: 350px;
+  }
+
+  .swiper-button-next {
+    display: none !important;
+  }
+  .swiper-button-prev {
+    display: none !important;
+  }
+
+  .itinerario-content-box-swiper {
+    padding: 1.5rem;
+  }
+
+  .swiper-pagination {
+    bottom: 5px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .itinerario-slide {
+    min-height: 300px;
+  }
+}

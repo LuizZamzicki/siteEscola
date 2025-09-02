@@ -2,7 +2,6 @@
 
 $funcionarios = [
     [
-        'id' => 'agnaldo',
         'nome' => 'Agnaldo Guirão',
         'cargo' => 'Diretor',
         'departamento' => 'Diretoria',
@@ -14,7 +13,6 @@ $funcionarios = [
         ],
     ],
     [
-        'id' => 'Ana-Paula',
         'nome' => 'Ana Paula Gonçalves',
         'cargo' => 'Professora de Artes',
         'departamento' => 'Docente - Linguagens e Artes',
@@ -26,7 +24,6 @@ $funcionarios = [
         ],
     ],
     [
-        'id' => 'fabia-zampronio',
         'nome' => 'Fabia Zampronio',
         'cargo' => 'Vice-Diretora',
         'departamento' => 'Coordenação Pedagógica',
@@ -38,7 +35,6 @@ $funcionarios = [
         ],
     ],
     [
-        'id' => 'juciane-ferreira',
         'nome' => 'Juciane Ferreira',
         'cargo' => 'Professora de Geografia',
         'departamento' => 'Docente - Ciências Humanas e Sociais Aplicadas',
@@ -50,7 +46,6 @@ $funcionarios = [
         ],
     ],
     [
-        'id' => 'laiza-souza',
         'nome' => 'Laiza Souza',
         'cargo' => 'Professora de História',
         'departamento' => 'Docente - Ciências Humanas e Sociais Aplicadas',
@@ -62,7 +57,6 @@ $funcionarios = [
         ],
     ],
     [
-        'id' => 'marcia-brasil',
         'nome' => 'Marcia Brasil',
         'cargo' => 'Professora de Matemática',
         'departamento' => 'Docente - Exatas',
@@ -74,7 +68,6 @@ $funcionarios = [
         ],
     ],
     [
-        'id' => 'Roberto-Novak',
         'nome' => 'Roberto Novak',
         'cargo' => 'Professor de Filosofia',
         'departamento' => 'Docente - Ciências Humanas e Sociais Aplicadas',

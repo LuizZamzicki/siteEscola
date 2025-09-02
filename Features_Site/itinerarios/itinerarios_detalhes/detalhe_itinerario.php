@@ -4,21 +4,25 @@
 require_once __DIR__ . '/../objetos/itinerarios.php';
 
 // Defina a variável para o URL da página com todos os itinerários
-$todos_itinerarios_url = '/siteEscola/listar_itinerarios'; 
+$todos_itinerarios_url = '/siteEscola/listar_itinerarios';
 
-$itinerario_id = $_GET['id'] ?? null;
+$itinerario_id = $_GET['titulo'] ?? null;
 $itinerario_selecionado = null;
 
-if ($itinerario_id) {
-    foreach ($itinerarios as $item) {
-        if ($item['id'] === $itinerario_id) {
+if ($itinerario_id)
+{
+    foreach ($itinerarios as $item)
+    {
+        if ($item['titulo'] === $itinerario_id)
+        {
             $itinerario_selecionado = $item;
             break;
         }
     }
 }
 
-if (!$itinerario_selecionado) {
+if (!$itinerario_selecionado)
+{
     header('Location: ' . $todos_itinerarios_url);
     exit;
 }
@@ -38,29 +42,29 @@ if (!$itinerario_selecionado) {
         </p>
     </div>
 
-    <?php if (!empty($itinerario_selecionado['imagem_fundo'])) : ?>
-    <div class="imagem-destaque-card">
-        <img src="<?= $itinerario_selecionado['imagem_fundo'] ?>" class="img-fluid"
-            alt="Imagem de destaque do itinerário">
-    </div>
+    <?php if (!empty($itinerario_selecionado['imagem_fundo'])): ?>
+        <div class="imagem-destaque-card">
+            <img src="<?= $itinerario_selecionado['imagem_fundo'] ?>" class="img-fluid"
+                alt="Imagem de destaque do itinerário">
+        </div>
     <?php endif; ?>
 
-    <?php if (!empty($itinerario_selecionado['projetos_imagens'])) : ?>
-    <h3 class="section-title">Projetos e Atividades</h3>
-    <div class="projetos-grid-wrapper">
-        <div class="projetos-grid">
-            <?php foreach ($itinerario_selecionado['projetos_imagens'] as $projeto_img) : ?>
-            <div class="project-card">
+    <?php if (!empty($itinerario_selecionado['projetos_imagens'])): ?>
+        <h3 class="section-title">Projetos e Atividades</h3>
+        <div class="projetos-grid-wrapper">
+            <div class="projetos-grid">
+                <?php foreach ($itinerario_selecionado['projetos_imagens'] as $projeto_img): ?>
+                    <div class="project-card">
 
-                <img src="<?= $projeto_img['url'] ?>" class="img-fluid" alt="<?= $projeto_img['legenda'] ?>">
+                        <img src="<?= $projeto_img['url'] ?>" class="img-fluid" alt="<?= $projeto_img['legenda'] ?>">
 
-                <div class="card-body-custom">
-                    <p class="project-caption"><?= $projeto_img['legenda'] ?></p>
-                </div>
+                        <div class="card-body-custom">
+                            <p class="project-caption"><?= $projeto_img['legenda'] ?></p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
-            <?php endforeach; ?>
         </div>
-    </div>
     <?php endif; ?>
 
 

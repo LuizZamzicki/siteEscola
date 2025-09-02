@@ -72,7 +72,6 @@ $base_url_departamento = strtok($_SERVER["REQUEST_URI"], '?');
                     <?php endforeach; ?>
                 </select>
             </div>
-
         </div>
         <?php endif; ?>
     </div>

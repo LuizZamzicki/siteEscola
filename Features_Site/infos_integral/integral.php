@@ -73,7 +73,8 @@ $link_desempenho_integral_pr = 'https://www.parana.pr.gov.br/aen/Noticia/Escolas
                         <div class="itinerario-content-box-swiper">
                             <h1><?= $itinerario['titulo'] ?></h1>
                             <p><?= $itinerario['descricao'] ?></p>
-                            <a href="detalhe_itinerario?id=<?= $itinerario['id'] ?>" class="btn btn-verde mt-3">Saiba
+                            <a href="detalhe_itinerario?id=<?= $itinerario['titulo'] ?>"
+                                class="btn btn-verde mt-3">Saiba
                                 Mais</a>
                         </div>
                     </div>

@@ -1,0 +1,67 @@
+.btn {
+  border: 2px solid white;
+  color: rgba(0, 0, 0, 0.8);
+  border-radius: var(--tamanhoArredondamentoBotao);
+  font-weight: bold;
+  font-size: 1.2rem !important;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+  padding: 0.7rem 1.5rem;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-roxo {
+  background-color: var(--corPrimariaRoxoClaro);
+  border-color: var(--corPrimariaRoxoEscuro);
+}
+
+.btn-roxo:hover {
+  background-color: var(--corPrimariaRoxoEscuro);
+  color: var(--corPrimariaRoxoClaro);
+}
+
+.btn-verde {
+  background-color: var(--corPrimariaVerdeClaro);
+  border-color: var(--corPrimariaVerdeEscuro);
+}
+
+.btn-verde:hover {
+  background-color: var(--corPrimariaVerdeEscuro);
+  color: var(--corPrimariaVerdeClaro);
+}
+
+.btn-amarelo {
+  background-color: var(--corPrimariaAmareloClaro);
+  color: rgba(0, 0, 0, 0.7);
+  border-color: var(--corPrimariaAmareloEscuro);
+}
+
+.btn-amarelo:hover {
+  background-color: var(--corPrimariaAmareloEscuro);
+  color: var(--corPrimariaAmareloClaro);
+}
+
+.btn-azul {
+  background-color: var(--corSecundariaAzulCamisaClaro);
+  border-color: var(--corSecundariaAzulCamisaEscuro);
+}
+
+.btn-azul:hover {
+  background-color: var(--corSecundariaAzulCamisaEscuro) !important;
+  color: var(--corSecundariaAzulCamisaClaro) !important;
+}
+
+@media (max-width: 991.98px) {
+  .btn {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 0 !important;
+    margin-top: 0.5rem !important;
+  }
+}

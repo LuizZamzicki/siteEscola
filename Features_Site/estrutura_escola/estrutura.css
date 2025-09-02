@@ -1,0 +1,33 @@
+/* --- */
+/* Estrutura da Escola */
+/* --- */
+
+.estrutura-escola-section .section-title {
+  color: var(--corPrimariaRoxoEscuro);
+}
+.estrutura-escola-section .card-padrao {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.estrutura-escola-section .card-padrao:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+.estrutura-escola-section .card-roxo .card-img-top {
+  height: 250px;
+  object-fit: cover;
+}
+
+.img-estrutura {
+  border-radius: var(--tamanhoArredondamentoCard) !important;
+}
+
+.estrutura-escola-section .icone-circulo {
+  background-color: var(--corPrimariaRoxoEscuro);
+}
+
+.card-body-custom {
+  flex-grow: 1;
+  padding: 2.5rem !important;
+}

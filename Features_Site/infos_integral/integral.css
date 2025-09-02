@@ -1,0 +1,83 @@
+.integral-detalhado-section .section-title {
+  color: var(--corPrimariaAmarelo) !important;
+  text-shadow: 1px 1px var(--corPrimariaAmareloDestaque),
+    -1px 1px var(--corPrimariaAmareloDestaque),
+    1px -1px var(--corPrimariaAmareloDestaque),
+    -1px -1px var(--corPrimariaAmareloDestaque);
+}
+
+/* Estilo para links inline e links */
+
+.link-estudo {
+  color: var(--corPrimariaAmareloDestaque);
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.link-estudo:hover {
+  color: var(--corPrimariaAmareloEscuro);
+  text-decoration: underline;
+}
+
+/* Estilo para links inline e links do FAQ */
+
+.faq-section .mb-5 a {
+  color: var(--corPrimariaRoxoEscuro);
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.faq-section .mb-5 a:hover {
+  color: var(--corPrimariaRoxoClaro);
+  text-decoration: underline;
+}
+
+/* Estilos do Acordeão */
+.faq-section .section-title {
+  color: var(--corPrimariaAmarelo) !important;
+  text-shadow: 1px 1px var(--corPrimariaAmareloDestaque),
+    -1px 1px var(--corPrimariaAmareloDestaque),
+    1px -1px var(--corPrimariaAmareloDestaque),
+    -1px -1px var(--corPrimariaAmareloDestaque);
+}
+
+.faq-section .card-padrao {
+  border: 2px solid var(--corPrimariaAmareloEscuro);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.faq-section .accordion-item {
+  border-color: var(--corPrimariaAmareloEscuro) !important;
+  border-radius: var(--tamanhoArredondamentoCard) !important;
+  overflow: hidden;
+}
+
+.faq-section .accordion-button {
+  background-color: var(--corPrimariaAmareloClaro) !important;
+  font-weight: bold;
+  font-size: 1.15rem;
+  border-radius: calc(var(--tamanhoArredondamentoCard) - 4px) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.faq-section .accordion-button:not(.collapsed) {
+  background-color: var(--corPrimariaAmareloEscuro) !important;
+  color: black !important;
+  box-shadow: none;
+}
+
+.faq-section .accordion-button::after {
+  filter: invert(0.5);
+}
+
+.faq-section .accordion-button:not(.collapsed)::after {
+  filter: invert(1);
+}
+
+.faq-section .accordion-body {
+  background-color: white;
+  font-size: 1rem;
+  padding: 1.25rem;
+}

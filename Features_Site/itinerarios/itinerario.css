@@ -1,0 +1,192 @@
+
+.itinerarios-listagem-section {
+  background-color: var(--corFundoPadrao);
+}
+
+.itinerarios-listagem-section .section-title {
+  color: var(--corPrimariaVerdeEscuro);
+}
+
+/* Estilos para os Botões de Filtro */
+
+.categorias-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 5px;
+  gap: 8px;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Botão "Mostrar mais/menos" */
+.ver-mais-categorias {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--corPrimariaVerdeEscuro);
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 15px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.ver-mais-categorias:hover {
+  background-color: var(--corSecundariaAzulCamisaEscuro);
+  transform: translateY(-2px);
+}
+
+.form-select {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 2px solid #ced4da;
+  border-radius: var(--tamanhoArredondamentoBotao);
+  background-color: white;
+  appearance: none; /* Seta para baixo customizada          VVVV */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Estilo para dropdown ativo */
+.form-select:focus {
+  border-color: var(--corPrimariaRoxo);
+  box-shadow: 0 0 0 0.25rem rgba(103, 58, 183, 0.25);
+  outline: 0;
+}
+
+.form-select.btn-verde {
+  background-color: #e6ffe6;
+  color: #007b5e;
+  border-color: #007b5e;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn-categoria {
+  background-color: var(--corPrimariaVerdeClaroTransparente);
+  font-weight: 500;
+}
+
+.btn-categoria:hover {
+  background-color: var(--corPrimariaVerdeClaro);
+  color: var(--corPrimariaVerdeEscuro);
+  border-color: var(--corPrimariaVerde);
+}
+
+.btn-categoria.active {
+  background-color: var(--corPrimariaVerdeEscuro);
+  color: var(--corPrimariaVerdeClaro);
+  border-color: var(--corPrimariaVerde);
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(var(--corPrimariaVerdeRgb), 0.3);
+}
+
+.btn-categoria {
+  width: auto !important;
+}
+
+.itinerario-item-card {
+  height: auto;
+}
+
+.itinerario-item-card .card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.itinerario-item-card .card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.itinerario-item-card .card-body-custom {
+  padding: 1.25rem;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.itinerario-item-card .icone-circulo {
+  background-color: var(--corPrimariaVerde);
+}
+
+.itinerario-item-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.no-results-message {
+  font-size: 1.2rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* --- Responsividade para a página de listagem --- */
+
+@media (max-width: 991.98px) {
+  .itinerario-item-card .card-img-top {
+    height: 180px;
+  }
+  .itinerario-item-card .card-body-custom {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .filter-controls {
+    gap: 0.75rem;
+  }
+  .btn-categoria {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  .itinerario-item-card .card-img-top {
+    height: 150px;
+  }
+  .itinerario-item-card .icone-circulo {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .filter-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn-categoria {
+    width: 100%;
+    max-width: 250px;
+  }
+  .itinerario-item-card .card-img-top {
+    height: 120px;
+  }
+  .itinerario-item-card .card-body-custom {
+    padding: 0.75rem;
+  }
+}

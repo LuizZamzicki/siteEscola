@@ -1,24 +1,29 @@
 <?php
 
-require_once __DIR__ . '/../objetos/itinerarios.php';
-require_once __DIR__ . '/../objetos/comentarios.php';
+require_once BASE_PATH . 'Utils/FuncoesUtils.php';
+
+adicionarCss('Features_Site/home/home.css');
+
+include 'Widgets/carrossel/carrossel.php';
+include 'Widgets/botoes/botoes.php';
+include 'Features_Site\itinerarios\itinerariosObj.php';
 
 // Dados para os posts do Instagram (Inserir API Dps)
 $instagram_posts = [
- 
-    ['imagem' => 'imagens/postInsta/post1.webp', 'link' => 'https://www.instagram.com/p/DLKk-PkuQnj/'],
-    ['imagem' => 'imagens/postInsta/post2.jpg', 'link' => 'https://www.instagram.com/p/DLKiYigOI_0/'],
-    ['imagem' => 'imagens/postInsta/post3.webp', 'link' => 'https://www.instagram.com/p/DLKgmKtuOjh/?img_index=1'],
-    ['imagem' => 'imagens/postInsta/post4.jpg', 'link' => 'https://www.instagram.com/p/DK5sg6mMwXk/'],
-    ['imagem' => 'imagens/postInsta/post5.jpg', 'link' => 'https://www.instagram.com/p/DKw6jNgJYDV/'],
-    ['imagem' => 'imagens/postInsta/post8.webp', 'link' => 'https://www.instagram.com/p/DKdWsDPJx6e/?img_index=1']
+
+['imagem' => 'imagens/postInsta/post1.webp', 'link' => 'https://www.instagram.com/p/DLKk-PkuQnj/'],
+['imagem' => 'imagens/postInsta/post2.jpg', 'link' => 'https://www.instagram.com/p/DLKiYigOI_0/'],
+['imagem' => 'imagens/postInsta/post3.webp', 'link' => 'https://www.instagram.com/p/DLKgmKtuOjh/?img_index=1'],
+['imagem' => 'imagens/postInsta/post4.jpg', 'link' => 'https://www.instagram.com/p/DK5sg6mMwXk/'],
+['imagem' => 'imagens/postInsta/post5.jpg', 'link' => 'https://www.instagram.com/p/DKw6jNgJYDV/'],
+['imagem' => 'imagens/postInsta/post8.webp', 'link' => 'https://www.instagram.com/p/DKdWsDPJx6e/?img_index=1']
 ];
 
 ?>
 
 <section class="principal-section pb-5">
 
-    <h2 class="section-title">O colégio João Maffei Rosa</h2>
+    <h2 class="section-title">O Colégio João Maffei Rosa</h2>
     <p class="subtitulo-secao text-center mb-5">
         No Colégio Maffei, valorizamos um ambiente de aprendizado inovador e acolhedor.<br>
         Com foco no desenvolvimento integral, preparamos nossos alunos para os desafios do futuro. </p>
@@ -36,12 +41,13 @@ $instagram_posts = [
                 O <strong>Ensino Integral</strong> é a base da nossa metodologia, proporcionando um currículo
                 ampliado e
                 atividades que vão além da grade tradicional, preparando os alunos para a vida.</p>
-            <a href="integral" class="btn btn-amarelo mt-4">Conheça o Integral</a>
+            <?php Botoes::getBotao("integral.php", "Conheça o Integral", BotoesCores::AMARELO) ?>
+
         </div>
 
-        <div class="integral-image col-12 col-md-4 mt-4 mt-md-0 ps-md-4">
-            <img src="imagens/img-entrada-escola.jpg" alt="Entrada da Escola - Ensino Integral"
-                class="img-fluid rounded">
+        <div class="integral-image col-12 col-md-6 mt-4 mt-md-0 ps-md-4">
+            <img src="<?= $caminho_pasta ?>/imagens/escola/img-entrada-escola.jpg"
+                alt="Entrada da Escola - Ensino Integral" class="img-fluid rounded">
         </div>
     </div>
 
@@ -94,53 +100,58 @@ $instagram_posts = [
         inovadores
         para o seu desenvolvimento. Conheça nossos itinerários:</p>
 
-    <div class="swiper itinerariosSwiper">
-        <div class="swiper-pagination"></div>
-        <div class="swiper-wrapper">
-            <?php foreach ($itinerarios as $itinerario) : ?>
-            <div class="swiper-slide itinerario-slide">
-                <img src="<?= $itinerario['imagem_fundo'] ?>" alt="<?= $itinerario['titulo'] ?>"
-                    class="itinerario-slide-img">
+    <?php
 
-                <div class="itinerario-slide-content">
-                    <div class="itinerario-overlay-swiper"> </div>
-                    <div class="itinerario-content-box-swiper">
-                        <h1><?= $itinerario['titulo'] ?></h1>
-                        <p><?= $itinerario['descricao'] ?></p>
-                        <a href="detalhe_itinerario?id=<?= $itinerario['id'] ?>" class="btn btn-verde mt-3">Saiba
-                            Mais</a>
-                    </div>
-                </div>
-            </div>
-            <?php endforeach; ?>
-        </div>
-        <div class="btn-swipper-itinerario">
-            <div class="swiper-button-next"><i class="fa-solid fa-angle-right"></i></div>
-            <div class="swiper-button-prev"><i class="fa-solid fa-angle-left"></i></div>
-        </div>
-    </div>
-</div>
+    renderizarCarrossel($itinerarios, 'itinerariosSwiper', 'detalhe_itinerario?titulo=', 'titulo');
+    ?>
+    <!-- <div class="swiper itinerariosSwiper">
+            <div class="swiper-pagination"></div>
+            <div class="swiper-wrapper">
+                <?php foreach ($itinerarios as $itinerario): ?>
+                <div class="swiper-slide itinerario-slide">
+                    <img src="<?= $itinerario['imagem_fundo'] ?>" alt="<?= $itinerario['titulo'] ?>"
+                        class="itinerario-slide-img">
 
-<section class="comentarios-section pb-5">
-    <h2 class="section-title mb-5">O que nossos alunos dizem sobre nós</h2>
-    <div class="swiper comentariosSwiper">
-        <div class="swiper-pagination"></div>
-        <div class="swiper-wrapper">
-            <?php foreach ($comentarios_alunos as $comentario) : ?>
-            <div class="swiper-slide comentario-slide">
-                <div class="comentario-card card card-roxo">
-                    <p class="comentario-texto">"<?= $comentario['comentario'] ?>"</p>
-                    <div class="comentario-divider"></div>
-                    <div class="comentario-info">
-                        <img src="<?= $comentario['foto'] ?>" alt="<?= $comentario['nome'] ?>"
-                            class="comentario-avatar">
-                        <div class="comentario-autor-info">
-                            <p class="nome-aluno"><?= $comentario['nome'] ?></p>
-                            <p class="serie-aluno"><?= $comentario['serie'] ?></p>
+                    <div class="itinerario-slide-content">
+                        <div class="itinerario-overlay-swiper"> </div>
+                        <div class="itinerario-content-box-swiper">
+                            <h1><?= $itinerario['titulo'] ?></h1>
+                            <p><?= $itinerario['descricao'] ?></p>
+                            <a href="detalhe_itinerario?titulo=<?= $itinerario['titulo'] ?>"
+                                class="btn btn-verde mt-3">Saiba
+                                Mais</a>
                         </div>
                     </div>
                 </div>
+                <?php endforeach; ?>
             </div>
+            <div class="btn-swipper-itinerario">
+                <div class="swiper-button-next"><i class="fa-solid fa-angle-right"></i></div>
+                <div class="swiper-button-prev"><i class="fa-solid fa-angle-left"></i></div>
+            </div> -->
+</div>
+</div>
+
+<!-- <section class="comentarios-section pb-5">
+    <h2 class="section-title mb-5">O Que Nossos Alunos Dizem Sobre Nós</h2>
+    <div class="swiper comentariosSwiper">
+        <div class="swiper-pagination"></div>
+        <div class="swiper-wrapper">
+            <?php foreach ($comentarios_alunos as $comentario): ?>
+                <div class="swiper-slide comentario-slide">
+                    <div class="comentario-card card card-roxo">
+                        <p class="comentario-texto">"<?= $comentario['comentario'] ?>"</p>
+                        <div class="comentario-divider"></div>
+                        <div class="comentario-info">
+                            <img src="<?= $comentario['foto'] ?>" alt="<?= $comentario['nome'] ?>"
+                                class="comentario-avatar">
+                            <div class="comentario-autor-info">
+                                <p class="nome-aluno"><?= $comentario['nome'] ?></p>
+                                <p class="serie-aluno"><?= $comentario['serie'] ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <?php endforeach; ?>
         </div>
         <div class="btn-swipper-comentarios">
@@ -148,10 +159,10 @@ $instagram_posts = [
             <div class="swiper-button-prev"><i class="fa-solid fa-angle-left"></i></div>
         </div>
 
-</section>
+</section> -->
 
 <section class="instagram-section pb-5">
-    <h2 class="section-title">Fique por dentro das novidades no
+    <h2 class="section-title">Fique Por Dentro das Novidades no
         <a href="https://www.instagram.com/colegio_maffei/" target="_blank" data-text="Instagram">Instagram</a>
     </h2>
     <p class="subtitulo-secao text-center mb-5">Acompanhe nosso dia a dia, eventos e projetos através das nossas
@@ -159,15 +170,15 @@ $instagram_posts = [
         postagens:</p>
 
     <div class="instagram-grid">
-        <?php foreach ($instagram_posts as $post) : ?>
-        <div class="instagram-post">
-            <a href="<?= $post['link'] ?>" target="_blank">
-                <img src="<?= $post['imagem'] ?>" alt="Post Instagram">
-                <div class="instagram-overlay">
-                    <i class="fa-brands fa-instagram"></i>
-                </div>
-            </a>
-        </div>
+        <?php foreach ($instagram_posts as $post): ?>
+            <div class="instagram-post">
+                <a href="<?= $post['link'] ?>" target="_blank">
+                    <img src="<?= $post['imagem'] ?>" alt="Post Instagram">
+                    <div class="instagram-overlay">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                </a>
+            </div>
         <?php endforeach; ?>
     </div>
 
