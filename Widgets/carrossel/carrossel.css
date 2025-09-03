@@ -1,5 +1,5 @@
 /* Estilos para o Carrossel  */
-.chamada-para-itinerarios .section-title {
+.chamada-para-carrossel .section-title {
   font-weight: normal;
   color: var(--corPrimariaVerdeEscuro) !important;
 }
@@ -21,7 +21,7 @@
   align-items: stretch;
 }
 
-.itinerario-slide {
+.carrossel-slide {
   background-position: center;
   background-size: cover;
   min-height: 480px;
@@ -33,7 +33,7 @@
   overflow: hidden;
 }
 
-.itinerario-slide-img {
+.carrossel-slide-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -44,7 +44,7 @@
   z-index: 0;
 }
 
-.itinerario-slide-content {
+.carrossel-slide-content {
   width: 100%;
   height: 100%;
   display: flex;
@@ -54,7 +54,7 @@
   color: white;
 }
 
-.itinerario-overlay-swiper {
+.carrossel-overlay-swiper {
   position: absolute;
   top: 0;
   left: 0;
@@ -67,7 +67,7 @@
   z-index: 1;
 }
 
-.itinerario-content-box-swiper {
+.carrossel-content-box-swiper {
   h1 {
     color: var(--corPrimariaVerdeEscuro);
     font-weight: bold;
@@ -89,11 +89,11 @@
 }
 
 @media (max-width: 576px) {
-  .itinerario-overlay-swiper {
+  .carrossel-overlay-swiper {
     display: none;
   }
 
-  .itinerario-content-box-swiper {
+  .carrossel-content-box-swiper {
     background-color: rgba(255, 255, 255, 0.6);
     width: 100%;
     height: 60%;
@@ -118,83 +118,81 @@
 }
 
 /* Estilos para as setas de navegação do Swiper */
-.btn-swipper-itinerario {
-  .swiper-button-next,
-  .swiper-button-prev {
-    background-image: none !important;
-    outline: none !important;
-  }
+.swiper-button-next,
+.swiper-button-prev {
+  background-image: none !important;
+  outline: none !important;
+}
 
-  /* Esconde o conteúdo padrão do Swiper */
-  .swiper-button-next:after,
-  .swiper-button-prev:after {
-    content: "" !important;
-  }
+/* Esconde o conteúdo padrão do Swiper */
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  content: "" !important;
+}
 
-  /* Estilos para as Setas do Carrossel */
+/* Estilos para as Setas do Carrossel */
 
-  .swiper-button-next,
-  .swiper-button-prev {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.25);
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 15;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease,
-      transform 0.3s ease;
-  }
+.swiper-button-next,
+.swiper-button-prev {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 50px !important;
+  height: 50px !important;
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 15 !important;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.3s ease !important;
+}
 
-  .swiper-button-prev {
-    left: 25px;
-  }
+.swiper-button-prev {
+  left: 25px !important;
+}
 
-  .swiper-button-next {
-    right: 25px;
-  }
+.swiper-button-next {
+  right: 25px !important;
+}
 
-  .swiper-button-next i,
-  .swiper-button-prev i {
-    font-size: 2.8rem;
-    color: var(--corPrimariaVerdeEscuro);
-    font-weight: 900;
-    transition: color 0.3s ease, transform 0.3s ease;
-    display: inline-block;
-  }
+.swiper-button-next i,
+.swiper-button-prev i {
+  font-size: 2.8rem !important;
+  color: var(--corPrimariaVerdeEscuro) !important;
+  font-weight: 900 !important;
+  transition: color 0.3s ease, transform 0.3s ease !important;
+  display: inline-block !important;
+}
 
-  .swiper-button-next:hover,
-  .swiper-button-prev:hover {
-    background-color: var(--corPrimariaVerde);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-    transform: translateY(-50%) scale(1.05);
-  }
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: var(--corPrimariaVerde) !important;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3) !important;
+  transform: translateY(-50%) scale(1.05) !important;
+}
 
-  .swiper-button-next:hover i,
-  .swiper-button-prev:hover i {
-    color: var(--corPrimariaVerdeClaro);
-    transform: scale(1.1);
-  }
+.swiper-button-next:hover i,
+.swiper-button-prev:hover i {
+  color: var(--corPrimariaVerdeClaro) !important;
+  transform: scale(1.1) !important;
+}
 
-  /* Estilos dos bullets do Swiper */
-  .swiper-pagination-bullet {
-    background-color: rgba(59, 34, 105, 0.5);
-    opacity: 1;
-    width: 10px;
-    height: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
+/* Estilos dos bullets do Swiper */
+.swiper-pagination-bullet {
+  background-color: rgba(59, 34, 105, 0.5) !important;
+  opacity: 1 !important;
+  width: 10px !important;
+  height: 10px !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
 
-  .swiper-pagination-bullet-active {
-    background-color: var(--corPrimariaVerdeClaro);
-    transform: scale(1.2);
-  }
+.swiper-pagination-bullet-active {
+  background-color: var(--corPrimariaVerdeClaro) !important;
+  transform: scale(1.2) !important;
 }
 
 /* --- */
@@ -202,17 +200,17 @@
 /* --- */
 
 @media (max-width: 992px) {
-  .itinerario-slide {
+  .carrossel-slide {
     min-height: 450px;
   }
-  .itinerario-content-box-swiper {
+  .carrossel-content-box-swiper {
     padding: 2rem;
     max-width: 90%;
   }
 }
 
 @media (max-width: 768px) {
-  .itinerario-slide {
+  .carrossel-slide {
     min-height: 350px;
   }
 
@@ -223,7 +221,7 @@
     display: none !important;
   }
 
-  .itinerario-content-box-swiper {
+  .carrossel-content-box-swiper {
     padding: 1.5rem;
   }
 
@@ -233,7 +231,7 @@
 }
 
 @media (max-width: 576px) {
-  .itinerario-slide {
+  .carrossel-slide {
     min-height: 300px;
   }
 }

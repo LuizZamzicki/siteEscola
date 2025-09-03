@@ -4,9 +4,10 @@ require_once BASE_PATH . 'Utils/FuncoesUtils.php';
 
 adicionarCss('Features_Site/home/home.css');
 
-include 'Widgets/carrossel/carrossel.php';
 include 'Widgets/botoes/botoes.php';
+include 'Widgets/carrossel/carrossel.php';
 include 'Features_Site\itinerarios\itinerariosObj.php';
+include 'Features_Site\funcionarios\funcionariosObj.php';
 
 // Dados para os posts do Instagram (Inserir API Dps)
 $instagram_posts = [
@@ -102,7 +103,9 @@ $instagram_posts = [
 
     <?php
 
-    renderizarCarrossel($itinerarios, 'itinerariosSwiper', 'detalhe_itinerario?titulo=', 'titulo');
+    renderizarCarrossel($itinerarios, 'itinerarios',
+     'detalhe_itinerario?titulo=', 'titulo', BotoesCores::VERDE);
+
     ?>
     <!-- <div class="swiper itinerariosSwiper">
             <div class="swiper-pagination"></div>
@@ -160,7 +163,7 @@ $instagram_posts = [
         </div>
 
 </section> -->
-
+<!-- 
 <section class="instagram-section pb-5">
     <h2 class="section-title">Fique Por Dentro das Novidades no
         <a href="https://www.instagram.com/colegio_maffei/" target="_blank" data-text="Instagram">Instagram</a>
@@ -180,6 +183,6 @@ $instagram_posts = [
                 </a>
             </div>
         <?php endforeach; ?>
-    </div>
+    </div> -->
 
 </section>

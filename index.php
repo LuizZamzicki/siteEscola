@@ -37,6 +37,8 @@ $conteudo_da_pagina = ob_get_clean();
     <link rel="stylesheet" href="Assets/global.css">
 
     <?php renderizarCss(); ?>
+
+
 </head>
 
 <body>
