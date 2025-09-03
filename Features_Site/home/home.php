@@ -104,34 +104,9 @@ $instagram_posts = [
     <?php
 
     renderizarCarrossel($itinerarios, 'itinerarios',
-     'detalhe_itinerario?titulo=', 'titulo', BotoesCores::VERDE);
-
+     'detalhe_itinerario?titulo=', 'titulo', BotoesCores::VERDE, corBase: CarrosselCores::VERDE);
     ?>
-    <!-- <div class="swiper itinerariosSwiper">
-            <div class="swiper-pagination"></div>
-            <div class="swiper-wrapper">
-                <?php foreach ($itinerarios as $itinerario): ?>
-                <div class="swiper-slide itinerario-slide">
-                    <img src="<?= $itinerario['imagem_fundo'] ?>" alt="<?= $itinerario['titulo'] ?>"
-                        class="itinerario-slide-img">
 
-                    <div class="itinerario-slide-content">
-                        <div class="itinerario-overlay-swiper"> </div>
-                        <div class="itinerario-content-box-swiper">
-                            <h1><?= $itinerario['titulo'] ?></h1>
-                            <p><?= $itinerario['descricao'] ?></p>
-                            <a href="detalhe_itinerario?titulo=<?= $itinerario['titulo'] ?>"
-                                class="btn btn-verde mt-3">Saiba
-                                Mais</a>
-                        </div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="btn-swipper-itinerario">
-                <div class="swiper-button-next"><i class="fa-solid fa-angle-right"></i></div>
-                <div class="swiper-button-prev"><i class="fa-solid fa-angle-left"></i></div>
-            </div> -->
 </div>
 </div>
 
