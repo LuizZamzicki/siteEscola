@@ -1,14 +1,8 @@
-/* Estilos para o Carrossel  */
 .chamada-para-carrossel .section-title {
   font-weight: normal;
-  color: var(--corPrimariaVerdeEscuro) !important;
 }
 
-.integral-content .section-title {
-  color: var(--corPrimariaVerdeEscuro);
-}
-
-.itinerariosSwiper {
+.carrosselSwiper {
   width: 100%;
   padding-top: 0;
   padding-bottom: 0;

@@ -1,0 +1,132 @@
+/* Swiper dos Comentários */
+
+.carrosselMultiplosSwiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.carrosselMultiplo-slide {
+  display: flex;
+  justify-content: center;
+  max-height: 500px;
+  align-items: stretch;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: var(--tamanhoArredondamentoCard);
+  overflow: hidden;
+}
+
+.carrosselMultiplo-card {
+  color: white;
+  padding: 30px;
+  border-radius: var(--tamanhoArredondamentoCard);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  min-height: 400px;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  transform: scale(0.85);
+  opacity: 0.7;
+}
+
+.carrosselMultiplo-card:hover {
+  transform: scale(0.88);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+/* Estilo para o CARD ATIVO */
+.carrosselMultiplo-card.is-active {
+  transform: scale(1);
+  opacity: 1;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para setas carrossel comentários */
+.btn-swipper-carrosselMultiplos {
+  .swiper-button-next,
+  .swiper-button-prev {
+    background-image: none !important;
+    outline: none !important;
+  }
+
+  /* Esconde o conteúdo padrão do Swiper */
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    content: "" !important;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.125);
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 15;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .swiper-button-prev {
+    left: 25px;
+  }
+
+  .swiper-button-next {
+    right: 25px;
+  }
+
+  .swiper-button-next i,
+  .swiper-button-prev i {
+    font-size: 2.8rem;
+    font-weight: 900;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+  }
+
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .swiper-button-next:hover i,
+  .swiper-button-prev:hover i {
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .carrosselMultiplo-card {
+    padding: 20px;
+    min-height: 250px;
+  }
+
+  .carrosselMultiplosSwiper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .carrosselMultiplo-card {
+    padding: 15px;
+    min-height: 220px;
+  }
+}

@@ -30,7 +30,7 @@ function inicializarSwiper(selector) {
       },
     };
 
-    const swiper = new Swiper(selector, swiperOptions);
+  const swiper = new Swiper(selector, swiperOptions);
   } else {
     console.warn("Elemento Swiper não encontrado para o seletor:", selector);
   }

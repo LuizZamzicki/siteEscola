@@ -1,15 +1,5 @@
 <?php
 
-enum CarrosselCores
-{
-    case AMARELO;
-    case AZUL;
-    case ROXO;
-    case VERDE;
-}
-
-
-
 function renderizarCarrossel(
     array $itens,
     string $idCarrossel,
@@ -20,34 +10,10 @@ function renderizarCarrossel(
     string $subtitulo = 'subtitulo',
     string $imagem = 'imagem',
     string $texto_botao = 'Saiba Mais',
-    CarrosselCores $corBase = CarrosselCores::VERDE
+    CoresSistema $corBase = CoresSistema::VERDE
 ): void {
 
-    // Mapa de cores para ser a fonte de verdade
-    $coresCarrossel = [
-        CarrosselCores::VERDE->name => [
-            'primaria_escuro' => 'var(--corPrimariaVerdeEscuro)',
-            'primaria' => 'var(--corPrimariaVerde)',
-            'primaria_claro' => 'var(--corPrimariaVerdeClaro)',
-        ],
-        CarrosselCores::ROXO->name => [
-            'primaria_escuro' => 'var(--corPrimariaRoxoEscuro)',
-            'primaria' => 'var(--corPrimariaRoxo)',
-            'primaria_claro' => 'var(--corPrimariaRoxoClaro)',
-        ],
-        CarrosselCores::AMARELO->name => [
-            'primaria_escuro' => 'var(--corPrimariaAmareloEscuro)',
-            'primaria' => 'var(--corPrimariaAmarelo)',
-            'primaria_claro' => 'var(--corPrimariaAmareloClaro)',
-    ],
-        CarrosselCores::AZUL->name => [
-            'primaria_escuro' => 'var(--corSecundariaAzulCamisaEscuro)',
-            'primaria' => 'var(--corSecundariaAzulCamisa)',
-            'primaria_claro' => 'var(--corSecundariaAzulCamisaClaro)',
-        ],
-    ];
-
-    $cores = $coresCarrossel[$corBase->name] ?? $coresCarrossel[CarrosselCores::VERDE->name];
+    $cores = FuncoesUtils::getCorBase($corBase);
     ?>
     <style>
         /* Define as variáveis CSS no escopo do carrossel */
@@ -119,6 +85,6 @@ function renderizarCarrossel(
     <?php
 }
 
-adicionarCss('Widgets/carrossel/carrossel.css');
-adicionarJs('Widgets/carrossel/carrossel.js');
+FuncoesUtils::adicionarCss('Widgets/carrossel/carrossel.css');
+FuncoesUtils::adicionarJs('Widgets/carrossel/carrossel.js');
 ?>

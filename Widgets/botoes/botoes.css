@@ -1,18 +1,20 @@
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 2px solid white;
   color: rgba(0, 0, 0, 0.8);
   border-radius: var(--tamanhoArredondamentoBotao);
   font-weight: bold;
   font-size: 1.2rem !important;
-  transition: background-color 0.3s ease, transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   padding: 0.7rem 1.5rem;
   white-space: nowrap;
+  line-height: 1; /* Garante consistência na altura do texto */
 }
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-roxo {
@@ -54,6 +56,53 @@
 .btn-azul:hover {
   background-color: var(--corSecundariaAzulCamisaEscuro) !important;
   color: var(--corSecundariaAzulCamisaClaro) !important;
+}
+
+.btn-vermelho {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #dc3545;
+}
+
+.btn-vermelho:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-cinza {
+  background-color: #f1f5f9; /* slate-100 */
+  color: #475569; /* slate-600 */
+  border-color: #e2e8f0; /* slate-200 */
+}
+
+.btn-cinza:hover {
+  background-color: #e2e8f0; /* slate-200 */
+  color: #1e293b; /* slate-800 */
+  border-color: #cbd5e1; /* slate-300 */
+}
+
+.btn-cinza-outline {
+  background-color: transparent;
+  color: #64748b; /* slate-500 */
+  border-color: #cbd5e1; /* slate-300 */
+}
+
+.btn-cinza-outline:hover {
+  background-color: #f8fafc; /* slate-50 */
+  color: #334155; /* slate-700 */
+  border-color: #94a3b8; /* slate-400 */
+}
+
+.btn-vermelho-outline {
+  background-color: transparent;
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-vermelho-outline:hover {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f8d7da;
 }
 
 @media (max-width: 991.98px) {

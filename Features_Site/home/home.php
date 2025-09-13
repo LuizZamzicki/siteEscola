@@ -2,12 +2,14 @@
 
 require_once BASE_PATH . 'Utils/FuncoesUtils.php';
 
-adicionarCss('Features_Site/home/home.css');
+FuncoesUtils::adicionarCss('Features_Site/home/home.css');
 
-include 'Widgets/botoes/botoes.php';
+include 'Widgets/secoes/secoes.php';
 include 'Widgets/carrossel/carrossel.php';
+include 'Widgets/carrossel_multiplo/carrossel_multiplo.php';
+
+include 'Features_Site\home\comentarios.php';
 include 'Features_Site\itinerarios\itinerariosObj.php';
-include 'Features_Site\funcionarios\funcionariosObj.php';
 
 // Dados para os posts do Instagram (Inserir API Dps)
 $instagram_posts = [
@@ -94,7 +96,6 @@ $instagram_posts = [
     </div>
 </section>
 
-
 <div class="integral-content pb-5">
     <h2 class="section-title">Nossos Itinerários Formativos</h2>
     <p class="subtitulo-secao text-center mb-5 ">No Colégio João Maffei Rosa, o ensino integral oferece caminhos
@@ -104,40 +105,48 @@ $instagram_posts = [
     <?php
 
     renderizarCarrossel($itinerarios, 'itinerarios',
-     'detalhe_itinerario?titulo=', 'titulo', BotoesCores::VERDE, corBase: CarrosselCores::VERDE);
+     'detalhe_itinerario?titulo=', 'titulo', BotoesCores::VERDE, corBase: CoresSistema::VERDE);
     ?>
 
 </div>
-</div>
 
-<!-- <section class="comentarios-section pb-5">
-    <h2 class="section-title mb-5">O Que Nossos Alunos Dizem Sobre Nós</h2>
-    <div class="swiper comentariosSwiper">
-        <div class="swiper-pagination"></div>
-        <div class="swiper-wrapper">
-            <?php foreach ($comentarios_alunos as $comentario): ?>
-                <div class="swiper-slide comentario-slide">
-                    <div class="comentario-card card card-roxo">
-                        <p class="comentario-texto">"<?= $comentario['comentario'] ?>"</p>
-                        <div class="comentario-divider"></div>
-                        <div class="comentario-info">
-                            <img src="<?= $comentario['foto'] ?>" alt="<?= $comentario['nome'] ?>"
-                                class="comentario-avatar">
-                            <div class="comentario-autor-info">
-                                <p class="nome-aluno"><?= $comentario['nome'] ?></p>
-                                <p class="serie-aluno"><?= $comentario['serie'] ?></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-        <div class="btn-swipper-comentarios">
-            <div class="swiper-button-next"><i class="fa-solid fa-angle-right"></i></div>
-            <div class="swiper-button-prev"><i class="fa-solid fa-angle-left"></i></div>
-        </div>
+<?php
 
-</section> -->
+ob_start();
+
+renderizarCarrosselMultiplo(
+    $comentarios_alunos,
+    'comentarios',
+    function ($item)
+    {
+        ?>
+    <p class="comentarios-texto">"<?= $item['comentario'] ?>"</p>
+    <div class="comentarios-divider"></div>
+    <div class="comentarios-info">
+        <img src="<?= $item['foto'] ?>" alt="<?= $item['nome'] ?>" class="comentarios-avatar">
+        <div class="comentarios-autor-info">
+            <p class="nome-aluno"><?= $item['nome'] ?></p>
+            <p class="serie-aluno"><?= $item['serie'] ?></p>
+        </div>
+    </div>
+    <?php
+    },
+    corBase: CoresSistema::ROXO,
+    qtdeCarrossel: 3,
+    usaBotoesNavegacao: false
+);
+
+$conteudo_carrossel = ob_get_clean();
+
+Secoes::renderizarSecao(
+    "comentarios-section",
+    "O Que Nossos Alunos Dizem Sobre Nós",
+    CoresSistema::AMARELO,
+    $conteudo_carrossel,
+);
+
+?>
+
 <!-- 
 <section class="instagram-section pb-5">
     <h2 class="section-title">Fique Por Dentro das Novidades no

@@ -92,6 +92,7 @@ $base_url_categoria = strtok($_SERVER["REQUEST_URI"], '?');
                 <?php foreach ($itinerarios_filtrados as $itinerario): ?>
                     <div class="project-card itinerario-item-card">
                         <a href="/siteEscola/detalhe_itinerario?id=<?= $itinerario['titulo'] ?>" class="card-link">
+                        <a href="/siteEscola/detalhe_itinerario?titulo=<?= urlencode($itinerario['titulo']) ?>" class="card-link">
                             <img src="<?= $itinerario['imagem_fundo'] ?>" class="img-fluid card-img-top"
                                 alt="<?= $itinerario['titulo'] ?>">
                             <div class="card-body-custom">
