@@ -67,7 +67,7 @@ $conteudo_da_pagina = ob_get_clean();
 $titulo = "Maffei";
 
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -135,88 +135,6 @@ else if (str_contains($pagina_atual, "Features_Area_Aluno"))
 
     $titulo = "Painel do Aluno - Escola";
 
-    // --- Preparação de Dados para o Aluno ---
-    $studentScheduleData = [
-        'full' => [],
-        'today' => [],
-    ];
-
-    if (isset($_SESSION['user_turma_id']) && $_SESSION['user_turma_id'] > 0)
-    {
-        require_once BASE_PATH . 'core/services/HorarioService.php';
-        $horarioService = new HorarioService();
-
-        // Adicionado para buscar o ID do período do aluno
-        require_once BASE_PATH . 'core/services/database.php';
-        $db = new Database();
-        $turmaInfo = $db->query("SELECT periodo FROM turmas WHERE id_turma = :id_turma", [':id_turma' => $_SESSION['user_turma_id']]);
-        $periodoId = null;
-        if (!empty($turmaInfo))
-        {
-            $periodoNome = $turmaInfo[0]['periodo'];
-            $periodoInfo = $db->query("SELECT id FROM periodos WHERE nome = :nome", [':nome' => $periodoNome]);
-            if (!empty($periodoInfo))
-            {
-                $periodoId = $periodoInfo[0]['id'];
-            }
-        }
-
-        // Busca a grade horária completa da turma do aluno
-        $rawSchedule = $horarioService->buscarHorarioCompletoPorTurma($_SESSION['user_turma_id']);
-
-        // Busca a configuração de horários (blocos de aula e intervalos) do banco de dados
-        $timeSlotsConfig = $horarioService->buscarTodosHorariosConfig($periodoId);
-
-        $daysOfWeek = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira'];
-
-        // 1. Monta a estrutura para o horário completo
-        foreach ($timeSlotsConfig as $slot)
-        {
-            $horarioStr = date('H:i', strtotime($slot['horario_inicio'])) . ' - ' . date('H:i', strtotime($slot['horario_fim']));
-            $row = ['time' => $horarioStr];
-
-            if ($slot['tipo'] === 'intervalo')
-            {
-                $row['type'] = $slot['label'] ?: 'Intervalo';
-            }
-            else
-            {
-                foreach ($daysOfWeek as $day)
-                {
-                    // A chave em $rawSchedule é 'Segunda-feira', 'Terça-feira', etc.
-                    // A chave do horário é '07:30 - 08:20'
-                    $row[$day] = $rawSchedule[$day][$horarioStr]['materia'] ?? null;
-                }
-            }
-            $studentScheduleData['full'][] = $row;
-        }
-
-        // 2. Monta a estrutura para o horário de hoje
-        $diasDaSemanaMap = [1 => 'Segunda-feira', 2 => 'Terça-feira', 3 => 'Quarta-feira', 4 => 'Quinta-feira', 5 => 'Sexta-feira'];
-        $todayIndex = date('N'); // 'N' retorna 1 para Segunda, 7 para Domingo
-
-        if (isset($diasDaSemanaMap[$todayIndex]))
-        {
-            $todayName = $diasDaSemanaMap[$todayIndex];
-
-            foreach ($timeSlotsConfig as $slot)
-            {
-                $horarioStr = date('H:i', strtotime($slot['horario_inicio'])) . ' - ' . date('H:i', strtotime($slot['horario_fim']));
-                $subject = null;
-                if ($slot['tipo'] === 'intervalo')
-                {
-                    $subject = $slot['label'] ?: 'Intervalo';
-                }
-                else if (isset($rawSchedule[$todayName][$horarioStr]))
-                {
-                    $subject = $rawSchedule[$todayName][$horarioStr]['materia'] ?? null;
-                }
-
-                if ($subject)
-                    $studentScheduleData['today'][] = ['time' => $horarioStr, 'subject' => $subject];
-            }
-        }
-    }
     ?>
 
         <body class="bg-slate-50 text-slate-800">
@@ -236,11 +154,9 @@ else if (str_contains($pagina_atual, "Features_Area_Aluno"))
             <script src="js/bootstrap.bundle.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
             <script async src="//www.instagram.com/embed.js"></script>
-            <script>
-                var studentData = studentData || {};
-                studentData.schedule = <?= json_encode($studentScheduleData, JSON_UNESCAPED_UNICODE) ?>;
-            </script>
-            <script src="Features_Area_Aluno/area_aluno.js"></script>
+            <script>var studentData = studentData || {};</script>
+            <script src="Feat
+                            ures_Area_Aluno/area_aluno.js"></script>
         <?php FuncoesUtils::renderizarJs() ?>
         </body>
     <?php

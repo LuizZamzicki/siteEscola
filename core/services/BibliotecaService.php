@@ -4,6 +4,7 @@ require_once BASE_PATH . 'core/models/EmprestimoDTO.php';
 require_once BASE_PATH . 'core/models/ReservaDTO.php';
 require_once BASE_PATH . 'core/services/AutorService.php';
 require_once BASE_PATH . 'core/services/EditoraService.php';
+require_once BASE_PATH . 'core/services/ReservaService.php';
 require_once BASE_PATH . 'core/services/GeneroService.php';
 require_once BASE_PATH . 'core/services/database.php';
 
@@ -38,63 +39,17 @@ class BibliotecaService
         $livros = [];
         foreach ($results as $row)
         {
-            $livro = LivroDTO::fromArray($row);
-            $livro->autores = $row['autores_nomes'] ? explode(', ', $row['autores_nomes']) : [];
-            $livro->generos = $row['generos_nomes'] ? explode(', ', $row['generos_nomes']) : [];
-            $livro->nome_editora = $row['nome_editora'];
-            $livros[] = $livro;
+            $jsBook = new stdClass();
+            foreach ($row as $key => $value)
+            {
+                $jsBook->$key = $value;
+            }
+            $jsBook->autores = $row['autores_nomes'] ? explode(', ', $row['autores_nomes']) : [];
+            $jsBook->generos = $row['generos_nomes'] ? explode(', ', $row['generos_nomes']) : [];
+
+            $livros[] = $jsBook;
         }
         return $livros;
-    }
-
-    public function buscarReservasEEmprestimosPorAluno(int $alunoId): array
-    {
-        $sql = "
-            -- Empréstimos Ativos
-            SELECT
-                l.id_livro as id, l.titulo, l.url_foto,
-                'Emprestado' as status_reserva,
-                emp.data_devolucao_prevista,
-                NULL as data_validade_reserva,
-                GROUP_CONCAT(DISTINCT a.nome SEPARATOR ', ') as autores_nomes
-            FROM emprestimos emp
-            JOIN livros l ON emp.id_livro = l.id_livro
-            LEFT JOIN autores a ON l.id_autor = a.id_autor
-            WHERE emp.id_usuario = :alunoId AND emp.status = 'Emprestado'
-            GROUP BY l.id_livro, emp.data_devolucao_prevista
-
-            UNION ALL
-
-            -- Reservas Aguardando Retirada
-            SELECT
-                l.id_livro as id, l.titulo, l.url_foto,
-                'Aguardando Retirada' as status_reserva,
-                NULL as data_devolucao_prevista,
-                r.data_validade_reserva,
-                GROUP_CONCAT(DISTINCT a.nome SEPARATOR ', ') as autores_nomes
-            FROM reservas r
-            JOIN livros l ON r.id_livro = l.id_livro
-            LEFT JOIN autores a ON l.id_autor = a.id_autor
-            WHERE r.id_usuario = :alunoId AND r.status = 'Aguardando Retirada'
-            GROUP BY l.id_livro, r.data_validade_reserva
-
-            ORDER BY status_reserva, titulo
-        ";
-
-        $results = $this->db->query($sql, [':alunoId' => $alunoId]);
-
-        return array_map(function ($row)
-        {
-            $livro = new stdClass();
-            $livro->id = $row['id'];
-            $livro->titulo = $row['titulo'];
-            $livro->url_foto = $row['url_foto'];
-            $livro->autores = $row['autores_nomes'] ? explode(', ', $row['autores_nomes']) : [];
-            $livro->status_reserva = $row['status_reserva'];
-            $livro->data_devolucao_prevista = $row['data_devolucao_prevista'];
-            $livro->data_validade_reserva = $row['data_validade_reserva'];
-            return $livro;
-        }, $results);
     }
 
     public function buscarLeituraObrigatoriaPorTurma($idturma)
@@ -120,11 +75,15 @@ class BibliotecaService
         $livros = [];
         foreach ($results as $row)
         {
-            $livro = LivroDTO::fromArray($row);
-            $livro->autores = $row['autores_nomes'] ? explode(', ', $row['autores_nomes']) : [];
-            $livro->generos = $row['generos_nomes'] ? explode(', ', $row['generos_nomes']) : [];
-            $livro->nome_editora = $row['nome_editora'];
-            $livros[] = $livro;
+            $jsBook = new stdClass();
+            foreach ($row as $key => $value)
+            {
+                $jsBook->$key = $value;
+            }
+            $jsBook->autores = $row['autores_nomes'] ? explode(', ', $row['autores_nomes']) : [];
+            $jsBook->generos = $row['generos_nomes'] ? explode(', ', $row['generos_nomes']) : [];
+
+            $livros[] = $jsBook;
         }
         return $livros;
 
@@ -249,11 +208,54 @@ class BibliotecaService
 
         return array_map(function ($row)
         {
-            $livro = LivroDTO::fromArray($row);
-            $livro->autores = $row['autores_nomes'] ? explode(', ', $row['autores_nomes']) : [];
-            $livro->generos = $row['generos_nomes'] ? explode(', ', $row['generos_nomes']) : [];
-            $livro->nome_editora = $row['nome_editora'];
-            return $livro;
+            $jsBook = new stdClass();
+            foreach ($row as $key => $value)
+            {
+                $jsBook->$key = $value;
+            }
+            $jsBook->autores = $row['autores_nomes'] ? explode(', ', $row['autores_nomes']) : [];
+            $jsBook->generos = $row['generos_nomes'] ? explode(', ', $row['generos_nomes']) : [];
+            return $jsBook;
+        }, $results);
+    }
+
+    /**
+     * Busca o histórico de livros que um aluno já leu (emprestou e devolveu).
+     * @return array
+     */
+    public function buscarHistoricoDeLeituraPorAluno(int $alunoId): array
+    {
+        $sql = "
+            SELECT DISTINCT
+                l.id_livro as id,
+                l.*,
+                GROUP_CONCAT(DISTINCT a.nome SEPARATOR ', ') as autores_nomes,
+                GROUP_CONCAT(DISTINCT g.descricao SEPARATOR ', ') as generos_nomes,
+                e.nome as nome_editora,
+                (SELECT av.nota FROM avaliacoes_livros av WHERE av.id_livro = l.id_livro AND av.id_usuario = :alunoId) as minha_nota
+            FROM emprestimos emp
+            JOIN livros l ON emp.id_livro = l.id_livro
+            LEFT JOIN autores a ON l.id_autor = a.id_autor
+            LEFT JOIN rel_livros_generos rlg ON l.id_livro = rlg.id_livro
+            LEFT JOIN generos_livros g ON rlg.id_genero = g.id_genero_livro
+            LEFT JOIN editoras e ON l.id_editora = e.id_editora
+            WHERE emp.id_usuario = :alunoId AND emp.status = 'Devolvido'
+            GROUP BY l.id_livro
+            ORDER BY MAX(emp.data_devolucao_real) DESC
+        ";
+
+        $results = $this->db->query($sql, [':alunoId' => $alunoId]);
+
+        return array_map(function ($row)
+        {
+            $jsBook = new stdClass();
+            foreach ($row as $key => $value)
+            {
+                $jsBook->$key = $value;
+            }
+            $jsBook->autores = $row['autores_nomes'] ? explode(', ', $row['autores_nomes']) : [];
+            $jsBook->generos = $row['generos_nomes'] ? explode(', ', $row['generos_nomes']) : [];
+            return $jsBook;
         }, $results);
     }
 
@@ -407,67 +409,23 @@ class BibliotecaService
         }
     }
 
-    // --- Reservas ---
-    public function buscarReservasPendentes(): array
+    public function estenderEmprestimo(int $id_emprestimo, int $dias = 15): ?string
     {
-        $sql = "SELECT r.*, u.nome as nome_usuario, l.titulo as titulo_livro
-                FROM reservas r
-                JOIN usuarios u ON r.id_usuario = u.id_usuario
-                JOIN livros l ON r.id_livro = l.id_livro
-                WHERE r.status = 'Pendente' ORDER BY r.data_reserva ASC";
-        return array_map([ReservaDTO::class, 'fromArray'], $this->db->query($sql));
-    }
-
-    public function aprovarReserva(int $id_reserva): bool
-    {
-        $this->db->beginTransaction();
-        try
+        // Primeiro, busca a data atual para poder calcular a nova
+        $emprestimo = $this->db->selectOne("SELECT data_devolucao_prevista FROM emprestimos WHERE id_emprestimo = :id", [':id' => $id_emprestimo]);
+        if (!$emprestimo)
         {
-            $reserva = $this->db->query("SELECT id_usuario, id_livro FROM reservas WHERE id_reserva = :id", [':id' => $id_reserva])[0] ?? null;
-            if (!$reserva)
-                throw new Exception("Reserva não encontrada.");
-
-            $this->db->execute("UPDATE reservas SET status = 'Aprovada' WHERE id_reserva = :id", [':id' => $id_reserva]);
-            $this->db->execute("INSERT INTO emprestimos (id_usuario, id_livro, data_emprestimo, data_devolucao_prevista, status) VALUES (:id_usuario, :id_livro, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 15 DAY), 'Emprestado')", [':id_usuario' => $reserva['id_usuario'], ':id_livro' => $reserva['id_livro']]);
-            $this->db->execute("UPDATE livros SET qtde_disponivel = qtde_disponivel - 1, qtde_reservada = qtde_reservada - 1 WHERE id_livro = :id_livro", [':id_livro' => $reserva['id_livro']]);
-
-            $this->db->commit();
-
-            require_once BASE_PATH . 'core/services/NotificacaoService.php';
-            $notificacaoService = new NotificacaoService();
-            $livroTitulo = $this->db->query("SELECT titulo FROM livros WHERE id_livro = :id", [':id' => $reserva['id_livro']])[0]['titulo'] ?? 'desconhecido';
-            $titulo = "Reserva Aprovada";
-            $descricao = "Sua reserva para o livro <strong>{$livroTitulo}</strong> foi aprovada. Você já pode retirá-lo na biblioteca.";
-            $notificacaoService->criarNotificacao($reserva['id_usuario'], 'reserva_aprovada', $titulo, $descricao, '?param=area_aluno#biblioteca');
-
-            return true;
+            return null;
         }
-        catch (Exception $e)
-        {
-            $this->db->rollBack();
-            return false;
-        }
-    }
 
-    public function recusarReserva(int $id_reserva): bool
-    {
-        $reserva = $this->db->query("SELECT id_livro FROM reservas WHERE id_reserva = :id", [':id' => $id_reserva])[0] ?? null;
-        if (!$reserva)
-            return false;
+        // Calcula a nova data
+        $novaData = (new DateTime($emprestimo->data_devolucao_prevista))->modify("+$dias days")->format('Y-m-d');
 
-        if ($this->db->execute("DELETE FROM reservas WHERE id_reserva = :id", [':id' => $id_reserva]))
-        {
-            $this->db->execute("UPDATE livros SET qtde_reservada = qtde_reservada - 1 WHERE id_livro = :id_livro", [':id_livro' => $reserva['id_livro']]);
+        // Atualiza no banco
+        $sql = "UPDATE emprestimos SET data_devolucao_prevista = :nova_data WHERE id_emprestimo = :id";
+        $success = $this->db->execute($sql, [':nova_data' => $novaData, ':id' => $id_emprestimo]);
 
-            require_once BASE_PATH . 'core/services/NotificacaoService.php';
-            $notificacaoService = new NotificacaoService();
-            $livroTitulo = $this->db->query("SELECT titulo FROM livros WHERE id_livro = :id", [':id' => $reserva['id_livro']])[0]['titulo'] ?? 'desconhecido';
-            $titulo = "Reserva Recusada";
-            $descricao = "Sua reserva para o livro <strong>{$livroTitulo}</strong> foi recusada, provavelmente por indisponibilidade.";
-            $notificacaoService->criarNotificacao($reserva['id_usuario'], 'reserva_recusada', $titulo, $descricao, '?param=area_aluno#biblioteca');
-
-            return true;
-        }
-        return false;
+        // Retorna a nova data em caso de sucesso, ou nulo em caso de falha
+        return $success ? $novaData : null;
     }
 }

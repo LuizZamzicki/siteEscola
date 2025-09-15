@@ -1,8 +1,15 @@
 <?php
 require_once BASE_PATH . 'core/services/BibliotecaService.php';
+require_once BASE_PATH . 'core/services/ReservaService.php';
+require_once BASE_PATH . 'core/services/UsuarioService.php';
+require_once BASE_PATH . 'core/services/database.php';
 require_once BASE_PATH . 'widgets/modal/Modal.php';
+FuncoesUtils::adicionarCss('Features_Area_Adm\style.css');
+
 
 $bibliotecaService = new BibliotecaService();
+$reservaService = new ReservaService();
+$usuarioService = new UsuarioService();
 $feedbackMessage = '';
 $feedbackType = 'success';
 
@@ -24,30 +31,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         }
 
         $livroDTO = new LivroDTO(
-            empty($_POST['book-id']) ? null : (int)$_POST['book-id'], // id
-            $_POST['book-title'] ?? '',                               // titulo
-            $_POST['book-subtitle'] ?? null,                          // subtitulo
-            empty($_POST['book-pages']) ? null : (int)$_POST['book-pages'], // num_paginas
-            $urlFotoExistente,                                        // url_foto
-            (int)($_POST['book-qty'] ?? 1),                           // qtde_total
-            (int)($_POST['book-qty'] ?? 1),                           // qtde_disponivel
-            0,                                                        // qtde_reservada
-            null                                                      // id_editora (definido abaixo)
+            empty($_POST['book-id']) ? null : (int)$_POST['book-id'],
+            $_POST['book-title'] ?? '',
+            $_POST['book-subtitle'] ?? null,
+            empty($_POST['book-pages']) ? null : (int)$_POST['book-pages'],
+            $urlFotoExistente,
+            (int)($_POST['book-qty'] ?? 1),
+            (int)($_POST['book-qty'] ?? 1),
+            0,
+            null
         );
-        $livroDTO->data_publicacao = $_POST['book-pubdate'] ?? null; // Adiciona a data de publicação
+        $livroDTO->data_publicacao = $_POST['book-pubdate'] ?? null;
 
         $foto = isset($_FILES['book-photo']) && $_FILES['book-photo']['error'] === UPLOAD_ERR_OK
             ? $_FILES['book-photo']
             : null;
 
-        // --- Resolver IDs usando os Services ---
         require_once BASE_PATH . 'core/services/AutorService.php';
         require_once BASE_PATH . 'core/services/EditoraService.php';
         require_once BASE_PATH . 'core/services/GeneroService.php';
 
         $autorNome = $_POST['book-author'] ?? '';
         $editoraNome = $_POST['book-publisher'] ?? '';
-        $generoNomesStr = $_POST['book-genre'] ?? ''; // "Aventura, Ficção"
+        $generoNomesStr = $_POST['book-genre'] ?? '';
 
         $autorService = new AutorService();
         $editoraService = new EditoraService();
@@ -72,35 +78,109 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             : "Erro ao salvar livro.";
     }
 
+    if ($action === 'emprestimo_manual')
+    {
+        $livroId = (int)($_POST['loan-book-id'] ?? 0);
+        $alunoId = (int)($_POST['loan-student-id'] ?? 0);
+        $dataDevolucao = $_POST['loan-return-date'] ?? '';
+        $success = false;
+        $json_data = [];
+
+        if ($livroId && $alunoId && !empty($dataDevolucao))
+        {
+            $db = new Database();
+            $db->beginTransaction();
+            try
+            {
+                $livro = $db->selectOne("SELECT titulo, qtde_disponivel FROM livros WHERE id_livro = :id", [':id' => $livroId]);
+
+                if ($livro && $livro->qtde_disponivel > 0)
+                {
+                    $db->execute("UPDATE livros SET qtde_disponivel = qtde_disponivel - 1 WHERE id_livro = :id", [':id' => $livroId]);
+                    $db->execute(
+                        "INSERT INTO emprestimos (id_usuario, id_livro, data_emprestimo, data_devolucao_prevista, status) VALUES (:id_usuario, :id_livro, CURDATE(), :data_devolucao, 'Emprestado')",
+                        [':id_usuario' => $alunoId, ':id_livro' => $livroId, ':data_devolucao' => $dataDevolucao]
+                    );
+                    $newLoanId = $db->lastInsertId();
+                    $db->commit();
+                    $success = true;
+                    $feedbackMessage = "Empréstimo manual realizado com sucesso!";
+
+                    // Buscar dados do novo empréstimo para retornar ao JS
+                    $newLoanData = $db->selectOne(
+                        "SELECT e.id_emprestimo as id, l.titulo as livroTitulo, u.nome as usuarioNome, e.data_devolucao_prevista as dataDevolucaoPrevista 
+                         FROM emprestimos e 
+                         JOIN livros l ON e.id_livro = l.id_livro 
+                         JOIN usuarios u ON e.id_usuario = u.id_usuario 
+                         WHERE e.id_emprestimo = :id",
+                        [':id' => $newLoanId]
+                    );
+                    if ($newLoanData)
+                    {
+                        $json_data['newLoan'] = $newLoanData;
+                        $json_data['livroId'] = $livroId;
+                    }
+                }
+                else
+                {
+                    $db->rollBack();
+                    $feedbackMessage = "Erro: Livro não disponível para empréstimo.";
+                }
+            }
+            catch (Exception $e)
+            {
+                $db->rollBack();
+                $feedbackMessage = "Erro ao realizar empréstimo manual.";
+                error_log("Erro no empréstimo manual: " . $e->getMessage());
+            }
+        }
+        header('Content-Type: application/json');
+        echo json_encode(array_merge(['success' => $success, 'message' => $feedbackMessage], $json_data));
+        exit();
+    }
+
     if ($action === 'confirmar_acao')
     {
         $sub_action = $_POST['sub_action'];
         $id = (int)$_POST['id'];
         $errorMessage = '';
+        $success = false;
+        $json_data = [];
 
         switch ($sub_action)
         {
             case 'excluir_livro':
-                if ($bibliotecaService->excluirLivro($id, $errorMessage))
-                {
-                    $feedbackMessage = "Livro excluído com sucesso!";
-                }
-                else
-                {
-                    $feedbackMessage = $errorMessage ?: "Erro ao excluir livro.";
-                    $feedbackType = 'error';
-                }
+                $success = $bibliotecaService->excluirLivro($id, $errorMessage);
+                $feedbackMessage = $success ? "Livro excluído com sucesso!" : ($errorMessage ?: "Erro ao excluir livro.");
                 break;
             case 'devolver_livro':
-                $feedbackMessage = $bibliotecaService->devolverLivro($id) ? "Devolução confirmada!" : "Erro ao confirmar devolução.";
+                $success = $bibliotecaService->devolverLivro($id);
+                $feedbackMessage = $success ? "Devolução confirmada!" : "Erro ao confirmar devolução.";
+                break;
+            case 'estender_emprestimo':
+                // Por padrão, estende por 15 dias.
+                $newDate = $bibliotecaService->estenderEmprestimo($id, 15);
+                $success = $newDate !== null;
+                $feedbackMessage = $success ? "Prazo de empréstimo estendido com sucesso!" : "Erro ao estender o prazo.";
+                if ($success)
+                {
+                    $json_data['new_date'] = (new DateTime($newDate))->format('d/m/Y');
+                }
                 break;
             case 'aprovar_reserva':
-                $feedbackMessage = $bibliotecaService->aprovarReserva($id) ? "Reserva aprovada!" : "Erro ao aprovar reserva.";
+                $success = $reservaService->confirmarRetirada($id);
+                $feedbackMessage = $success ? "Retirada do livro confirmada e empréstimo iniciado!" : "Erro ao confirmar retirada.";
                 break;
             case 'recusar_reserva':
-                $feedbackMessage = $bibliotecaService->recusarReserva($id) ? "Reserva recusada." : "Erro ao recusar reserva.";
+                $success = $reservaService->cancelarReservaAdmin($id);
+                $feedbackMessage = $success ? "Reserva cancelada." : "Erro ao cancelar reserva.";
                 break;
         }
+
+        // Responder com JSON para a requisição AJAX e interromper o script
+        header('Content-Type: application/json');
+        echo json_encode(array_merge(['success' => $success, 'message' => $feedbackMessage], $json_data));
+        exit();
     }
 
     $redirectUrl = strtok($_SERVER['REQUEST_URI'], '?') . '?param=biblioteca&msg=' . urlencode($feedbackMessage) . '&type=' . $feedbackType;
@@ -112,13 +192,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 $livros = $bibliotecaService->buscarTodosLivros();
 $emprestimos = $bibliotecaService->buscarEmprestimosAtivos();
-$reservas = $bibliotecaService->buscarReservasPendentes();
+$reservas = $reservaService->buscarPorStatus('Aguardando Retirada'); // A UI atual é para confirmar retirada
+$todosAlunos = $usuarioService->buscarTodosAlunos();
+$alunosAtivos = array_filter($todosAlunos, fn($aluno) => $aluno->status === 'Ativo');
 $feedbackMessage = isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : '';
 $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'success';
 ?>
-<!-- Conteúdo da Biblioteca -->
+
 <div class="space-y-6">
-    <!-- Abas de Navegação -->
     <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-200">
         <nav class="flex space-x-2" id="library-tabs">
             <button data-tab="acervo"
@@ -126,27 +207,37 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
             <button data-tab="emprestimos"
                 class="library-tab flex-1 text-center px-4 py-2 rounded-lg font-semibold text-sm transition text-slate-600 hover:bg-slate-100">Empréstimos
                 Ativos</button>
-            <button data-tab="reservas"
+            <button data-tab="reservas" id="reservas-tab-btn"
                 class="library-tab flex-1 text-center px-4 py-2 rounded-lg font-semibold text-sm transition text-slate-600 hover:bg-slate-100">Pedidos
                 de Reserva</button>
         </nav>
     </div>
 
-    <!-- Conteúdo das Abas -->
+
     <div id="acervo-content" class="library-tab-content space-y-4">
         <?php if ($feedbackMessage): ?>
-                <div class="<?= $feedbackType === 'success' ? 'bg-green-100 border-green-200 text-green-800' : 'bg-red-100 border-red-200 text-red-800' ?> border px-4 py-3 rounded-lg relative"
-                    role="alert">
-                    <span class="block sm:inline"><?= $feedbackMessage ?></span>
-                </div>
+            <div class="<?= $feedbackType === 'success' ? 'bg-green-100 border-green-200 text-green-800' : 'bg-red-100 border-red-200 text-red-800' ?> border px-4 py-3 rounded-lg relative"
+                role="alert">
+                <span class="block sm:inline"><?= $feedbackMessage ?></span>
+            </div>
         <?php endif; ?>
         <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
             <h2 class="text-xl font-semibold">Acervo da Biblioteca</h2>
-            <div class="flex items-center gap-2 w-full sm:w-auto">
-                <div class="relative flex-grow">
-                    <input id="book-search-input" type="text" placeholder="Pesquisar por título..."
+            <div class="flex flex-wrap items-center justify-center sm:justify-end gap-2 w-full sm:w-auto">
+                <div class="relative flex-grow w-full sm:w-auto">
+                    <input id="book-search-input" type="text" placeholder="Pesquisar por título ou autor..."
                         class="pl-10 pr-4 py-2 border border-slate-300 rounded-full focus:ring-2 focus:ring-purple-400 w-full text-sm">
                     <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                </div>
+                <div class="relative">
+                    <select id="book-status-filter"
+                        class="pl-4 pr-8 py-2 border border-slate-300 rounded-full focus:ring-2 focus:ring-purple-400 text-sm text-slate-600 appearance-none">
+                        <option value="todos">Todos os status</option>
+                        <option value="disponivel">Disponível</option>
+                        <option value="indisponivel">Indisponível</option>
+                    </select>
+                    <i
+                        class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
                 </div>
                 <?php // Botão para Desktop ?>
                 <?php Botoes::getBotao('', 'Adicionar Livro', BotoesCores::VERDE, null, altura: 40, icone: 'fa-solid fa-plus-circle', type: 'button', classes: 'add-book-btn hidden sm:inline-flex') ?>
@@ -173,46 +264,47 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
                 </thead>
                 <tbody class="divide-y divide-slate-200">
                     <?php foreach ($livros as $livro): ?>
-                            <tr data-book-id="<?= $livro->id ?>" data-title="<?= htmlspecialchars($livro->titulo) ?>"
-                                data-subtitle="<?= htmlspecialchars($livro->subtitulo ?? '') ?>"
-                                data-author="<?= htmlspecialchars(implode(', ', $livro->autores)) ?>"
-                                data-publisher="<?= htmlspecialchars($livro->nome_editora ?? '') ?>"
-                                data-genre="<?= htmlspecialchars(implode(', ', $livro->generos)) ?>"
-                                data-pubdate="<?= htmlspecialchars($livro->data_publicacao ?? '') ?>"
-                                data-qty="<?= $livro->qtde_total ?>" data-pages="<?= $livro->num_paginas ?? '' ?>"
-                                data-photo-url="<?= htmlspecialchars($livro->url_foto ?? '') ?>">
-                                <td class="p-2">
-                                    <img src="<?= htmlspecialchars($livro->url_foto ?? 'https://placehold.co/50x70/e2e8f0/94a3b8?text=Capa') ?>"
-                                        alt="Capa do livro <?= htmlspecialchars($livro->titulo) ?>"
-                                        class="w-12 h-16 object-cover rounded-md shadow-sm mx-auto"
-                                        onerror="this.onerror=null;this.src='https://placehold.co/50x70/e2e8f0/94a3b8?text=Capa';">
-                                </td>
-                                <td class="p-4 font-medium"><?= htmlspecialchars($livro->titulo) ?></td>
-                                <td class="p-4 text-slate-600"><?= htmlspecialchars(implode(', ', $livro->autores)) ?></td>
-                                <td class="p-4 text-slate-600"><?= $livro->num_paginas ?? 'N/A' ?></td>
-                                <td class="p-4 text-slate-600">
-                                    <?= $livro->data_publicacao ? (new DateTime($livro->data_publicacao))->format('d/m/Y') : 'N/A' ?>
-                                </td>
-                                <td class="p-4 text-slate-600"><?= $livro->qtde_disponivel ?></td>
-                                <td class="p-4 text-slate-600"><?= $livro->qtde_reservada ?></td>
-                                <td class="p-4">
-                                    <?php if ($livro->qtde_disponivel > 0): ?>
-                                            <span
-                                                class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Disponível</span>
-                                    <?php else: ?>
-                                            <span
-                                                class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Indisponível</span>
-                                    <?php endif; ?>
-                                </td>
-                                <td class="p-4 flex items-center justify-end gap-2">
-                                    <button
-                                        class="edit-book-btn text-slate-500 hover:text-blue-600 p-2 rounded-lg hover:bg-slate-100"
-                                        title="Editar"><i class="fa-solid fa-pencil"></i></button>
-                                    <button
-                                        class="delete-book-btn text-slate-500 hover:text-red-600 p-2 rounded-lg hover:bg-slate-100"
-                                        title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
-                                </td>
-                            </tr>
+                        <tr data-book-id="<?= $livro->id ?>" data-title="<?= htmlspecialchars($livro->titulo) ?>"
+                            data-subtitle="<?= htmlspecialchars($livro->subtitulo ?? '') ?>"
+                            data-author="<?= htmlspecialchars(implode(', ', $livro->autores)) ?>"
+                            data-publisher="<?= htmlspecialchars($livro->nome_editora ?? '') ?>"
+                            data-genre="<?= htmlspecialchars(implode(', ', $livro->generos)) ?>"
+                            data-pubdate="<?= htmlspecialchars($livro->data_publicacao ?? '') ?>"
+                            data-status="<?= $livro->qtde_disponivel > 0 ? 'disponivel' : 'indisponivel' ?>"
+                            data-qty="<?= $livro->qtde_total ?>" data-pages="<?= $livro->num_paginas ?? '' ?>"
+                            data-photo-url="<?= htmlspecialchars($livro->url_foto ?? '') ?>">
+                            <td class="p-2">
+                                <img src="<?= htmlspecialchars($livro->url_foto ?? 'https://placehold.co/50x70/e2e8f0/94a3b8?text=Capa') ?>"
+                                    alt="Capa do livro <?= htmlspecialchars($livro->titulo) ?>"
+                                    class="w-12 h-16 object-cover rounded-md shadow-sm mx-auto"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/50x70/e2e8f0/94a3b8?text=Capa';">
+                            </td>
+                            <td class="p-4 font-medium"><?= htmlspecialchars($livro->titulo) ?></td>
+                            <td class="p-4 text-slate-600"><?= htmlspecialchars(implode(', ', $livro->autores)) ?></td>
+                            <td class="p-4 text-slate-600"><?= $livro->num_paginas ?? 'N/A' ?></td>
+                            <td class="p-4 text-slate-600">
+                                <?= $livro->data_publicacao ? (new DateTime($livro->data_publicacao))->format('d/m/Y') : 'N/A' ?>
+                            </td>
+                            <td class="p-4 text-slate-600"><?= $livro->qtde_disponivel ?></td>
+                            <td class="p-4 text-slate-600"><?= $livro->qtde_reservada ?></td>
+                            <td class="p-4">
+                                <?php if ($livro->qtde_disponivel > 0): ?>
+                                    <span
+                                        class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Disponível</span>
+                                <?php else: ?>
+                                    <span
+                                        class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Indisponível</span>
+                                <?php endif; ?>
+                            </td>
+                            <td class="p-4 flex items-center justify-end gap-2">
+                                <button
+                                    class="edit-book-btn text-slate-500 hover:text-blue-600 p-2 rounded-lg hover:bg-slate-100"
+                                    title="Editar"><i class="fa-solid fa-pencil"></i></button>
+                                <button
+                                    class="delete-book-btn text-slate-500 hover:text-red-600 p-2 rounded-lg hover:bg-slate-100"
+                                    title="Excluir"><i class="fa-solid fa-trash-can"></i></button>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -223,18 +315,29 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
     <div id="emprestimos-content" class="library-tab-content space-y-4 hidden">
         <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
             <h2 class="text-xl font-semibold">Empréstimos Ativos</h2>
-            <div class="flex items-center gap-2 w-full sm:w-auto">
-                <div class="relative flex-grow sm:flex-grow-0">
+            <div class="flex flex-col md:flex-row items-center gap-2 w-full md:w-auto">
+                <div class="relative w-full sm:w-auto">
                     <input id="loan-date-filter" type="date" title="Filtrar por data de devolução"
                         class="px-4 py-2 border border-slate-300 rounded-full focus:ring-2 focus:ring-purple-400 text-sm text-slate-600 w-full">
                 </div>
-                <div class="relative flex-grow">
+                <div class="relative w-full sm:w-auto flex-grow">
                     <input id="student-search-input" type="text" placeholder="Pesquisar por aluno..."
                         class="pl-10 pr-4 py-2 border border-slate-300 rounded-full focus:ring-2 focus:ring-purple-400 w-full text-sm">
                     <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
                 </div>
+                <?php // Botão para Desktop ?>
+                <?php Botoes::getBotao('', 'Empréstimo Manual', BotoesCores::AZUL, null, altura: 40, icone: 'fa-solid fa-plus', type: 'button', classes: 'manual-loan-btn hidden md:inline-flex') ?>
             </div>
         </div>
+        <?php // Botão Flutuante para Mobile ?>
+        <?php Botoes::getBotoesFlutuantes([
+        [
+        'cor' => BotoesCores::AZUL,
+        'icone' => 'fa-solid fa-plus text-xl',
+        'type' => 'button',
+        'classesAdicionais' => 'manual-loan-btn'
+        ]
+        ]); ?>
         <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-x-auto">
             <table class="w-full text-left" id="loans-table">
                 <thead class="bg-slate-50">
@@ -247,17 +350,18 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
                 </thead>
                 <tbody class="divide-y divide-slate-200">
                     <?php foreach ($emprestimos as $emprestimo): ?>
-                            <tr class="loan-row" data-loan-id="<?= $emprestimo->id ?>">
-                                <td class="p-4 font-medium"><?= htmlspecialchars($emprestimo->livroTitulo) ?></td>
-                                <td class="p-4 text-slate-600 student-name"><?= htmlspecialchars($emprestimo->usuarioNome) ?>
-                                </td>
-                                <td class="p-4 text-slate-600">
-                                    <?= (new DateTime($emprestimo->dataDevolucaoPrevista))->format('d/m/Y') ?>
-                                </td>
-                                <td class="p-4 text-right">
-                                    <?php Botoes::getBotao('', 'Devolver', BotoesCores::ROXO, null, altura: 36, classes: 'return-book-btn !text-sm', type: 'button') ?>
-                                </td>
-                            </tr>
+                        <tr class="loan-row" data-loan-id="<?= $emprestimo->id ?>">
+                            <td class="p-4 font-medium"><?= htmlspecialchars($emprestimo->livroTitulo) ?></td>
+                            <td class="p-4 text-slate-600 student-name"><?= htmlspecialchars($emprestimo->usuarioNome) ?>
+                            </td>
+                            <td class="p-4 text-slate-600">
+                                <?= (new DateTime($emprestimo->dataDevolucaoPrevista))->format('d/m/Y') ?>
+                            </td>
+                            <td class="p-4 flex items-center justify-end gap-2">
+                                <?php Botoes::getBotao('', 'Devolver', BotoesCores::ROXO, null, altura: 36, classes: 'return-book-btn !text-sm', type: 'button') ?>
+                                <?php Botoes::getBotao('', 'Estender', BotoesCores::AZUL, null, altura: 36, classes: 'extend-loan-btn !text-sm', type: 'button') ?>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -265,28 +369,39 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
     </div>
 
     <div id="reservas-content" class="library-tab-content space-y-4 hidden">
-        <h2 class="text-xl font-semibold">Pedidos de Reserva Pendentes</h2>
-        <div class="space-y-4">
-            <?php if (empty($reservas)): ?>
-                    <p class="text-center text-slate-500 py-4">Nenhum pedido de reserva pendente.</p>
-            <?php else: ?>
-                    <?php foreach ($reservas as $reserva): ?>
-                            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 flex items-center justify-between"
-                                data-reservation-id="<?= $reserva->id ?>">
-                                <div>
-                                    <p class="font-bold"><?= htmlspecialchars($reserva->livroTitulo) ?></p>
-                                    <p class="text-sm text-slate-500">Pedido por: <?= htmlspecialchars($reserva->usuarioNome) ?></p>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <button class="request-btn refuse bg-red-100 text-red-700 p-2 rounded-lg hover:bg-red-200"
-                                        title="Recusar"><i class="fa-solid fa-trash-can"></i></button>
-                                    <button class="request-btn approve bg-green-100 text-green-700 p-2 rounded-lg hover:bg-green-200"
-                                        title="Aprovar"><i class="fa-solid fa-check"></i></button>
-                                </div>
-                            </div>
-                    <?php endforeach; ?>
-            <?php endif; ?>
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <h2 class="text-xl font-semibold">Reservas Aguardando Retirada</h2>
+            <div class="relative w-full sm:w-auto flex-grow sm:flex-grow-0">
+                <input id="reservation-search-input" type="text" placeholder="Pesquisar por aluno ou livro..."
+                    class="pl-10 pr-4 py-2 border border-slate-300 rounded-full focus:ring-2 focus:ring-purple-400 w-full text-sm">
+                <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            </div>
         </div>
+        <div class="space-y-4" id="reservations-list">
+            <?php foreach ($reservas as $reserva): ?>
+                <div class="reservation-item bg-white rounded-xl shadow-sm border border-slate-200 p-4 flex items-center justify-between"
+                    data-reservation-id="<?= $reserva->id ?>"
+                    data-student-name="<?= htmlspecialchars($reserva->usuarioNome) ?>"
+                    data-book-title="<?= htmlspecialchars($reserva->livroTitulo) ?>">
+                    <div>
+                        <p class="font-bold book-title"><?= htmlspecialchars($reserva->livroTitulo) ?></p>
+                        <p class="text-sm text-slate-500 student-name-display">Pedido por: <span
+                                class="font-medium student-name-text"><?= htmlspecialchars($reserva->usuarioNome) ?></span>
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="request-btn refuse bg-red-100 text-red-700 p-2 rounded-lg hover:bg-red-200"
+                            title="Cancelar Reserva">
+                            <i class="fa-solid fa-xmark"></i></button>
+                        <button class="request-btn approve bg-green-100 text-green-700 p-2 rounded-lg hover:bg-green-200"
+                            title="Confirmar Retirada e Emprestar">
+                            <i class="fa-solid fa-check"></i></button>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <p class="text-center text-slate-500 py-4 <?= !empty($reservas) ? 'hidden' : '' ?>" id="no-reservations-msg">
+            Nenhuma reserva aguardando retirada.</p>
     </div>
 </div>
 
@@ -385,16 +500,59 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
     <input type="hidden" id="confirmation-id" name="id">
     <h3 id="confirmation-title" class="text-xl font-semibold mb-4">Confirmar Ação</h3>
     <p id="confirmation-message" class="text-slate-600 mb-6">Tem certeza que deseja prosseguir?</p>
-    <div class="flex justify-end gap-3">
-        <?php Botoes::getBotao('', 'Cancelar', BotoesCores::CINZA, null, altura: 40, icone: 'fa-solid fa-xmark', type: 'button', classes: 'cancel-modal-btn') ?>
-        <?php Botoes::getBotao('', 'Confirmar', BotoesCores::VERDE, 'confirm-action-btn', altura: 40, icone: 'fa-solid fa-check', type: 'submit') ?>
+    <div class="flex flex-col-reverse sm:flex-row sm:justify-end gap-3">
+        <?php Botoes::getBotao('', 'Cancelar', BotoesCores::CINZA, null, altura: 40, icone: 'fa-solid fa-xmark', type: 'button', classes: 'cancel-modal-btn w-full sm:w-auto') ?>
+        <?php Botoes::getBotao('', 'Confirmar', BotoesCores::VERDE, 'confirm-action-btn', altura: 40, icone: 'fa-solid fa-check', type: 'submit', classes: 'w-full sm:w-auto') ?>
+    </div>
+</form>
+<?php Modal::end(); ?>
+
+<!-- Modal Empréstimo Manual -->
+<?php Modal::begin('manual-loan-modal', 'Realizar Empréstimo Manual', 'manual-loan-modal-title', 'max-w-2xl', 'z-30'); ?>
+<form id="manual-loan-form" method="POST">
+    <input type="hidden" name="action" value="emprestimo_manual">
+    <div class="space-y-4">
+        <div>
+            <label for="loan-book-select" class="block text-sm font-medium text-slate-700 mb-1">Selecione o Livro
+                (apenas disponíveis)</label>
+            <select id="loan-book-select" name="loan-book-id" required
+                class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm text-sm">
+                <option value="">Selecione um livro</option>
+                <?php foreach ($livros as $livro): ?>
+                    <?php if ($livro->qtde_disponivel > 0): ?>
+                        <option value="<?= $livro->id ?>"><?= htmlspecialchars($livro->titulo) ?></option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div>
+            <label for="loan-student-select" class="block text-sm font-medium text-slate-700 mb-1">Selecione o
+                Aluno</label>
+            <select id="loan-student-select" name="loan-student-id" required
+                class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm text-sm">
+                <option value="">Selecione um aluno</option>
+                <?php foreach ($alunosAtivos as $aluno): ?>
+                    <option value="<?= $aluno->id ?>"><?= htmlspecialchars($aluno->nome) ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div>
+            <label for="loan-return-date" class="block text-sm font-medium text-slate-700 mb-1">Data de
+                Devolução</label>
+            <input type="date" id="loan-return-date" name="loan-return-date" required
+                class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm text-sm">
+        </div>
+    </div>
+    <div class="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 pt-6">
+        <?php Botoes::getBotao('', 'Cancelar', BotoesCores::CINZA, null, altura: 40, icone: 'fa-solid fa-xmark', type: 'button', classes: 'cancel-modal-btn w-full sm:w-auto') ?>
+        <?php Botoes::getBotao('', 'Confirmar Empréstimo', BotoesCores::VERDE, null, altura: 40, icone: 'fa-solid fa-check', type: 'submit', classes: 'w-full sm:w-auto') ?>
     </div>
 </form>
 <?php Modal::end(); ?>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // --- Elements ---
+        // --- Elementos ---
         const libraryTabs = document.querySelectorAll('.library-tab');
         const tabContents = document.querySelectorAll('.library-tab-content');
         const addEditBookModal = document.getElementById('add-edit-book-modal');
@@ -413,18 +571,27 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
         const studentSearchInput = document.getElementById('student-search-input');
         const bookSearchInput = document.getElementById('book-search-input');
         const loanDateFilter = document.getElementById('loan-date-filter');
+        const bookStatusFilter = document.getElementById('book-status-filter');
         const loansTable = document.getElementById('loans-table');
-        const reservationsContainer = document.querySelector('#reservas-content .space-y-4');
+        const confirmationForm = document.getElementById('confirmation-form');
+        const manualLoanModal = document.getElementById('manual-loan-modal');
+        const manualLoanForm = document.getElementById('manual-loan-form');
+        const reservationSearchInput = document.getElementById('reservation-search-input');
+        const reservationsList = document.getElementById('reservations-list');
+        const noReservationsMsg = document.getElementById('no-reservations-msg');
 
-        // --- Genre Tags Elements ---
+        // --- Tags de generos ---
         const genreInput = document.getElementById('book-genre-input');
         const genreTagsContainer = document.getElementById('genre-tags-container');
         const hiddenGenreInput = document.getElementById('book-genre');
         const genreAutocompleteResults = document.getElementById('genre-autocomplete-results');
 
-        // --- Tab Switching ---
+        // --- Troca de Abas ---
         libraryTabs.forEach(tab => {
             tab.addEventListener('click', () => {
+                if (tab.id === 'reservas-tab-btn') {
+                    document.querySelector('#reservas-content h2').textContent = 'Reservas Aguardando Retirada';
+                }
                 const targetTab = tab.dataset.tab;
 
                 libraryTabs.forEach(t => {
@@ -445,19 +612,32 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
             });
         });
 
-        // --- Acervo (Collection) Logic ---
+        // --- Acervo ---
 
-        // Book search filter
-        bookSearchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
+        function filterBooks() {
+            const searchTerm = bookSearchInput.value.toLowerCase();
+            const statusFilter = bookStatusFilter.value;
             const rows = acervoTbody.querySelectorAll('tr');
+
             rows.forEach(row => {
                 const title = row.dataset.title.toLowerCase();
-                row.style.display = title.includes(searchTerm) ? '' : 'none';
-            });
-        });
+                const author = row.dataset.author.toLowerCase();
+                const status = row.dataset.status;
 
-        // Open "Add Book" modal
+                const searchMatch = title.includes(searchTerm) || author.includes(searchTerm);
+                const statusMatch = statusFilter === 'todos' || status === statusFilter;
+
+                if (searchMatch && statusMatch) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        bookSearchInput.addEventListener('input', filterBooks);
+        bookStatusFilter.addEventListener('change', filterBooks);
+
         document.querySelectorAll('.add-book-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 bookModalTitle.textContent = 'Adicionar Novo Livro';
@@ -469,7 +649,6 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
             });
         });
 
-        // Event delegation for Edit and Delete buttons
         acervoTbody.addEventListener('click', (e) => {
             const editBtn = e.target.closest('.edit-book-btn');
             const deleteBtn = e.target.closest('.delete-book-btn');
@@ -514,17 +693,17 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
             }
         });
 
-        // --- Empréstimos (Loans) Logic ---
+        // --- Empréstimos ---
         function filterLoans() {
             const studentSearchTerm = studentSearchInput.value.toLowerCase();
-            const dateFilterValue = loanDateFilter.value; // Format: YYYY-MM-DD
+            const dateFilterValue = loanDateFilter.value;
 
             const rows = loansTable.querySelectorAll('tbody tr.loan-row');
             rows.forEach(row => {
                 const studentName = row.querySelector('.student-name').textContent.toLowerCase();
-                const returnDateText = row.querySelector('td:nth-child(3)').textContent; // Format: DD/MM/YYYY
+                const returnDateText = row.querySelector('td:nth-child(3)').textContent;
 
-                // Convert DD/MM/YYYY to YYYY-MM-DD for comparison
+
                 const [day, month, year] = returnDateText.split('/');
                 const formattedReturnDate = `${year}-${month}-${day}`;
 
@@ -542,9 +721,32 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
         loanDateFilter.addEventListener('input', filterLoans);
 
         loansTable.addEventListener('click', (e) => {
+            const row = e.target.closest('tr');
+            if (!row) return;
+
             const returnBtn = e.target.closest('.return-book-btn');
+            const extendBtn = e.target.closest('.extend-loan-btn');
+
+            if (!returnBtn && !extendBtn) return;
+
+            const bookTitle = row.querySelector('td:first-child').textContent;
+            const studentName = row.querySelector('.student-name').textContent;
+
+            const confirmationTitle = document.getElementById('confirmation-title');
+            const confirmationMessage = document.getElementById('confirmation-message');
+            const confirmActionBtn = document.getElementById('confirm-action-btn');
+            const form = document.getElementById('confirmation-form');
+
             if (returnBtn) {
-                const row = e.target.closest('tr');
+                confirmationTitle.textContent = 'Confirmar Devolução';
+                confirmationMessage.innerHTML = `Confirmar a devolução do livro <strong>${bookTitle}</strong> por <strong>${studentName}</strong>?`;
+
+                confirmActionBtn.querySelector('span').textContent = 'Confirmar Devolução';
+                confirmActionBtn.classList.remove('btn-verde', 'btn-vermelho', 'btn-cinza', 'btn-azul');
+                confirmActionBtn.classList.add('btn-roxo');
+
+                form.querySelector('#confirmation-sub-action').value = 'devolver_livro';
+            } else if (extendBtn) {
                 const bookTitle = row.querySelector('td:first-child').textContent;
                 const studentName = row.querySelector('.student-name').textContent;
 
@@ -552,26 +754,57 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
                 const confirmationMessage = document.getElementById('confirmation-message');
                 const confirmActionBtn = document.getElementById('confirm-action-btn');
 
-                confirmationTitle.textContent = 'Confirmar Devolução';
-                confirmationMessage.innerHTML = `Confirmar a devolução do livro <strong>${bookTitle}</strong> por <strong>${studentName}</strong>?`;
+                confirmationTitle.textContent = 'Estender Prazo';
+                confirmationMessage.innerHTML = `Deseja estender o prazo de devolução do livro <strong>${bookTitle}</strong> por mais 15 dias?`;
 
-                confirmActionBtn.querySelector('span').textContent = 'Confirmar Devolução';
-                confirmActionBtn.classList.remove('btn-verde', 'btn-vermelho', 'btn-cinza');
-                confirmActionBtn.classList.add('btn-roxo');
+                confirmActionBtn.querySelector('span').textContent = 'Confirmar Extensão';
+                confirmActionBtn.classList.remove('btn-verde', 'btn-vermelho', 'btn-roxo', 'btn-cinza');
+                confirmActionBtn.classList.add('btn-azul');
 
-                const form = document.getElementById('confirmation-form');
-                form.querySelector('#confirmation-sub-action').value = 'devolver_livro';
-                form.querySelector('#confirmation-id').value = row.dataset.loanId;
-                window.ModalManager.open(confirmationModal);
+                form.querySelector('#confirmation-sub-action').value = 'estender_emprestimo';
             }
+
+            form.querySelector('#confirmation-id').value = row.dataset.loanId;
+            window.ModalManager.open(confirmationModal);
         });
 
-        // --- Reservas (Reservations) Logic ---
-        reservationsContainer.addEventListener('click', (e) => {
+        // --- Reservas ---
+        function filterReservations() {
+            if (!reservationSearchInput || !reservationsList || !noReservationsMsg) return;
+
+            const searchTerm = reservationSearchInput.value.toLowerCase();
+            const items = reservationsList.querySelectorAll('.reservation-item');
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const studentName = item.dataset.studentName.toLowerCase();
+                const bookTitle = item.dataset.bookTitle.toLowerCase();
+
+                if (studentName.includes(searchTerm) || bookTitle.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            if (items.length > 0) {
+                noReservationsMsg.classList.toggle('hidden', visibleCount > 0);
+                noReservationsMsg.textContent = 'Nenhuma reserva encontrada para a sua busca.';
+            } else {
+                noReservationsMsg.classList.remove('hidden');
+                noReservationsMsg.textContent = 'Nenhuma reserva aguardando retirada.';
+            }
+        }
+        if (reservationSearchInput) {
+            reservationSearchInput.addEventListener('input', filterReservations);
+        }
+
+        reservationsList.addEventListener('click', (e) => {
             const requestBtn = e.target.closest('.request-btn');
             if (!requestBtn) return;
 
-            const reservationCard = e.target.closest('.flex.items-center.justify-between');
+            const reservationCard = e.target.closest('.reservation-item');
             const bookTitle = reservationCard.querySelector('p.font-bold').textContent;
             const studentName = reservationCard.querySelector('p.text-sm').textContent.replace('Pedido por: ', '');
 
@@ -582,16 +815,16 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
             const form = document.getElementById('confirmation-form');
             const isApproval = requestBtn.classList.contains('approve');
 
-            confirmationTitle.textContent = isApproval ? 'Aprovar Reserva' : 'Recusar Reserva';
-            confirmationMessage.innerHTML = `Deseja ${isApproval ? 'aprovar' : 'recusar'} a reserva do livro <strong>${bookTitle}</strong> para <strong>${studentName}</strong>?`;
+            confirmationTitle.textContent = isApproval ? 'Confirmar Retirada' : 'Cancelar Reserva';
+            confirmationMessage.innerHTML = `Deseja ${isApproval ? 'confirmar a retirada e iniciar o empréstimo' : 'cancelar a reserva'} do livro <strong>${bookTitle}</strong> para <strong>${studentName}</strong>?`;
 
             if (isApproval) {
-                confirmActionBtn.querySelector('span').textContent = 'Aprovar';
+                confirmActionBtn.querySelector('span').textContent = 'Confirmar';
                 confirmActionBtn.classList.remove('btn-vermelho', 'btn-roxo', 'btn-cinza');
                 confirmActionBtn.classList.add('btn-verde');
                 form.querySelector('#confirmation-sub-action').value = 'aprovar_reserva';
             } else {
-                confirmActionBtn.querySelector('span').textContent = 'Recusar';
+                confirmActionBtn.querySelector('span').textContent = 'Cancelar Reserva';
                 confirmActionBtn.classList.remove('btn-verde', 'btn-roxo', 'btn-cinza');
                 confirmActionBtn.classList.add('btn-vermelho');
                 form.querySelector('#confirmation-sub-action').value = 'recusar_reserva';
@@ -613,7 +846,7 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
             }
         });
 
-        // --- Genre Tags Logic ---
+
         const updateHiddenGenreInput = () => {
             const tags = genreTagsContainer.querySelectorAll('.genre-tag .tag-text');
             const genreNames = Array.from(tags).map(tag => tag.textContent);
@@ -675,7 +908,6 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
             updateHiddenGenreInput();
         };
 
-        // --- Autocomplete for Genres (specific implementation) ---
         const genreSearchAction = genreInput.dataset.searchAction;
         let genreDebounceTimer;
 
@@ -709,7 +941,161 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
             }
         });
 
-        // --- Autocomplete Logic ---
+        // --- Lógica AJAX para Ações (Devolver, Estender, Excluir, etc.) ---
+
+        const showAjaxFeedback = (message, type = 'success') => {
+            // Remove qualquer mensagem de feedback existente da página (a que vem via URL)
+            const urlFeedback = document.querySelector('.bg-green-100, .bg-red-100');
+            if (urlFeedback) urlFeedback.remove();
+
+            const feedbackDiv = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-green-100 border-green-200 text-green-800' : 'bg-red-100 border-red-200 text-red-800';
+            feedbackDiv.className = `${bgColor} border px-4 py-3 rounded-lg relative mb-4`;
+            feedbackDiv.setAttribute('role', 'alert');
+            feedbackDiv.innerHTML = `<span class="block sm:inline">${message}</span>`;
+
+            // Insere a mensagem no topo do conteúdo da aba ativa
+            const activeTabContent = document.querySelector('.library-tab-content:not(.hidden)');
+            activeTabContent.insertBefore(feedbackDiv, activeTabContent.firstChild);
+
+            // Remove a mensagem após alguns segundos
+            setTimeout(() => {
+                feedbackDiv.style.transition = 'opacity 0.5s ease';
+                feedbackDiv.style.opacity = '0';
+                setTimeout(() => feedbackDiv.remove(), 500);
+            }, 5000);
+        };
+
+        confirmationForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const confirmBtn = this.querySelector('#confirm-action-btn');
+            const originalBtnHTML = confirmBtn.innerHTML;
+            confirmBtn.disabled = true;
+            confirmBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processando...`;
+
+            const formData = new FormData(this);
+
+            fetch(window.location.href, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    showAjaxFeedback(data.message, data.success ? 'success' : 'error');
+
+                    if (data.success) {
+                        const subAction = formData.get('sub_action');
+                        const id = formData.get('id');
+
+                        let elementToRemove;
+                        if (subAction === 'devolver_livro') {
+                            elementToRemove = loansTable.querySelector(`tr[data-loan-id="${id}"]`);
+                        } else if (subAction === 'estender_emprestimo') {
+                            const row = loansTable.querySelector(`tr[data-loan-id="${id}"]`);
+                            if (row && data.new_date) {
+                                const dateCell = row.querySelector('td:nth-child(3)');
+                                dateCell.textContent = data.new_date;
+                                row.style.transition = 'background-color 0.2s ease-in-out';
+                                row.style.backgroundColor = '#f0fdf4';
+                                setTimeout(() => {
+                                    row.style.backgroundColor = '';
+                                }, 1000);
+                            }
+                        } else if (subAction === 'aprovar_reserva' || subAction === 'recusar_reserva') {
+                            elementToRemove = reservationsList.querySelector(`div[data-reservation-id="${id}"]`);
+                        } else if (subAction === 'excluir_livro') {
+                            elementToRemove = acervoTbody.querySelector(`tr[data-book-id="${id}"]`);
+                        }
+
+                        if (elementToRemove) {
+                            elementToRemove.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                            elementToRemove.style.opacity = '0';
+                            elementToRemove.style.transform = 'translateX(-20px)';
+                            setTimeout(() => elementToRemove.remove(), 300);
+                        }
+                    }
+                })
+                .catch(error => console.error('Erro na ação:', error))
+                .finally(() => {
+                    confirmBtn.disabled = false;
+                    confirmBtn.innerHTML = originalBtnHTML;
+                    window.ModalManager.close(confirmationModal);
+                });
+        });
+
+        if (manualLoanForm) {
+            manualLoanForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalBtnHTML = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processando...`;
+
+                const formData = new FormData(this);
+
+                fetch(window.location.href, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        showAjaxFeedback(data.message, data.success ? 'success' : 'error');
+
+                        if (data.success && data.newLoan) {
+                            window.ModalManager.close(manualLoanModal);
+
+                            // 1. Adicionar nova linha na tabela de empréstimos
+                            const newLoan = data.newLoan;
+                            const formattedDate = new Date(newLoan.dataDevolucaoPrevista + 'T00:00:00').toLocaleDateString('pt-BR');
+
+                            const newRow = document.createElement('tr');
+                            newRow.className = 'loan-row';
+                            newRow.dataset.loanId = newLoan.id;
+                            newRow.innerHTML = `
+                            <td class="p-4 font-medium">${newLoan.livroTitulo}</td>
+                            <td class="p-4 text-slate-600 student-name">${newLoan.usuarioNome}</td>
+                            <td class="p-4 text-slate-600">${formattedDate}</td>
+                            <td class="p-4 flex items-center justify-end gap-2">
+                                <button type="button" class="btn btn-roxo return-book-btn !text-sm" style="height: 36px;"><span>Devolver</span></button>
+                                <button type="button" class="btn btn-azul extend-loan-btn !text-sm" style="height: 36px;"><span>Estender</span></button>
+                            </td>
+                        `;
+                            loansTable.querySelector('tbody').prepend(newRow);
+                            newRow.style.backgroundColor = '#f0fdf4';
+                            setTimeout(() => { newRow.style.backgroundColor = ''; }, 2000);
+
+                            // 2. Atualizar a contagem de livros no acervo
+                            const bookRowAcervo = acervoTbody.querySelector(`tr[data-book-id="${data.livroId}"]`);
+                            if (bookRowAcervo) {
+                                const availableCell = bookRowAcervo.querySelector('td:nth-child(6)');
+                                const currentQty = parseInt(availableCell.textContent, 10);
+                                const newQty = currentQty - 1;
+                                availableCell.textContent = newQty;
+
+                                if (newQty <= 0) {
+                                    const statusCell = bookRowAcervo.querySelector('td:nth-child(8)');
+                                    statusCell.innerHTML = `<span class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Indisponível</span>`;
+                                    bookRowAcervo.dataset.status = 'indisponivel';
+                                }
+                            }
+
+                            // 3. Remover a opção do livro do modal de empréstimo manual
+                            const bookOption = manualLoanModal.querySelector(`#loan-book-select option[value="${data.livroId}"]`);
+                            if (bookOption) {
+                                bookOption.remove();
+                            }
+                        }
+                    })
+                    .catch(error => console.error('Erro no empréstimo manual:', error))
+                    .finally(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnHTML;
+                    });
+            });
+        }
+
         const setupAutocomplete = (inputElement) => {
             const resultsContainer = inputElement.nextElementSibling;
             const searchAction = inputElement.dataset.searchAction;
@@ -740,7 +1126,6 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
                 }, 300);
             });
 
-            // Use event delegation on the container for handling clicks
             resultsContainer.addEventListener('click', (e) => {
                 const itemEl = e.target.closest('.autocomplete-item');
 
@@ -751,10 +1136,8 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
             });
         };
 
-        // Setup autocomplete for author and publisher only
         document.querySelectorAll('#book-author, #book-publisher').forEach(setupAutocomplete);
 
-        // Close autocomplete when clicking outside
         document.addEventListener('click', (e) => {
             const isAutocompleteClick = e.target.closest('.relative') && e.target.closest('.relative').querySelector('.autocomplete-input');
             if (!isAutocompleteClick) {
@@ -763,5 +1146,20 @@ $feedbackType = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'succes
                 });
             }
         });
+
+        if (manualLoanModal) {
+            document.querySelectorAll('.manual-loan-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const form = manualLoanModal.querySelector('form');
+                    form.reset();
+
+                    const returnDateInput = document.getElementById('loan-return-date');
+                    const today = new Date();
+                    today.setDate(today.getDate() + 15);
+                    returnDateInput.valueAsDate = today;
+                    window.ModalManager.open(manualLoanModal);
+                });
+            });
+        }
     });
 </script>

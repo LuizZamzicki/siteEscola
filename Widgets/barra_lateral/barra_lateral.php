@@ -243,4 +243,3 @@ class BarraLateral
         self::_render_sidebar($config);
     }
 }
-        ?>

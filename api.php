@@ -33,7 +33,16 @@ if (empty($action))
 // --- Security & Validation ---
 
 // Actions that modify data must be POST
-$post_actions = ['mark_notification_read', 'salvar_pais', 'salvar_horario_config', 'salvar_materia'];
+$post_actions = [
+                 'mark_notification_read', 
+                 'salvar_pais', 
+                 'salvar_horario_config', 
+                 'salvar_materia', 
+                 'reservar_livro', 
+                 'cancelar_reserva_admin', 
+                 'cancelar_reserva_aluno', 
+                 'avaliar_livro'
+                ];
 if (in_array($action, $post_actions) && $_SERVER['REQUEST_METHOD'] !== 'POST')
 {
     http_response_code(405); // Method Not Allowed
@@ -41,23 +50,30 @@ if (in_array($action, $post_actions) && $_SERVER['REQUEST_METHOD'] !== 'POST')
     exit;
 }
 
-// Actions that require authentication
-$auth_required_actions = ['mark_notification_read', 'get_paises', 'salvar_pais', 'salvar_horario_config', 'salvar_materia'];
+$auth_required_actions = [
+                         'mark_notification_read',
+                         'get_paises',
+                         'salvar_pais',
+                         'salvar_horario_config',
+                         'salvar_materia',
+                         'reservar_livro',
+                         'cancelar_reserva_admin',
+                         'cancelar_reserva_aluno',
+                         'avaliar_livro'
+                        ];
 if (in_array($action, $auth_required_actions) && !isset($_SESSION['user_id']))
 {
-    http_response_code(403); // Forbidden
+    http_response_code(403);
     echo json_encode(['status' => 'error', 'message' => 'Autenticação necessária.']);
     exit;
 }
 
 // --- Action Handling ---
 
-// The Database class is needed for the actions below.
 require_once BASE_PATH . 'core/services/database.php';
 $db = new Database();
 $response = [];
 
-// Ações que requerem o parâmetro 'term' para busca
 $actions_requiring_term = ['search_autores', 'search_editoras', 'search_generos'];
 $term = '';
 if (in_array($action, $actions_requiring_term))
@@ -65,7 +81,7 @@ if (in_array($action, $actions_requiring_term))
     $term = trim($_GET['term'] ?? '');
     if (empty($term))
     {
-        echo json_encode([]); // Retorna array vazio se o termo for inválido
+        echo json_encode([]);
         exit;
     }
 }
@@ -177,6 +193,93 @@ try
                     http_response_code(500);
                     $response = ['status' => 'error', 'success' => false, 'message' => 'Falha ao atualizar o status da notificação.'];
                 }
+            }
+            break;
+
+        case 'reservar_livro':
+            require_once BASE_PATH . 'core/services/ReservaService.php';
+            $bookId = isset($_POST['book_id']) ? (int)$_POST['book_id'] : 0;
+            $alunoId = (int)$_SESSION['user_id'];
+
+            if ($bookId > 0 && $alunoId > 0)
+            {
+                $reservaService = new ReservaService();
+
+                $result = $reservaService->criarReserva($alunoId, $bookId);
+
+                $response['success'] = $result['success'];
+                $response['message'] = $result['message'];
+
+                if ($result['success'] && isset($result['newReservation']))
+                {
+                    $item = $result['newReservation'];
+
+                    $jsReservation = new stdClass();
+                    $jsReservation->id = $item->id_livro;
+                    $jsReservation->title = $item->titulo;
+                    $jsReservation->img = $item->url_foto ?? null;
+                    $jsReservation->author = $item->autores ?? '';
+                    $jsReservation->status = 'retirar';
+                    $jsReservation->date = $item->data_validade_reserva ? (new DateTime($item->data_validade_reserva))->format('d/m/Y') : 'Data Indefinida';
+
+                    $response['newReservation'] = $jsReservation;
+                }
+            }
+            else
+            {
+                $response = ['success' => false, 'message' => 'ID do livro ou do aluno é inválido.'];
+            }
+            break;
+
+        case 'cancelar_reserva_aluno':
+            require_once BASE_PATH . 'core/services/ReservaService.php';
+            $bookId = isset($_POST['book_id']) ? (int)$_POST['book_id'] : 0;
+            $alunoId = (int)$_SESSION['user_id'];
+
+            if ($bookId > 0 && $alunoId > 0)
+            {
+                $reservaService = new ReservaService();
+                $response = $reservaService->cancelarReservaAluno($alunoId, $bookId);
+            }
+            else
+            {
+                $response = ['success' => false, 'message' => 'ID do livro ou do aluno é inválido.'];
+            }
+            break;
+
+        case 'cancelar_reserva_admin':
+            require_once BASE_PATH . 'core/services/ReservaService.php';
+            $reservaId = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+
+            if ($reservaId > 0)
+            {
+                $reservaService = new ReservaService();
+                $result = $reservaService->cancelarReservaAdmin($reservaId);
+                $response['success'] = $result;
+                $response['message'] = $result ? 'Reserva cancelada com sucesso.' : 'Erro ao cancelar a reserva.';
+            }
+            else
+            {
+                $response = ['success' => false, 'message' => 'ID de reserva inválido.'];
+            }
+            break;
+
+        case 'avaliar_livro':
+            require_once BASE_PATH . 'core/services/AvaliacaoService.php';
+            $alunoId = (int)$_SESSION['user_id'];
+            $livroId = isset($_POST['book_id']) ? (int)$_POST['book_id'] : 0;
+            $nota = isset($_POST['rating']) ? (int)$_POST['rating'] : 0;
+            $comentario = isset($_POST['comment']) ? trim($_POST['comment']) : null;
+
+            if ($alunoId > 0 && $livroId > 0 && $nota > 0)
+            {
+                $avaliacaoService = new AvaliacaoService();
+                $response = $avaliacaoService->salvarAvaliacao($alunoId, $livroId, $nota, $comentario);
+            }
+            else
+            {
+                http_response_code(400);
+                $response = ['success' => false, 'message' => 'Dados inválidos para registrar a avaliação.'];
             }
             break;
 

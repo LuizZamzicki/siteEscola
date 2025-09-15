@@ -87,4 +87,3 @@ function renderizarCarrossel(
 
 FuncoesUtils::adicionarCss('Widgets/carrossel/carrossel.css');
 FuncoesUtils::adicionarJs('Widgets/carrossel/carrossel.js');
-?>

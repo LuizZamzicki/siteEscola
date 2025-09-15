@@ -89,4 +89,3 @@ function renderizarCarrosselMultiplo(
 
 FuncoesUtils::adicionarCss('Widgets/carrossel_multiplo/carrossel_multiplo.css');
 FuncoesUtils::adicionarJs('Widgets/carrossel_multiplo/carrossel_multiplo.js');
-?>
