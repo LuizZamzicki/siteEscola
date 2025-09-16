@@ -49,7 +49,7 @@ class BibliotecaAdmController
         $autorService = new AutorService();
         $editoraService = new EditoraService();
         $generoService = new GeneroService();
-        $livroDTO = new LivroDTO($_POST);
+        $livroDTO = LivroDTO::fromArray($_POST);
         $foto = $_FILES['book-photo'] ?? null;
         $autorNome = $_POST['book-author'] ?? '';
         $editoraNome = $_POST['book-publisher'] ?? '';

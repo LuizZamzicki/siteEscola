@@ -131,7 +131,6 @@
 }
 
 
-
 $livros = $bibliotecaService->buscarTodosLivros();
 $emprestimos = $bibliotecaService->buscarEmprestimosAtivos();
 $reservas = $reservaService->buscarPorStatus('Aguardando Retirada'); // A UI atual é para confirmar retirada
