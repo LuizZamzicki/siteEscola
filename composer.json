@@ -1,7 +1,14 @@
 {
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Core\\": "core/"
+        }
+    },
     "require": {
         "vlucas/phpdotenv": "^5.6",
         "google/apiclient": "2.15",
-        "guzzlehttp/guzzle": "7.8"
+        "guzzlehttp/guzzle": "7.8",
+        "phpmailer/phpmailer": "^6.10"
     }
 }
